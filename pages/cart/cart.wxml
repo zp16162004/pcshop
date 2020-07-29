@@ -1,0 +1,71 @@
+<!--pages/cart/cart.wxml-->
+<view class="cart_info">
+  购物车数量
+  <view class="number">
+    1
+  </view>
+  <view class="manage">
+    管理
+  </view>
+</view>
+
+<view class="split">
+</view>
+
+<view class="p_cart">
+  <view class="cart">
+    <radio value="id"></radio>
+    <image src="/public/image/product.jpg" mode="aspectFit"></image>
+    <view class="p_cart_info">
+      <view class="product_name">
+        iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="product_spec">
+        规格:默认
+      </view>
+      <view class="p_price">
+        <view class="price">
+          ￥1.00
+        </view>
+        <view class="p_btns">
+          <view class="subduce">
+            -
+          </view>
+          <view class="number">
+            1
+          </view>
+          <view class="add">
+            +
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+
+  <view class="p_bottom">
+    <radio value="all"></radio>
+    <view class="select_all">
+      全选(2)
+    </view>
+    <block wx:if="{{false}}">
+    <view class="p_build_bill">
+      <view class="all_price">
+        ￥10.00
+      </view>
+      <view class="build_bill">
+        立即下单
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{true}}">
+    <view class="p_edit">
+      <view class="delete">
+        删除
+      </view>
+    </view>
+    </block>
+  </view>

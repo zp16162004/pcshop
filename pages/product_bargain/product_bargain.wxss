@@ -1,0 +1,211 @@
+/* pages/product_bargain/product_bargain.wxss */
+page
+{
+  background-color: #f10b0b;
+}
+.daojishi
+{
+  width: 260rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-top: 4rpx solid #fc8b42;
+  border-left: 4rpx solid #fc8b42;
+  border-right: 4rpx solid #fc8b42;
+  position: absolute;
+  right: 20rpx;
+  top: 356rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  color: #f10b0b;
+  font-size: 22rpx;
+  text-align: center;
+}
+.p_product
+{
+  margin: 0rpx 20rpx;
+  padding:30rpx;
+  padding-bottom: 43rpx;
+  background-color: #ffffff;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  border-left:4rpx solid #fc8b42 ;
+  border-right:4rpx solid #fc8b42 ;
+  border-bottom:4rpx solid #fc8b42 ;
+  position: relative;
+}
+.border-line
+{
+  height: 2px;
+  width: 450rpx;
+  position:absolute ;
+  top: 0rpx;
+  left: 0rpx;
+  background-color: #fc8b42;
+}
+.p_product_info
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.p_product_right
+{
+  width: 490rpx;
+  overflow: hidden;
+}
+.product_name
+{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.price
+{
+  color: #f10b0b;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.bargain_success_count
+{
+  font-size: 22rpx;
+  color: #656565;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.p_process
+{
+  height: 10rpx;
+  width: 100%;
+  background-color: #e9e9e9;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+.p_process_info
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.p_process_done
+{
+  width: 50%;
+  text-align: left;
+  font-size: 18rpx;
+  color: #656565;
+}
+.p_process_left
+{
+  width: 50%;
+  text-align: right;
+  font-size: 18rpx;
+  color: #656565;
+}
+.to_bargain
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding:20rpx 0rpx;
+}
+.to_bargain>.btn
+{
+  width: 600rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  background-color: #f10b0b;
+  color: #ffffff;
+  text-align: center;
+}
+.percent
+{
+  background-color: #f10b0b;
+  height: 100%;
+}
+.numer_bargain
+{
+  font-size: 18rpx;
+  text-align: center;
+}
+.p_bargain
+{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding:30rpx;
+  padding-top: 43rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  border:4rpx solid #fc8b42 ;
+  position: relative;
+}
+.lianjie1
+{
+  position: absolute;
+  left: 20rpx;
+  top: -50rpx;
+}
+.lianjie2
+{
+  position: absolute;
+  left: 355rpx;
+  top: -50rpx;
+}
+.lianjie3
+{
+  position: absolute;
+  right: 20rpx;
+  top: -50rpx;
+}
+.p_product_detail
+{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding:30rpx;
+  padding-top: 43rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  border:4rpx solid #fc8b42 ;
+  position: relative;
+}
+.bargain
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bargain_info
+{
+  flex-grow: 1;
+  padding: 0rpx 20rpx;
+}
+.bargain_money
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.username
+{
+  font-size: 22rpx;
+}
+.bargain_time
+{
+  font-size: 18rpx;
+  color: #656565;
+}
+.money
+{
+  color: #f10b0b;
+  font-size: 22rpx;
+}

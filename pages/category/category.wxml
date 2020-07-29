@@ -1,0 +1,35 @@
+<!--pages/category/category.wxml-->
+  <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{systeminfo.windowWidth-20}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
+    <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
+    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
+  </view>
+<view class="holder" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.height-10}}px">
+<scroll-view scroll-y="true" class="left_category">
+  <block wx:for="{{rows_category}}">
+    <view class="left_category_item">
+      {{item.name}}
+    </view>
+  </block>
+</scroll-view>
+<scroll-view scroll-y="true" class="right_category">
+  <block wx:for="{{rows_category}}">
+    <view class="right_category_item">
+      <view class="name">
+        <view class="line"></view>
+        <view class="txt">{{item.name}}</view>
+        <view class="line"></view>
+      </view>
+      <view class="p_child_category">
+        <block wx:for="{{item.rows_child_category}}" wx:for-item="child_item">
+          <view class="p_menu" data-id="{{child_item.id}}" bindtap="goto_product_list">
+            <image src="{{child_item.img}}" mode="aspectFit" style="width:80rpx;height:80rpx;"/>
+            <view class="menu_txt">
+              {{child_item.name}}
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+</view>

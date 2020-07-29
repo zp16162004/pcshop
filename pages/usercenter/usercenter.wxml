@@ -1,0 +1,180 @@
+<!--pages/usercenter/usercenter.wxml-->
+<view class="user_head">
+  <image class="user_logo" src="/public/image/product.jpg" mode="aspectFit"></image>
+  <view class="p_userinfo">
+    <view class="username">
+      human machine=11394
+    </view>
+    <view class="bind_phone">
+    绑定手机号
+    </view>
+  </view>
+  <image class="setting" src="/public/image/setting.png" mode="aspectFit"></image>
+</view>
+<view class="my_money">
+  <view class="money_item">
+    <view class="txt">
+      我的余额
+    </view>
+    <view class="money">
+      0.00
+    </view>
+  </view>
+  <view class="money_item" style="border-left:1px solid #e9e9e9;border-right:1px solid #e9e9e9">
+    <view class="txt">
+      当前佣金
+    </view>
+    <view class="money">
+      0.00
+    </view>
+  </view>
+  <view class="money_item">
+    <view class="txt">
+      优惠券
+    </view>
+    <view class="money">
+      2
+    </view>
+  </view>
+</view>
+
+<view class="split">
+</view>
+
+<view class="p_menus">
+  <view class="head">
+    <view class="txt">
+      我的订单
+    </view>
+    <view class="more">
+      全部订单>
+    </view>
+  </view>
+  <view class="menus">
+    <view class="p_menu" style="width:20%">
+      <view class="menu">
+        <image src="/public/image/daifukuan_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          待付款
+        </view>
+        <view class="number">
+          1
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:20%">
+      <view class="menu">
+        <image src="/public/image/daifahuo_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          代发货
+        </view>
+        <view class="number">
+          1
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:20%">
+      <view class="menu">
+        <image src="/public/image/daishouhuo_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          待收货
+        </view>
+        <view class="number">
+          1
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:20%">
+      <view class="menu">
+        <image src="/public/image/pingjia_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          待评价
+        </view>
+        <view class="number">
+          1
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:20%">
+      <view class="menu">
+        <image src="/public/image/tuikuan_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          售后/退款
+        </view>
+        <view class="number">
+          1
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="split">
+</view>
+
+<view class="p_menus">
+  <view class="head">
+    <view class="txt">
+      我的服务
+    </view>
+  </view>
+  <view class="menus">
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/tuiguang_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          我的推广
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/yue_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          我的余额
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/address_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          收货地址
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/shoucang_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          我的收藏
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/coupon_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          优惠券
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/bargain_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          砍价记录
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%">
+      <view class="menu">
+        <image src="/public/image/kefu_red.png" mode="aspectFit"></image>
+        <view class="txt">
+          联系客服
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

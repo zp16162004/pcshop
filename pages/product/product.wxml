@@ -1,0 +1,277 @@
+<!--pages/product/product.wxml-->
+<scroll-view scroll-y="true" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
+<swiper class="swiper1" indicator-dots="true" indicator-active-color="lightblue" circular>
+  <block wx:if="{{row_product.video!=''}}">
+  <swiper-item >
+    <video  src="{{row_product.video}}"></video>
+  </swiper-item>
+  </block>
+  <block wx:for="{{row_product.rows_img}}">
+  <swiper-item >
+    <image  mode="aspectFill" bindtap="tapBanner" src="{{item}}" />
+  </swiper-item>
+  </block>
+</swiper>
+<view class="p_price">
+  <view class="price">
+    <block wx:if="{{row_product.single_spec==1}}">
+    ￥{{row_product.price}}
+    </block>
+    <block wx:if="{{row_product.single_spec==0}}">
+    ￥{{row_product.rows_productspec[0].price}}
+    </block>
+  </view>
+  <image class="share" mode="aspectFit" src="/public/image/share.png"/>
+</view>
+<view class="p_title">
+  {{row_product.name}}
+</view>
+<view class="p_extra_info">
+  <view class="price_old">
+    <block wx:if="{{row_product.single_spec==1}}">
+    ￥{{row_product.price_old}}
+    </block>
+    <block wx:if="{{row_product.single_spec==0}}">
+    ￥{{row_product.rows_productspec[0].price_old}}
+    </block>
+  </view>
+  <view class="stock">
+    <block wx:if="{{row_product.single_spec==1}}">
+    库存:{{row_product.stock}}
+    </block>
+    <block wx:if="{{row_product.single_spec==0}}">
+    库存:{{row_product.rows_productspec[0].stock}}
+    </block>
+  </view>
+  <view class="sale">
+    销量:{{row_product.sale}}
+  </view>
+</view>
+
+<!--积分信息-->
+<view class="p_jifen">
+  <view class="txt">
+    赠积分:
+  </view>
+  <view class="jifen">
+    <view class="left_top_line">
+    </view>
+    <view class="left_circle">
+    </view>
+    <view class="left_bottom_line">
+    </view>
+    10.00积分
+    <view class="right_top_line">
+    </view>
+    <view class="right_circle">
+    </view>
+    <view class="right_bottom_line">
+    </view>
+  </view>
+</view>
+<!--优惠券信息-->
+<view class="p_coupon">
+  <view class="txt">
+    优惠券:
+  </view>
+  <view class="coupon">
+    <view class="left_top_line">
+    </view>
+    <view class="left_circle">
+    </view>
+    <view class="left_bottom_line">
+    </view>
+    满100减10
+    <view class="right_top_line">
+    </view>
+    <view class="right_circle">
+    </view>
+    <view class="right_bottom_line">
+    </view>
+  </view>
+</view>
+<!--活动信息-->
+<view class="p_activity">
+  <view class="txt">
+    优惠券:
+  </view>
+  <view class="activity">
+    <view class="item_activity">
+      <image src="/public/image/tuangou_white.png" mode="aspectFit" style="width:30rpx;height:30rpx;margin-right:15rpx;" />
+      参与团购
+    </view>
+  </view>
+</view>
+<view class="split">
+</view>
+<!--规格信息-->
+<view class="p_spec">
+  <view class="txt">
+    已选择:
+  </view>
+  <view class="selected_spec">
+  默认
+  </view>
+  <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
+</view>
+<view class="split">
+</view>
+<!--用户评价-->
+<view class="p_comment">
+  <view class="h_comment">
+    <view class="txt">
+    用户评价(10)
+    </view>
+    <view class="p_percent">
+      <view class="percent">
+      85.00%
+      </view>
+      好评率
+    </view>
+    <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
+  </view>
+  <view class="comment">
+    <view class="head_comment">
+      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
+      <view class="username">
+        测试用户
+      </view>
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+    </view>
+    <view class="info_comment">
+      2020-07-11 14:15 默认
+    </view>
+    <view class="content">
+    dadada，大萨达大大大
+    </view>
+  </view>
+  <view class="comment">
+    <view class="head_comment">
+      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
+      <view class="username">
+        测试用户
+      </view>
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+    </view>
+    <view class="info_comment">
+      2020-07-11 14:15 默认
+    </view>
+    <view class="content">
+    dadada，大萨达大大大
+    </view>
+  </view>
+  <view class="comment">
+    <view class="head_comment">
+      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
+      <view class="username">
+        测试用户
+      </view>
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+    </view>
+    <view class="info_comment">
+      2020-07-11 14:15 默认
+    </view>
+    <view class="content">
+    dadada，大萨达大大大
+    </view>
+  </view>
+</view>
+<view class="split">
+</view>
+<!--产品介绍-->
+<view class="p_detail">
+  <view class="h_detail">
+    产品介绍
+  </view>
+  <view class="detail">
+    <parser html="{{row_product.detail}}" />
+  </view>
+</view>
+</scroll-view>
+<!--底部栏-->
+<view class="bottom">
+  <view class="item_bottom">
+    <image src="/public/image/kefu.png"></image>
+    <view class="txt">客服</view>
+  </view>
+  <view class="item_bottom">
+    <image src="/public/image/heart.png"></image>
+    <view class="txt">收藏</view>
+  </view>
+  <view class="item_bottom">
+    <image src="/public/image/gouwuche.png"></image>
+    <view class="txt">购物车</view>
+    <view class="number">1</view>
+  </view>
+  <view class="add_cart">
+    加入购物车
+  </view>
+  <view class="buy">
+    立即购物
+  </view>
+</view>
+<!--弹出选择层-->
+<view class="p_select" wx:if="{{true}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
+  <view class="header_select">
+    <image src="/public/image/product.jpg"></image>
+    <view class="header_select_right">
+      <view class="header_product_name">
+        iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="header_select_extra_info">
+        <view class="header_price">
+        ￥10.00
+        </view>
+        <view class="header_stock">
+        库存:0
+        </view>
+      </view>
+    </view>
+    <image class="delete" src="/public/image/delete.png" mode="aspectFit" style="width:30rpx;height:30rpx"></image>
+  </view>
+    <view class="select_spec">
+      <view class="spec_name">
+        规格
+      </view>
+      <view class="specs">
+        <view class="spec">
+          默认
+        </view>
+        <view class="spec">
+          默认
+        </view>
+      </view>
+    </view>
+    <view class="p_number">
+      <view class="number_name">
+        数量
+      </view>
+      <view class="specs">
+        <view class="subduce">
+          -
+        </view>
+        <view class="number">
+          1
+        </view>
+        <view class="add">
+          +
+        </view>
+      </view>
+    </view>
+</view>
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

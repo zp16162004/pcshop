@@ -1,0 +1,16 @@
+<!--components/login/login.wxml-->
+<view class="background" bindtap="cancel">
+  <image class="head_img" mode="aspectFit" src="/public/image/half_circle.png"></image>
+  <view class="content">
+    <view class="title">
+      授权提醒
+    </view>
+    <view class="msg">
+      请授权头像等信息，以便为您提供更好的服务
+    </view>
+    <view class="buttons" catchtap="empty">
+      <button class="cancel">随便逛逛</button>
+      <button class="confirm" open-type="getUserInfo" bindgetuserinfo="confirm">去授权</button>
+    </view>
+  </view>
+</view>
