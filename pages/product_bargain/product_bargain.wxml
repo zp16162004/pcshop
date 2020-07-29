@@ -1,0 +1,72 @@
+<!--pages/product_bargain/product_bargain.wxml-->
+<image mode="aspectFit" src="/public/image/head_kanjia.png" style="width:750rpx;height:396rpx"></image>
+<view class="daojishi">
+20天10时20分30秒
+</view>
+<view class="p_product">
+  <view class="border-line">
+  </view>
+  <view class="p_product_info">
+    <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;" mode="aspectFit"></image>
+    <view class="p_product_right">
+      <view class="product_name">
+        iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="price">
+        当前:￥10.00
+      </view>
+      <view class="bargain_success_count">
+        已有0人砍价成功
+      </view>
+    </view>
+  </view>
+  <view class="p_process">
+    <view class="percent" style="width:66%">
+    </view>
+  </view>
+  <view class="p_process_info">
+    <view class="p_process_done">
+    已砍0元
+    </view>
+    <view class="p_process_left">
+    还剩350.00元
+    </view>
+  </view>
+  <view class="to_bargain">
+    <view class="btn">
+  立即参与砍价
+    </view>
+  </view>
+  <view class="numer_bargain">
+  已有<text style="color:#f10b0b">10</text>位好友成功砍价
+  </view>
+</view>
+<view class="p_bargain">
+    <image class="lianjie1" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="head_bargain" src="/public/image/kanjiabang.png" mode="aspectFit" style="width:100%;height:32rpx"/>
+    <view class="bargain">
+      <image src="/public/image/product.jpg" mode="aspectFit" style="width:65rpx;height:65rpx;border:1px solid #f10b0b;border-radius:65rpx"></image>
+      <view class="bargain_info">
+        <view class="username">
+          humanmachine=1194
+        </view>
+        <view class="bargain_time">
+          2020-06-30 10:00:00
+        </view>
+      </view>
+      <view class="bargain_money">
+        <image mode="aspectFit" src="/public/image/bargain_red.png" style="width:30rpx;height:30rpx"></image>
+        <view class="money">
+          砍掉0.46元
+        </view>
+      </view>
+    </view>
+</view>
+<view class="p_product_detail">
+    <image class="lianjie1" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
+    <image class="head_bargain" src="/public/image/shangpinxiangqing.png" mode="aspectFit" style="width:100%;height:32rpx"/>
+</view>

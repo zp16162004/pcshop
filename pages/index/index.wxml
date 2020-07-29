@@ -1,0 +1,464 @@
+<!--index.wxml-->
+<!--顶部标题栏-->
+<view class="p_title" style="margin-top:{{menu_rect.top}}px;height:{{menu_rect.height}}px;">
+    <image mode="aspectFit" src="/public/image/logo_img_sc.png" style="padding-left:{{systeminfo.windowWidth-menu_rect.right}}px;height:100%;width:{{2*menu_rect.height}}px"></image>
+  <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{menu_rect.left-(systeminfo.windowWidth-menu_rect.right)-2*menu_rect.height-20}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
+    <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
+    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
+  </view>
+</view>
+<scroll-view scroll-y="true" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.bottom-10}}px;">
+<!--轮播图-->
+  <swiper class="swiper1" indicator-dots="true" indicator-active-color="lightblue" autoplay circular style="margin-top:20rpx;">
+    <swiper-item >
+      <image  mode="aspectFill" bindtap="tapBanner" src="{{config.navigate_pic1}}" />
+    </swiper-item>
+    <swiper-item >
+      <image  mode="aspectFill" bindtap="tapBanner" src="{{config.navigate_pic2}}" />
+    </swiper-item>
+    <swiper-item >
+      <image  mode="aspectFill" bindtap="tapBanner" src="{{config.navigate_pic3}}" />
+    </swiper-item>
+  </swiper>
+  <!--滚动信息-->
+  <view class="p_notices">
+    <image src="/public/image/laba.png" style="width:40rpx;height:40rpx" />
+    <swiper vertical="true" autoplay circular class="snotice">
+      <block wx:for="{{rows_notice}}">
+      <swiper-item>
+        <view class="notice">
+          <image mode="aspectFit" src="{{item.row_member.img}}" style="width:30rpx;height:30rpx;border-radius:30rpx"></image>
+          <view class="txt">
+          {{item.row_member.nickname}}购买了{{item.row_product.name}}
+          </view>
+          <view class="more">
+          >
+          </view>
+        </view>
+      </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--菜单-->
+  <view class="p_menus">
+    <view class="p_menu">
+      <image src="/public/image/dianpu.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_category"/>
+      <view class="menu_txt">
+        商品分类
+      </view>
+    </view>
+    <view class="p_menu">
+      <image src="/public/image/youhuiquan.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        优惠券
+      </view>
+    </view>
+    <view class="p_menu">
+      <image src="/public/image/qiandao.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        签到
+      </view>
+    </view>
+    <view class="p_menu">
+      <image src="/public/image/kefu.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        客服
+      </view>
+    </view>
+    <view class="p_menu">
+      <image src="/public/image/shoucang.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        我的收藏
+      </view>
+    </view>
+    <view class="p_menu" bindtap="goto_activity_group">
+      <image src="/public/image/tuangou.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        团购活动
+      </view>
+    </view>
+    <view class="p_menu" bindtap="goto_activity_flash">
+      <image src="/public/image/miaosha.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        秒杀活动
+      </view>
+    </view>
+    <view class="p_menu" bindtap="goto_activity_bargain">
+      <image src="/public/image/kanjia.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <view class="menu_txt">
+        砍价活动
+      </view>
+    </view>
+  </view>
+  <!--活动海报-->
+  <view class="poster">
+    <view class="post_pintuan" style="background-image:url({{config.poster_pintuan}})">
+      <view class="poster_title">
+        一起来拼团
+      </view>
+      <view class="poster_desc">
+        优惠多多
+      </view>
+    </view>
+    <view class="poster_right">
+      <view class="poster_miaosha" style="background-image:url({{config.poster_miaosha}});margin-bottom:20rpx">
+        <view class="poster_title">
+          秒杀专区
+        </view>
+        <view class="poster_desc">
+          人民币才是真爱
+        </view>
+      </view>
+      <view class="poster_kanjia"  style="background-image:url({{config.poster_kanjia}})">
+        <view class="poster_title">
+          砍价活动
+        </view>
+        <view class="poster_desc">
+          呼朋唤友来砍价
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--快速选择-->
+  <view class="holder" style="border-top:1px solid #e9e9e9">
+    <view class="p_head">
+      <view class="p_head_left">
+        <view class="head_title">
+          快速选择
+        </view>
+        <view class="head_desc">
+          上百种商品分类任您选择
+        </view>
+      </view>
+      <view class="more" style="width:170rpx;text-align:right">
+      更多>>
+      </view>
+    </view>
+    <scroll-view scroll-x="true">
+    <view class="p_category">
+      <block wx:for="{{rows_detail_category}}">
+      <view class="category">
+        <image src="{{item.img}}" mode="aspectFit"></image>
+        <view class="category_txt">
+          {{item.name}}
+        </view>
+      </view>
+      </block>
+    </view>
+    </scroll-view>
+  </view>
+  <!--精品推荐-->
+  <view class="holder" style="border-top:1px solid #e9e9e9">
+    <view class="p_head">
+      <view class="p_head_left">
+        <view class="head_title">
+          精品推荐
+        </view>
+        <view class="head_desc">
+          诚意推荐品质商品
+        </view>
+      </view>
+      <view class="more" style="width:170rpx;text-align:right">
+      更多>>
+      </view>
+    </view>
+    
+  <swiper class="good_swiper" indicator-dots="true" indicator-active-color="lightblue" autoplay circular style="margin-top:20rpx;">
+    <swiper-item >
+      <image  mode="aspectFit" bindtap="tapBanner" src="{{config.good_pic1}}" />
+    </swiper-item>
+    <swiper-item >
+      <image  mode="aspectFit" bindtap="tapBanner" src="{{config.good_pic2}}" />
+    </swiper-item>
+  </swiper>
+    <view class="p_product" data-id="5" bindtap="goto_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--热门榜单-->
+  <view class="hot_head" style="background-image:url({{config.hot_pic}})">
+    <view class="p_head" style="padding:20rpx">
+      <view class="head_title color_white">
+        热门榜单
+      </view>
+      <view class="color_white flex_fill" style="padding:0rpx 20rpx">
+        根据销量，好评，搜索等综合得出
+      </view>
+      <view class="more color_white" style="text-align:right">
+      更多>>
+      </view>
+    </view>
+  </view>
+  <view class="p_hot flex_row_center">
+    <view class="hot_product flex_column_center">
+      <image src="/public/image/product.jpg" mode="aspectFit"></image>
+      <view class="hot_product_name single_line">
+      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+      </view>
+      <view class="hot_procut_price color_red">
+        ￥10.00
+      </view>
+      <image class="top" src="{{config.top1}}" mode="aspectFit" style="width:40rpx;height:40rpx"></image>
+    </view>
+    <view class="hot_product flex_column_center">
+      <image src="/public/image/product.jpg" mode="aspectFit"></image>
+      <view class="hot_product_name single_line">
+      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+      </view>
+      <view class="hot_procut_price color_red">
+        ￥10.00
+      </view>
+      <image class="top" src="{{config.top2}}" style="width:40rpx;height:40rpx"></image>
+    </view>
+    <view class="hot_product flex_column_center">
+      <image src="/public/image/product.jpg" mode="aspectFit"></image>
+      <view class="hot_product_name single_line">
+      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+      </view>
+      <view class="hot_procut_price color_red">
+        ￥10.00
+      </view>
+      <image class="top" src="{{config.top3}}" style="width:40rpx;height:40rpx"></image>
+    </view>
+  </view>
+  <!--首发新品-->
+  
+  <view class="holder" style="border-top:1px solid #e9e9e9">
+    <view class="p_head">
+      <view class="p_head_left">
+        <view class="head_title">
+          首发新品
+        </view>
+        <view class="head_desc">
+          多个优质商品商家
+        </view>
+      </view>
+      <view class="more" style="width:170rpx;text-align:right">
+      更多>>
+      </view>
+    </view>
+    <scroll-view scroll-x="true">
+    <view class="p_category">
+      <block wx:for="{{rows_detail_category}}">
+      <view class="hot_product flex_column_center">
+        <image src="/public/image/product.jpg" mode="aspectFit"></image>
+        <view class="hot_product_name single_line">
+        【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="hot_procut_price color_red">
+          ￥10.00
+        </view>
+      </view>
+      </block>
+    </view>
+    </scroll-view>
+  </view>
+  <!--促销单品-->
+  <view class="holder" style="border-top:1px solid #e9e9e9">
+    <view class="p_head">
+      <view class="p_head_left">
+        <view class="head_title">
+          促销单品
+        </view>
+        <view class="head_desc">
+          库存商品优惠促销活动
+        </view>
+      </view>
+      <view class="more" style="width:170rpx;text-align:right">
+      更多>>
+      </view>
+    </view>
+    <view class="p_product" data-id="5" bindtap="goto_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product" data-id="5" bindtap="goto_product">
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+    <view class="p_product" data-id="5" bindtap="goto_product">
+      <view class="activity">
+        砍价
+      </view>
+      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥100.00
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥100.00
+                </view>
+                <view class="product_sale">
+                已售6100件
+                </view>
+            </view>
+          </view>
+          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

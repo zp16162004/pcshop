@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/usercenter/usercenter",
+    "pages/product_list/product_list",
+    "pages/product/product",
+    "pages/activity_group/activity_group",
+    "pages/activity_bargain/activity_bargain",
+    "pages/activity_flash/activity_flash",
+    "pages/act_bargain/act_bargain",
+    "pages/product_bargain/product_bargain",
+    "pages/product_group/product_group",
+    "pages/product_flash/product_flash",
+    "pages/bill_build/bill_build"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "PcShop",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1196db",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/public/image/shouye.png",
+        "selectedIconPath": "/public/image/shouye2.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "/public/image/fenlei.png",
+        "selectedIconPath": "/public/image/fenlei2.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/public/image/gouwuche.png",
+        "selectedIconPath": "/public/image/gouwuche2.png"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "我的",
+        "iconPath": "/public/image/wode.png",
+        "selectedIconPath": "/public/image/wode2.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "parser": "/components/parser.20200414.min/parser"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,138 @@
+<!--pages/activity_group/activity_group.wxml-->
+<image mode="aspectFit" src="/public/image/head_flash.jpg" style="width:750rpx;height:375rpx"></image>
+<view class="p_section">
+  <image mode="aspectFit" src="/public/image/xianshi.png" style="width:50rpx;height:50rpx;margin-right:20rpx"></image>
+  <scroll-view scroll-x="true" style="width:640rpx;height:80rpx">
+    <view  class="sections">
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status_on">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+      <view class="section">
+        <view class="time">
+          12:00
+        </view>
+        <view class="status">
+          进行中
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="p_flash">
+  <view class="flash" data-id="5" bindtap="goto_product_flash">
+    <image src="/public/image/product.jpg" mode="aspectFit" style="width:160rpx;height:160rpx">
+    </image>
+    <view class="flash_right">
+      <view class="flash_product_name">
+      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="flash_price">
+        <view class="price">
+        ￥100.00
+        </view>
+        <view class="price_old">
+        ￥1000.00
+        </view>
+      </view>
+      <view class="flash_extra_info">
+        <view class="flash_info_left">
+          <view class="flash_limit">
+          限量100件
+          </view>
+          <view class="flash_process">
+            <view class="process" style="width:66%">
+            </view>
+            <view class="number">
+            已抢0件
+            </view>
+          </view>
+        </view>
+        <view class="flash_btn">
+          秒杀中
+        </view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="flash">
+    <image src="/public/image/product.jpg" mode="aspectFit" style="width:160rpx;height:160rpx">
+    </image>
+    <view class="flash_right">
+      <view class="flash_product_name">
+      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="flash_price">
+        <view class="price">
+        ￥100.00
+        </view>
+        <view class="price_old">
+        ￥1000.00
+        </view>
+      </view>
+      <view class="flash_extra_info">
+        <view class="flash_info_left">
+          <view class="flash_limit">
+          限量100件
+          </view>
+          <view class="flash_process">
+            <view class="process" style="width:66%">
+            </view>
+            <view class="number">
+            已抢0件
+            </view>
+          </view>
+        </view>
+        <view class="flash_btn">
+          秒杀中
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

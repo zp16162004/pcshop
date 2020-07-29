@@ -1,0 +1,225 @@
+<!--pages/bill_build/bill_build.wxml-->
+<scroll-view scroll-y="true" style="width:100%;height:{{systeminfo.windowHeight}}px;box-sizing:border-box;padding-bottom:80rpx">
+<view class="head" style="background-image:url({{config.bill_build_background}})">
+  <view class="p_head">
+    <view class="head_kuaidi">
+      快递配送
+    </view>
+    <view class="switch">
+      
+    </view>
+    <view class="head_daodian">
+      到店自提
+    </view>
+  </view>
+  <view class="p_xinfeng">
+    <view class="p_address">
+      <view class="address_left">
+        <view class="l1">
+          <view class="name">
+            张鹏
+          </view>
+          <view class="mobile">
+            18937357081
+          </view>
+        </view>
+        <view class="l2">
+          <view class="moren">
+            [默认]
+          </view>
+          <view class="address">
+            河南省新乡市大景城
+          </view>
+        </view>
+      </view>
+      <view class="select_address">
+        >
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--商品部分-->
+<view class="product_all_count">
+  共1件商品
+</view>
+<view  class="product">
+  <image src="/public/image/product.jpg" mode="aspectFit"></image>
+  <view class="product_info">
+    <view class="p_line1">
+      <view class="product_name">
+        iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="product_count">
+        x1
+      </view>
+    </view>
+    <view class="p_line2">
+      规格:默认
+    </view>
+    <view class="product_price">
+      ￥10.00
+    </view>
+  </view>
+</view>
+<view  class="product">
+  <image src="/public/image/product.jpg" mode="aspectFit"></image>
+  <view class="product_info">
+    <view class="p_line1">
+      <view class="product_name">
+        iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="product_count">
+        x1
+      </view>
+    </view>
+    <view class="p_line2">
+      规格:默认
+    </view>
+    <view class="product_price">
+      ￥10.00
+    </view>
+  </view>
+</view>
+
+<view class="split">
+</view>
+
+
+<view class="line">
+  <view class="txt">
+    优惠券
+  </view>
+  <view class="l_right">
+    请选择
+    <view class="select_address">
+    >
+    </view>
+  </view>
+</view>
+
+
+<view class="line">
+  <view class="txt">
+    积分抵扣
+  </view>
+  <view class="l_right">
+    当前积分
+    <view class="integral">
+    10.00
+    </view>
+    <radio value="r1" checked="true"/>
+  </view>
+</view>
+
+
+<view class="line">
+  <view class="txt">
+    快递费用
+  </view>
+  <view class="l_right">
+    ￥1.00
+  </view>
+</view>
+
+<view class="line">
+  <view class="txt">
+    联系人
+  </view>
+  <view class="l_right">
+    <input class="weui-input"  auto-focus placeholder="将会获取焦点"/>
+  </view>
+</view>
+<view class="line">
+  <view class="txt">
+    联系电话
+  </view>
+  <view class="l_right">
+    <input class="weui-input"  auto-focus placeholder="将会获取焦点"/>
+  </view>
+</view>
+
+<view class="line_column">
+  <view class="txt">
+    备注信息
+  </view>
+  <view class="p_remark">
+    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" />
+  </view>
+</view>
+
+
+
+<view class="split">
+</view>
+
+
+<view class="pick_pay_type">
+  共1件商品
+</view>
+<view class="pay_type">
+  <view class="pt_left">
+    <image src="/public/image/wechat_pay.png" mode="aspectFtx"></image>
+    微信支付
+  </view>
+  <view class="pt_right">
+    微信快捷支付
+  </view>
+</view>
+<view class="pay_type">
+  <view class="pt_left">
+    <image src="/public/image/yue_pay.png" mode="aspectFtx"></image>
+    余额支付
+  </view>
+  <view class="pt_right">
+    可用余额:￥0.00
+  </view>
+</view>
+<view class="pay_type">
+  <view class="pt_left">
+    <image src="/public/image/xianxia_pay.png" mode="aspectFtx"></image>
+    线下支付
+  </view>
+  <view class="pt_right">
+    线下支付
+  </view>
+</view>
+
+
+
+<view class="split">
+</view>
+
+
+
+<view class="line">
+  <view class="txt">
+    商品总价:
+  </view>
+  <view class="l_right">
+    ￥10.00
+  </view>
+</view>
+<view class="line">
+  <view class="txt">
+    运费:
+  </view>
+  <view class="l_right">
+    +￥1.00
+  </view>
+</view>
+<view class="split">
+</view>
+</scroll-view>
+
+<view class="all_money">
+  <view class="txt">
+    合计:
+  </view>
+  <view class="money">
+    ￥11.00
+  </view>
+  <view class="bill_btn">
+    立即结算
+  </view>
+</view>

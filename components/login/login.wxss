@@ -1,0 +1,74 @@
+/* components/login/login.wxss */
+.background
+{
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #00000099;
+}
+.head_img
+{
+  width: 200rpx;
+  height: 100rpx;
+}
+.content
+{
+  background-color: #ffffff;
+  width:600rpx;
+}
+.title
+{
+  font-size: 26rpx;
+  width: 100%;
+  text-align: center;
+  margin-top: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.msg
+{
+  font-size: 22rpx;
+  width: 100%;
+  text-align: center;
+  color: #656565;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-bottom: 50rpx;
+}
+.buttons
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+button
+{
+  font-size: 26rpx;
+  border-radius:0;
+  color:#ffffff;
+  padding: 0px;
+}
+button::after {
+  border: none;
+}
+.cancel
+{
+  background-color: #000000aa;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.confirm
+{
+  background-color: #1196db;
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 80rpx;
+  line-height: 80rpx;
+}

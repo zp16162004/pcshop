@@ -1,0 +1,68 @@
+<!--pages/activity_group/activity_group.wxml-->
+<image mode="aspectFit" src="/public/image/head_group.jpg" style="width:750rpx;height:375rpx"></image>
+<view class="p_group">
+  <view class="item_group" data-id="1" bindtap="goto_product_bargain">
+    <image mode="aspectFit" src="/public/image/product.jpg"></image>
+    <view class="p_group_right">
+      <view class="product_name">
+      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="p_group_limit">
+        <image src="/public/image/tuandui.png" mode="aspectFit" style="width:45rpx;height:30rpx;"></image>
+        <view class="limit">
+        100人正在参与
+        </view>
+      </view>
+      <view class="p_group_extra_info">
+        <view class="prices">
+          <view class="price">
+            最低
+          </view>
+          <view class="price_old">
+            ￥100.00
+          </view>
+        </view>
+        <view class="to_group">
+          <image src="/public/image/bargain.png" mode="aspectFit" style="width:45rpx;height:30rpx;"></image>
+          <view class="txt">
+          参与砍价
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="item_group">
+    <image mode="aspectFit" src="/public/image/product.jpg"></image>
+    <view class="p_group_right">
+      <view class="product_name">
+      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      </view>
+      <view class="p_group_limit">
+        <image src="/public/image/tuandui.png" mode="aspectFit" style="width:45rpx;height:30rpx;"></image>
+        <view class="limit">
+        100人正在参与
+        </view>
+      </view>
+      <view class="p_group_extra_info">
+        <view class="prices">
+          <view class="price">
+            最低
+          </view>
+          <view class="price_old">
+            ￥100.00
+          </view>
+        </view>
+        <view class="to_group">
+          <image src="/public/image/bargain.png" mode="aspectFit" style="width:45rpx;height:30rpx;"></image>
+          <view class="txt">
+          参与砍价
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+
+  
+</view>
