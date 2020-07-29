@@ -3,17 +3,24 @@
     <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
     <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
   </view>
-<view class="holder" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.height-10}}px">
+<view class="holder" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.height-10}}px;padding-left:0rpx;padding-right:0rpx">
 <scroll-view scroll-y="true" class="left_category">
   <block wx:for="{{rows_category}}">
-    <view class="left_category_item">
+    <block wx:if="{{selected_index==index}}">
+    <view class="left_category_item_selected color_red" data-id="{{item.id}}" bindtap="click_left">
       {{item.name}}
     </view>
+    </block>
+    <block wx:if="{{selected_index!=index}}">
+    <view class="left_category_item" data-id="{{item.id}}" bindtap="click_left">
+      {{item.name}}
+    </view>
+    </block>
   </block>
 </scroll-view>
-<scroll-view scroll-y="true" class="right_category">
+<scroll-view scroll-y="true" class="right_category" bindscroll="scroll_right" scroll-into-view="{{scroll_right_id}}">
   <block wx:for="{{rows_category}}">
-    <view class="right_category_item">
+    <view class="right_category_item" id="category_{{item.id}}">
       <view class="name">
         <view class="line"></view>
         <view class="txt">{{item.name}}</view>
@@ -31,5 +38,8 @@
       </view>
     </view>
   </block>
+  <view id="empty" style="width:100%;height:{{right_empty_height}}px">
+  -
+  </view>
 </scroll-view>
 </view>

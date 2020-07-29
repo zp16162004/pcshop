@@ -79,10 +79,26 @@ function get_category(func)
     }
   })
 }
+function get_home(func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_home",
+    data:{
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      func(res);
+    }
+  })
+}
 
 module.exports = {
   get_config: get_config,
   do_login: do_login,
   get_notice: get_notice,
   get_category:get_category,
+  get_home:get_home,
 }

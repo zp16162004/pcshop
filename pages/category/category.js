@@ -9,6 +9,9 @@ Page({
    */
   data: {
     rows_category:[],
+    selected_index:0,
+    scroll_right_id:"",
+    right_empty_height:0,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,6 +87,17 @@ Page({
             rows_category:res.data.data,
           }
         );
+        //计算右侧下方空白区域的高度
+        var last_child_count=thiss.data.rows_category[thiss.data.rows_category.length-1].rows_child_category.length;
+        var line_count=last_child_count%3>0?Math.floor(last_child_count/3)+1:Math.floor(last_child_count/3);
+        var last_height=util.rpx2px(line_count*160+40,thiss.data.systeminfo);
+        var right_height=thiss.data.systeminfo.windowHeight-thiss.data.menu_rect.height-10;
+        console.log(right_height+":"+last_height);
+        thiss.setData(
+          {
+            right_empty_height:right_height-last_height,
+          }
+        );
         console.log(thiss.data.rows_category);    
       }
     );
@@ -96,5 +110,40 @@ Page({
     wx.navigateTo({
       url: '/pages/product_list/product_list?id='+id,
     })
+  },
+  click_left:function(e)
+  {
+    var id=e.currentTarget.dataset.id;
+    console.log("category_"+id);
+    this.setData(
+      {
+        scroll_right_id:"category_"+id,
+      }
+    );
+  },
+  scroll_right:function(e)
+  {
+    var thiss=this;
+    console.log(e);
+    var top=e.detail.scrollTop+1;
+    var all_height=0;
+    var index=0;
+    for(var i=0;i<thiss.data.rows_category.length;i++)
+    {
+      var last_child_count=thiss.data.rows_category[i].rows_child_category.length;
+      var line_count=last_child_count%3>0?Math.floor(last_child_count/3)+1:Math.floor(last_child_count/3);
+      var line_height=util.rpx2px(line_count*160+40,thiss.data.systeminfo);
+      all_height+=line_height;
+      if(top<all_height)
+      {
+        index=i;
+        i=thiss.data.rows_category.length;
+      }
+    }
+    thiss.setData(
+      {
+        selected_index:index,
+      }
+    );
   },
 })

@@ -27,8 +27,14 @@ function show_model_and_back(msg)
     }
   })
 }
+//rpx2px
+function rpx2px(r,systeminfo)
+{
+  return (r/750)*systeminfo.windowWidth;
+}
 
 module.exports = {
   formatTime: formatTime,
-  show_model_and_back: show_model_and_back
+  show_model_and_back: show_model_and_back,
+  rpx2px: rpx2px,
 }

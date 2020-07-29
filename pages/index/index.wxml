@@ -171,23 +171,24 @@
       <image  mode="aspectFit" bindtap="tapBanner" src="{{config.good_pic2}}" />
     </swiper-item>
   </swiper>
-    <view class="p_product" data-id="5" bindtap="goto_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+    <block wx:for="{{rows_good}}">
+    <view class="p_product" data-id="{{item.id}}" bindtap="goto_product">
+      <image src="{{item.img}}" style="width:160rpx;height:160rpx;"/>
       <view class="p_product_right">
         <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+          {{item.name}}
         </view>
         <view class="p_product_info">
           <view class="p_product_info_left">
             <view class="product_price">
-            ￥100.00
+            ￥{{item.price}}
             </view>
             <view class="product_extra_info">
                 <view class="product_price_old">
-                ￥100.00
+                ￥{{item.price_old}}
                 </view>
                 <view class="product_sale">
-                已售6100件
+                已售{{item.all_sale}}件
                 </view>
             </view>
           </view>
@@ -195,102 +196,7 @@
         </view>
       </view>
     </view>
-    <view class="p_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
-    <view class="p_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
-    <view class="p_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
-    <view class="p_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
   <!--热门榜单-->
   <view class="hot_head" style="background-image:url({{config.hot_pic}})">
@@ -307,36 +213,28 @@
     </view>
   </view>
   <view class="p_hot flex_row_center">
-    <view class="hot_product flex_column_center">
-      <image src="/public/image/product.jpg" mode="aspectFit"></image>
+    <block wx:for="{{rows_hot}}">
+    <block wx:if="{{index<3}}">
+    <view class="hot_product flex_column_center" data-id="{{item.id}}" bindtap="goto_product">
+      <image src="{{item.img}}" mode="aspectFit"></image>
       <view class="hot_product_name single_line">
-      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+      {{item.name}}
       </view>
       <view class="hot_procut_price color_red">
-        ￥10.00
+        ￥{{item.price}}
       </view>
+      <block wx:if="{{index==0}}">
       <image class="top" src="{{config.top1}}" mode="aspectFit" style="width:40rpx;height:40rpx"></image>
+      </block>
+      <block wx:if="{{index==1}}">
+      <image class="top" src="{{config.top2}}" mode="aspectFit" style="width:40rpx;height:40rpx"></image>
+      </block>
+      <block wx:if="{{index==2}}">
+      <image class="top" src="{{config.top3}}" mode="aspectFit" style="width:40rpx;height:40rpx"></image>
+      </block>
     </view>
-    <view class="hot_product flex_column_center">
-      <image src="/public/image/product.jpg" mode="aspectFit"></image>
-      <view class="hot_product_name single_line">
-      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-      </view>
-      <view class="hot_procut_price color_red">
-        ￥10.00
-      </view>
-      <image class="top" src="{{config.top2}}" style="width:40rpx;height:40rpx"></image>
-    </view>
-    <view class="hot_product flex_column_center">
-      <image src="/public/image/product.jpg" mode="aspectFit"></image>
-      <view class="hot_product_name single_line">
-      【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-      </view>
-      <view class="hot_procut_price color_red">
-        ￥10.00
-      </view>
-      <image class="top" src="{{config.top3}}" style="width:40rpx;height:40rpx"></image>
-    </view>
+    </block>
+    </block>
   </view>
   <!--首发新品-->
   
@@ -356,14 +254,14 @@
     </view>
     <scroll-view scroll-x="true">
     <view class="p_category">
-      <block wx:for="{{rows_detail_category}}">
-      <view class="hot_product flex_column_center">
-        <image src="/public/image/product.jpg" mode="aspectFit"></image>
+      <block wx:for="{{rows_new}}">
+      <view class="hot_product flex_column_center" data-id="{{item.id}}" bindtap="goto_product">
+        <image src="{{item.img}}" mode="aspectFit"></image>
         <view class="hot_product_name single_line">
-        【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+        {{item.name}}
         </view>
         <view class="hot_procut_price color_red">
-          ￥10.00
+          ￥{{item.price}}
         </view>
       </view>
       </block>
@@ -385,23 +283,24 @@
       更多>>
       </view>
     </view>
+    <block wx:for="{{rows_promotion}}">
     <view class="p_product" data-id="5" bindtap="goto_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+      <image src="{{item.img}}" style="width:160rpx;height:160rpx;"/>
       <view class="p_product_right">
         <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+          {{item.name}}
         </view>
         <view class="p_product_info">
           <view class="p_product_info_left">
             <view class="product_price">
-            ￥100.00
+            ￥{{item.price}}
             </view>
             <view class="product_extra_info">
                 <view class="product_price_old">
-                ￥100.00
+                ￥{{item.price_old}}
                 </view>
                 <view class="product_sale">
-                已售6100件
+                已售{{item.all_sale}}件
                 </view>
             </view>
           </view>
@@ -409,56 +308,6 @@
         </view>
       </view>
     </view>
-    <view class="p_product" data-id="5" bindtap="goto_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
-    <view class="p_product" data-id="5" bindtap="goto_product">
-      <view class="activity">
-        砍价
-      </view>
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
-      <view class="p_product_right">
-        <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
-        </view>
-        <view class="p_product_info">
-          <view class="p_product_info_left">
-            <view class="product_price">
-            ￥100.00
-            </view>
-            <view class="product_extra_info">
-                <view class="product_price_old">
-                ￥100.00
-                </view>
-                <view class="product_sale">
-                已售6100件
-                </view>
-            </view>
-          </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
 </scroll-view>

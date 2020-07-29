@@ -82,6 +82,25 @@ Page({
     //获取分类信息
     this.get_category();
     //获取首页商品，精品，热门，新品，促销，
+    this.get_home();
+  },
+  get_home:function()
+  {
+    var thiss=this;
+    pcapi.get_home(
+      function(res)
+      {
+        console.log(res.data);
+        thiss.setData(
+          {
+            rows_hot:res.data.rows_hot,
+            rows_new:res.data.rows_new,
+            rows_promotion:res.data.rows_promotion,
+            rows_good:res.data.rows_good,
+          }
+        );
+      }
+    );
   },
   get_category:function()
   {

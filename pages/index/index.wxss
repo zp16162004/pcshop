@@ -145,8 +145,9 @@ flex-grow: 0;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 20rpx;
   position: relative;
+  padding: 20rpx 0rpx;
+  border-bottom: 1px solid #e9e9e9;
 }
 .activity
 {
@@ -163,6 +164,7 @@ flex-grow: 0;
 .p_product_right
 {
   width: 550rpx;
+  padding: 0rpx 20rpx;
 }
 .product_name
 {
@@ -179,7 +181,6 @@ flex-grow: 0;
   align-items: center;
   justify-content: center;
   height: 100rpx;
-  border-bottom: 1px solid #e9e9e9;
 }
 .p_product_info_left
 {
