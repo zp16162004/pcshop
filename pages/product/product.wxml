@@ -133,9 +133,21 @@
   <view class="txt">
     已选择:
   </view>
+  <block wx:if="{{row_product.single_spec==1}}">
   <view class="selected_spec">
   默认
   </view>
+  </block>
+  <block wx:if="{{row_product.single_spec==0}}">
+  <view class="selected_spec">
+    <block wx:for="{{row_productspec.rows_spec}}">
+      <block wx:if="{{index>0}}">
+      ,
+      </block>
+      {{item.name}}
+    </block>
+  </view>
+  </block>
   <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
 </view>
 <view class="split">
@@ -144,73 +156,51 @@
 <view class="p_comment">
   <view class="h_comment">
     <view class="txt">
-    用户评价(10)
+    用户评价({{row_product.count_comment}})
     </view>
     <view class="p_percent">
       <view class="percent">
-      85.00%
+      {{row_product.percent_comment_level2}}%
       </view>
       好评率
     </view>
     <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
   </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+  <block wx:for="{{row_product.rows_comment_level2}}">
+    <view class="comment">
+      <view class="head_comment">
+        <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="{{item.row_member.img}}" />
+        <view class="username">
+          {{item.row_member.nickname}}
+        </view>
+        <block wx:for="{{item.rows_star}}" wx:for-item="row_star">
+          <block wx:if="{{row_star=='1'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+          </block>
+          <block wx:if="{{row_star=='0'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+          </block>
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="info_comment">
+        {{item.fdate}} 规格:
+        <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-index="i" wx:for-item="row_spec">
+          <block wx:if="{{i>0}}">
+          ，
+          </block>
+          {{row_spec.name}}
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="content">
+      {{item.content}}
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <view class="p_comment_img flex_row_start">
+        <block wx:for="{{item.rows_img}}" wx:for-item="img">
+        <image class="comment_img" src="{{img}}" mode="aspectFit"></image>
+        </block>
+      </view>
     </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
+  </block>
 </view>
 <view class="split">
 </view>

@@ -11,6 +11,8 @@ Page({
     id:0,
     show_login:false,
     show_panel:false,
+    row_productspec:null,//选中的规格信息
+    spec_ids:[],//选中的spec_id，根据这个可以得出row_productspec
   },
 
   /**
