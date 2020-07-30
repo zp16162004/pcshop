@@ -10,6 +10,7 @@ Page({
   data: {
     id:0,
     show_login:false,
+    show_panel:false,
   },
 
   /**

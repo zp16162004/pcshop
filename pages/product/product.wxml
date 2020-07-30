@@ -44,12 +44,12 @@
     </block>
   </view>
   <view class="sale">
-    销量:{{row_product.sale}}
+    销量:{{row_product.all_sale}}
   </view>
 </view>
 
 <!--积分信息-->
-<view class="p_jifen">
+<view class="p_jifen" wx:if="{{row_product.has_integral}}">
   <view class="txt">
     赠积分:
   </view>
@@ -60,7 +60,7 @@
     </view>
     <view class="left_bottom_line">
     </view>
-    10.00积分
+    {{row_product.integral}}积分
     <view class="right_top_line">
     </view>
     <view class="right_circle">
@@ -70,18 +70,25 @@
   </view>
 </view>
 <!--优惠券信息-->
-<view class="p_coupon">
+<view class="p_coupon" wx:if="{{row_product.rows_coupon.length>0}}">
   <view class="txt">
     优惠券:
   </view>
-  <view class="coupon">
+  <block wx:for="{{row_product.rows_coupon}}">
+  <view class="coupon" data-id="{{item.id}}" bindtap="get_coupon">
     <view class="left_top_line">
     </view>
     <view class="left_circle">
     </view>
     <view class="left_bottom_line">
     </view>
-    满100减10
+    满{{item.limit}}减
+    <block wx:if="{{item.min==item.max}}">
+    {{item.min}}
+    </block>
+    <block wx:if="{{item.min!=item.max}}">
+    {{item.min}}~{{item.max}}
+    </block>
     <view class="right_top_line">
     </view>
     <view class="right_circle">
@@ -89,19 +96,36 @@
     <view class="right_bottom_line">
     </view>
   </view>
+  </block>
 </view>
 <!--活动信息-->
+<block wx:if="{{row_product.rows_group.length+row_product.rows_flash.length+row_product.rows_bargain.length>0}}">
 <view class="p_activity">
   <view class="txt">
-    优惠券:
+    活  动:
   </view>
-  <view class="activity">
+  <view class="activity flex_row_start">
+    <block wx:if="{{row_product.rows_group.length>0}}">
     <view class="item_activity">
       <image src="/public/image/tuangou_white.png" mode="aspectFit" style="width:30rpx;height:30rpx;margin-right:15rpx;" />
-      参与团购
+      参与拼团
     </view>
+    </block>
+    <block wx:if="{{row_product.rows_flash.length>0}}">
+    <view class="item_activity">
+      <image src="/public/image/miaosha_white.png" mode="aspectFit" style="width:30rpx;height:30rpx;margin-right:15rpx;" />
+      参与秒杀
+    </view>
+    </block>
+    <block wx:if="{{row_product.rows_bargain.length>0}}">
+    <view class="item_activity">
+      <image src="/public/image/kanjia_white.png" mode="aspectFit" style="width:30rpx;height:30rpx;margin-right:15rpx;" />
+      参与砍价
+    </view>
+    </block>
   </view>
 </view>
+</block>
 <view class="split">
 </view>
 <!--规格信息-->
@@ -223,12 +247,12 @@
   </view>
 </view>
 <!--弹出选择层-->
-<view class="p_select" wx:if="{{true}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
+<view class="p_select" wx:if="{{show_panel}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
   <view class="header_select">
     <image src="/public/image/product.jpg"></image>
     <view class="header_select_right">
       <view class="header_product_name">
-        iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+        {{row_product.name}}
       </view>
       <view class="header_select_extra_info">
         <view class="header_price">

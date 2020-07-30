@@ -79,6 +79,27 @@ function get_category(func)
     }
   })
 }
+function get_category_by_id(id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_category_by_id?id="+id,
+    data:{
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      func(res);
+      // thiss.setData(
+      //   {
+      //     rows_category:res.data.data,
+      //   }
+      // );
+      // console.log(thiss.data.rows_category);
+    }
+  })
+}
 function get_home(func)
 {
   var thiss=this;
@@ -95,10 +116,38 @@ function get_home(func)
   })
 }
 
+function get_product(id,name,p,sort_price,sort_sale,is_new,func)
+{
+  //
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_product",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      typeid:id,
+      name:name,
+      p:p,
+      sort_price:sort_price,
+      sort_sale:sort_sale,
+      is_new:is_new,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      func(res);
+    }
+  })
+}
+
 module.exports = {
   get_config: get_config,
   do_login: do_login,
   get_notice: get_notice,
   get_category:get_category,
   get_home:get_home,
+  get_product:get_product,
+  get_category_by_id:get_category_by_id,
 }

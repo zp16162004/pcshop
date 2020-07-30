@@ -1,76 +1,112 @@
 <!--pages/product_list/product_list.wxml-->
 <view class="head">
-<view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{systeminfo.windowWidth-20-menu_rect.height*2/3-4}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
-    <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
-    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
-</view>
-<image mode="aspectFit" src="/public/image/wangge.png" style="margin-left:4px;width:{{menu_rect.height*2/3}}px;height:{{menu_rect.height*2/3}}px"/>
+  <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{systeminfo.windowWidth-20-menu_rect.height*2/3-4}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
+      <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
+      <input class="weui-input" maxlength="10" placeholder="请输入查询的商品名" placeholder-class="ph_input" style="height:100%;"  bindblur="change_name"/>
+  </view>
+  <block wx:if="{{view_type==0}}">
+  <image bindtap="change_view_type" mode="aspectFit" src="/public/image/wangge.png" style="margin-left:4px;width:{{menu_rect.height*2/3}}px;height:{{menu_rect.height*2/3}}px"/>
+  </block>
+  <block wx:if="{{view_type==1}}">
+  <image bindtap="change_view_type" mode="aspectFit" src="/public/image/liebiao.png" style="margin-left:4px;width:{{menu_rect.height*2/3}}px;height:{{menu_rect.height*2/3}}px"/>
+  </block>
 </view>
 <view class="menus">
   <view class="category_name menu_item">
-    <view class="txt">
-    默认
+    <view class="txt color_red">
+    {{row_category.name}}
     </view>
   </view>
-  <view class="price menu_item">
+  <view class="price menu_item" bindtap="change_sort_price">
     <view class="txt">
     价格
     </view>
+    <block wx:if="{{sort_price==0}}">
     <image src="" mode="aspectFit" src="/public/image/sort0.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
+    <block wx:if="{{sort_price==1}}">
+    <image src="" mode="aspectFit" src="/public/image/sort1.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
+    <block wx:if="{{sort_price==-1}}">
+    <image src="" mode="aspectFit" src="/public/image/sort2.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
   </view>
-  <view class="price menu_item">
+  <view class="price menu_item" bindtap="change_sort_sale">
     <view class="txt">
     销量
     </view>
+    <block wx:if="{{sort_sale==0}}">
     <image src="" mode="aspectFit" src="/public/image/sort0.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
+    <block wx:if="{{sort_sale==1}}">
+    <image src="" mode="aspectFit" src="/public/image/sort1.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
+    <block wx:if="{{sort_sale==-1}}">
+    <image src="" mode="aspectFit" src="/public/image/sort2.png" style="margin-left:13rpx;width:26rpx;height:26rpx;"/>
+    </block>
   </view>
   <view class="price menu_item">
-    <view class="txt">
+    <block wx:if="{{is_new==0}}">
+    <view class="txt" bindtap="change_is_new">
     新品
     </view>
+    </block>
+    <block wx:if="{{is_new==1}}">
+    <view class="txt color_red" bindtap="change_is_new">
+    新品
+    </view>
+    </block>
   </view>
 </view>
-<scroll-view scroll-y="true" class="holder">
-    <!-- <view class="p_product">
-      <image src="/public/image/product.jpg" style="width:160rpx;height:160rpx;"/>
+<scroll-view scroll-y="true">
+<view class="holder">
+  <block wx:for="{{rows_product}}">
+    <block wx:if="{{view_type==0}}">
+    <view class="p_product" data-id="{{item.id}}" bindtap="goto_product">
+      <image src="{{item.img}}" style="width:160rpx;height:160rpx;"/>
       <view class="p_product_right">
         <view class="product_name">
-          【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+          {{item.name}}
         </view>
         <view class="p_product_info">
           <view class="p_product_info_left">
             <view class="product_price">
-            ￥100.00
+            ￥{{item.price}}
             </view>
             <view class="product_extra_info">
                 <view class="product_price_old">
-                ￥100.00
+                ￥{{item.price_old}}
                 </view>
                 <view class="product_sale">
-                已售6100件
+                已售{{item.all_sale}}件
                 </view>
             </view>
           </view>
           <image src="/public/image/购物车.png" style="width:50rpx;height:50rpx"></image>
         </view>
       </view>
-    </view> -->
+    </view>
+    </block>
 
-  <view class="p_product2" data-id="1" bindtap="goto_product">
-    <image class="product_img" src="/public/image/product.jpg"/>
-    <view class="product_name" style="padding:0rpx 20rpx">
-    【官网价直降900】Apple/苹果 iPhone 11 4G全网通智能手机正品苏宁易购官方旗舰店苹果11
+    <block wx:if="{{view_type==1}}">
+    <view class="p_product2" data-id="{{item.id}}" bindtap="goto_product">
+      <image class="product_img" src="{{item.img}}"/>
+      <view class="product_name" style="padding:0rpx 20rpx">
+      {{item.name}}
+      </view>
+      <view class="product_price" style="padding:0rpx 20rpx">
+        ￥{{item.price}}
+      </view>
+      <view class="product_extra_info" style="padding:0rpx 20rpx">
+          <view class="product_price_old">
+          ￥{{item.price_old}}
+          </view>
+          <view class="product_sale">
+          已售{{item.all_sale}}件
+          </view>
+      </view>
     </view>
-    <view class="product_price" style="padding:0rpx 20rpx">
-      ￥100.00
-    </view>
-    <view class="product_extra_info" style="padding:0rpx 20rpx">
-        <view class="product_price_old">
-        ￥100.00
-        </view>
-        <view class="product_sale">
-        已售6100件
-        </view>
-    </view>
-  </view>
+    </block>
+  </block>
+</view>
 </scroll-view>

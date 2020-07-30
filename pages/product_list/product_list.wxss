@@ -54,10 +54,11 @@ page
 {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   box-sizing: border-box;
   padding: 0px;
+  flex-wrap: wrap;
 }
 .p_product
 {
@@ -65,8 +66,8 @@ page
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+  padding: 20rpx;
   background-color: #ffffff;
 }
 .p_product_right
@@ -123,6 +124,7 @@ page
   width: 335rpx;
   border-radius: 20rpx;
   overflow: hidden;
+  box-sizing: border-box;
 }
 .product_img
 {

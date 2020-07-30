@@ -1,4 +1,6 @@
 // pages/product_list/product_list.js
+var util=require("../../utils/util.js");
+var pcapi=require("../../utils/pcapi.js");
 
 const app = getApp();
 Page({
@@ -10,6 +12,11 @@ Page({
     id:0,
     name:"",
     p:1,
+    sort_price:0,
+    sort_sale:0,
+    is_new:0,
+    view_type:0,//0:列表 1：网格
+    rows_product:[],
   },
 
   /**
@@ -45,6 +52,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //获取分类信息
+    this.get_category_by_id(this.data.id);
     //获取商品信息
     this.get_product();
   },
@@ -87,28 +96,49 @@ Page({
   {
     //
     var thiss=this;
-    wx.request({
-      url: app.globalData.host+"/Service/get_product",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      data:{
-        typeid:thiss.data.id,
-        name:thiss.data.name,
-        p:thiss.data.p,
-      },
-      method:'Post',
-      dataType:'json',
-      success:function(res)
+    pcapi.get_product(
+      thiss.data.id,
+      thiss.data.name,
+      thiss.data.p,
+      thiss.data.sort_price,
+      thiss.data.sort_sale,
+      thiss.data.is_new,
+      function(res)
+      {
+        if(thiss.data.p==1)
+        {
+          thiss.setData(
+            {
+              rows_product:res.data.data,
+            }
+          );
+        }
+        else
+        {
+          thiss.setData(
+            {
+              rows_product:thiss.data.rows_product.concat(res.data.data),
+            }
+          );
+        }
+        console.log(thiss.data.rows_product);
+      }
+    );
+  },
+  get_category_by_id:function()
+  {
+    var thiss=this;
+    pcapi.get_category_by_id(
+      thiss.data.id,
+      function(res)
       {
         thiss.setData(
           {
-            rows_product:res.data.data,
+            row_category:res.data.data,
           }
         );
-        console.log(thiss.data.rows_product);
       }
-    })
+    );
   },
   goto_product:function(e)
   {
@@ -117,5 +147,91 @@ Page({
     wx.navigateTo({
       url: '/pages/product/product?id='+id,
     })
-  }
+  },
+  change_view_type:function()
+  {
+    var thiss=this;
+    if(thiss.data.view_type==0)
+    {
+      thiss.data.view_type=1;
+    }
+    else{
+      thiss.data.view_type=0;
+    }
+    thiss.setData(
+      thiss.data
+    );
+  },
+  change_name:function(e)
+  {
+    var thiss=this;
+    console.log(e);
+    var val=e.detail.value;
+    thiss.setData(
+      {
+      name:val,
+      p:1,
+      }
+    );
+    thiss.get_product();
+  },
+  change_is_new:function()
+  {
+    var thiss=this;
+    if(thiss.data.is_new==0)
+    {
+      thiss.data.is_new=1;
+    }
+    else
+    {
+      thiss.data.is_new=0;
+    }
+    thiss.data.p=1;
+    thiss.setData(
+      thiss.data
+    );
+    thiss.get_product();
+  },
+  change_sort_price:function()
+  {
+    var thiss=this;
+    if(thiss.data.sort_price==0)
+    {
+      thiss.data.sort_price=1;
+    }
+    else if(thiss.data.sort_price==1)
+    {
+      thiss.data.sort_price=-1;
+    }
+    else
+    {
+      thiss.data.sort_price=0;
+    }
+    thiss.data.p=1;
+    thiss.setData(
+      thiss.data
+    );
+    thiss.get_product();
+  },
+  change_sort_sale:function()
+  {
+    var thiss=this;
+    if(thiss.data.sort_sale==0)
+    {
+      thiss.data.sort_sale=1;
+    }
+    else if(thiss.data.sort_sale==1)
+    {
+      thiss.data.sort_sale=-1;
+    }
+    else
+    {
+      thiss.data.sort_sale=0;
+    }
+    thiss.data.p=1;
+    thiss.setData(
+      thiss.data
+    );
+    thiss.get_product();
+  },
 })
