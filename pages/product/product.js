@@ -275,12 +275,10 @@ Page({
         }
         else
         {
-          var member_id=app.globalData.row_member.id;
           var product_id=thiss.data.id;
           var productspec_id=thiss.data.row_productspec.id;
           var number=thiss.data.number;
           var row_orderlist=new Object();
-          row_orderlist.member_id=member_id;
           row_orderlist.product_id=product_id;
           row_orderlist.productspec_id=productspec_id;
           row_orderlist.number=number;

@@ -200,6 +200,63 @@ function add_cart(member_id,product_id,productspec_id,number,func)
     }
   })
 }
+function get_orderlist_info(row_orderlist,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_orderlist_info",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      product_id:row_orderlist.member_id,
+      productspec_id:row_orderlist.product_id,
+      number:row_orderlist.number,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_address(member_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_address?member_id="+member_id,
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_shop(func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_shop",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 
 module.exports = {
   get_config: get_config,
@@ -212,4 +269,7 @@ module.exports = {
   get_product_info:get_product_info,
   add_collection:add_collection,
   add_cart:add_cart,
+  get_orderlist_info:get_orderlist_info,
+  get_address:get_address,
+  get_shop:get_shop,
 }
