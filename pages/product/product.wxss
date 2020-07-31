@@ -450,9 +450,20 @@ swiper-item>video
   width: auto;
   border: 1px solid #656565;
   border-radius: 8rpx;
-  padding: 0rpx 20rpx;
+  padding: 5rpx 20rpx;
   margin-right:20rpx ;
   font-size: 22rpx;
+}
+.spec_selected
+{
+  width: auto;
+  /* border: 1px solid #656565; */
+  border-radius: 8rpx;
+  padding: 5rpx 20rpx;
+  margin-right:20rpx ;
+  font-size: 22rpx;
+  color: #ffffff;
+  background-color: #f10b0b;
 }
 .p_number
 {
