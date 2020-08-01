@@ -7,7 +7,7 @@ input
 .head
 {
   width: 750rpx;
-  height: 300rpx;
+  /* height: 300rpx; */
   padding: 10rpx 20rpx;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ input
 }
 .head_kuaidi
 {
-  width: 345rpx;
+  width: 346rpx;
   height: 50rpx;
   background-color: #ffffff;
   line-height: 50rpx;
@@ -32,6 +32,17 @@ input
   position: relative;
   border-top-left-radius: 4rpx;
   border-top-right-radius: 4rpx;
+}
+.head_kuaidi1
+{
+  width: 364rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #ff9966;
+  color: #f10b0b;
+  text-align: center;
+  border-radius: 4rpx;
+  margin-right: -20rpx;
 }
 .switch
 {
@@ -43,9 +54,19 @@ input
   border-right: 10rpx solid transparent;
   z-index: 1;
 }
+.switch1
+{
+  width: 0px;
+  height: 0px;
+  border-top: 25rpx solid transparent;
+  border-right: 10rpx solid #ffffff;
+  border-bottom: 25rpx solid #ffffff;
+  border-left: 10rpx solid transparent;
+  z-index: 1;
+}
 .head_daodian
 {
-  width: 365rpx;
+  width: 364rpx;
   height: 40rpx;
   line-height: 40rpx;
   background-color: #ff9966;
@@ -53,6 +74,18 @@ input
   text-align: center;
   margin-left: -20rpx;
   border-radius: 4rpx;
+}
+.head_daodian1
+{
+  width: 346rpx;
+  height: 50rpx;
+  background-color: #ffffff;
+  line-height: 50rpx;
+  color: #f10b0b;
+  text-align: center;
+  position: relative;
+  border-top-left-radius: 4rpx;
+  border-top-right-radius: 4rpx;
 }
 .p_xinfeng
 {
@@ -70,6 +103,7 @@ input
   align-items: center;
   justify-content: center;
   padding: 20rpx 20rpx;
+  height: 140rpx;
 }
 .address_left
 {
@@ -78,6 +112,9 @@ input
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  font-size: 22rpx;
+  color: #656565;
+  overflow: hidden;
 }
 .select_address
 {
@@ -93,7 +130,8 @@ input
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 10rpx;
+  height: 50rpx;
+  overflow: hidden;
 }
 .p_address .l2
 {
@@ -102,7 +140,24 @@ input
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 10rpx;
+  height: 50rpx;
+  overflow: hidden;
+}
+.moren
+{
+  font-size: 22rpx;
+  flex-grow: 0;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.address
+{
+  flex-grow: 1;
+}
+.mobile
+{
+  padding-left: 20rpx;
 }
 
 .product_all_count

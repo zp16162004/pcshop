@@ -1,0 +1,24 @@
+<!--pages/pick_shop/pick_shop.wxml-->
+<scroll-view scroll-y="true" style="width:100%;height:100%">
+  <view class="p_shop flex_column_center">
+    <block wx:for="{{rows_shop}}" wx:for-item="row_shop">
+    <view class="shop flex_row_center" data-id="{{row_shop.id}}" bindtap="pick_shop">
+      <image mode="aspectFit" src="{{row_shop.img}}" style="width:120rpx;height:120rpx"></image>
+      <view class="shop_info flex_column_start">
+        <view class="shop_name">
+          {{row_shop.name}}
+        </view>
+        <view class="shop_address single_line">
+          {{row_shop.row_province.name}}-{{row_shop.row_city.name}}-{{row_shop.row_county.name}},{{row_shop.address}}
+        </view>
+      </view>
+      <view class="shop_contact flex_column_center">
+        <image mode="aspectFit" src="/public/image/mobile.png" style="width:30rpx;height:30rpx" data-index="{{index}}" catchtap="make_tel"></image>
+        <view class="distance color_red">
+        {{row_shop.distance}}KM
+        </view>
+      </view>
+    </view>
+    </block>
+  </view>
+</scroll-view>

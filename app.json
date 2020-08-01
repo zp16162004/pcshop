@@ -14,7 +14,9 @@
     "pages/product_bargain/product_bargain",
     "pages/product_group/product_group",
     "pages/product_flash/product_flash",
-    "pages/bill_build/bill_build"
+    "pages/bill_build/bill_build",
+    "pages/pick_shop/pick_shop",
+    "pages/pick_address/pick_address"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,5 +59,11 @@
     "parser": "/components/parser.20200414.min/parser"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission":
+  {
+    "scope.userLocation": {
+      "desc": "您的位置用户获取门店位置等方便您购物体验的目的"
+    }
+  }
 }

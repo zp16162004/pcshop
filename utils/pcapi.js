@@ -208,8 +208,8 @@ function get_orderlist_info(row_orderlist,func)
       'content-type': 'application/x-www-form-urlencoded',
     },
     data:{
-      product_id:row_orderlist.member_id,
-      productspec_id:row_orderlist.product_id,
+      product_id:row_orderlist.product_id,
+      productspec_id:row_orderlist.productspec_id,
       number:row_orderlist.number,
     },
     method:'Post',
@@ -257,6 +257,26 @@ function get_shop(func)
     }
   })
 }
+function get_shop_and_distance(func,latitude,longitude)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_shop",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      latitude:latitude,
+      longitude:longitude,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 
 module.exports = {
   get_config: get_config,
@@ -272,4 +292,5 @@ module.exports = {
   get_orderlist_info:get_orderlist_info,
   get_address:get_address,
   get_shop:get_shop,
+  get_shop_and_distance:get_shop_and_distance,
 }

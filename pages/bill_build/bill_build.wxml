@@ -2,40 +2,87 @@
 <scroll-view scroll-y="true" style="width:100%;height:{{systeminfo.windowHeight}}px;box-sizing:border-box;padding-bottom:80rpx">
 <view class="head" style="background-image:url({{config.bill_build_background}})">
   <view class="p_head">
-    <view class="head_kuaidi">
+    <block wx:if="{{deliver_type==0}}">
+    <view class="head_kuaidi" data-type="0" bindtap="change_deliver_type">
       快递配送
     </view>
     <view class="switch">
       
     </view>
-    <view class="head_daodian">
+    <view class="head_daodian" data-type="1" bindtap="change_deliver_type">
       到店自提
     </view>
+    </block>
+    <block wx:if="{{deliver_type==1}}">
+    <view class="head_kuaidi1" data-type="0" bindtap="change_deliver_type">
+      快递配送
+    </view>
+    <view class="switch1">
+      
+    </view>
+    <view class="head_daodian1" data-type="1" bindtap="change_deliver_type">
+      到店自提
+    </view>
+    </block>
   </view>
   <view class="p_xinfeng">
-    <view class="p_address">
+    <block wx:if="{{deliver_type==0}}">
+    <view class="p_address" bindtap="pick_address">
       <view class="address_left">
+        <block wx:if="{{row_address!=null}}">
         <view class="l1">
           <view class="name">
-            张鹏
+            {{row_address.name}}
           </view>
           <view class="mobile">
-            18937357081
+            {{row_address.mobile}}
           </view>
         </view>
         <view class="l2">
-          <view class="moren">
+          <view class="moren color_red" wx:if="{{row_address.is_default=='1'}}">
             [默认]
           </view>
-          <view class="address">
-            河南省新乡市大景城
+          <view class="address single_line">
+            {{row_shop.row_province.name}}-{{row_shop.row_city.name}}-{{row_shop.row_county.name}},{{row_shop.address}}
           </view>
         </view>
+        </block>
+        <block wx:if="{{row_address==null}}">
+          设置收货地址
+        </block>
       </view>
       <view class="select_address">
         >
       </view>
     </view>
+    </block>
+    <block wx:if="{{deliver_type==1}}">
+    <view class="p_address" bindtap="pick_shop">
+      <view class="address_left">
+        <block wx:if="{{row_shop!=null}}">
+        <view class="l1">
+          <view class="name">
+            {{row_shop.name}}
+          </view>
+          <view class="mobile">
+            {{row_shop.tel}}
+          </view>
+        </view>
+        <view class="l2">
+          <view class="address single_line">
+            {{row_shop.row_province.name}}-{{row_shop.row_city.name}}-{{row_shop.row_county.name}},{{row_shop.address}}
+          </view>
+        </view>
+        </block>
+        <block wx:if="{{row_shop==null}}">
+          选择门店
+        </block>
+      </view>
+      <view class="select_address">
+        >
+      </view>
+    </view>
+    </block>
   </view>
 </view>
 

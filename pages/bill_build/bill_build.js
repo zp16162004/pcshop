@@ -10,9 +10,7 @@ Page({
   data: {
     config:[],
     rows_orderlist:app.globalData.rows_orderlist,
-    deliver_type:0,
-    row_address:null,
-    row_shop:null,
+    deliver_type:1,
     row_address:null,
     row_shop:null,
     rows_address:null,
@@ -25,6 +23,11 @@ Page({
   onLoad: function (options) {
     var thiss=this;
     console.log(app.globalData.rows_orderlist);
+    thiss.setData(
+      {
+        rows_orderlist:app.globalData.rows_orderlist,
+      }
+    );
     //获取商品的详细信息，包含运费模板
     for(var i=0;i<thiss.data.rows_orderlist.length;i++)
     {
@@ -37,6 +40,7 @@ Page({
   },
   get_orderlist_info:function(index)
   {
+    var thiss=this;
     var row_orderlist=thiss.data.rows_orderlist[index];
     pcapi.get_orderlist_info(
       row_orderlist,
@@ -60,11 +64,53 @@ Page({
   },
   get_address:function()
   {
-    
+    var thiss=this;
+    pcapi.get_address(
+      app.globalData.row_member.id,
+      function(res)
+      {
+        thiss.setData(
+          {
+            rows_address:res.data.data,
+          }
+        );
+        //如果存在默认收货地址的话，就选中
+        for(var i=0;i<thiss.data.rows_address.length;i++)
+        {
+          var row_address=thiss.data.rows_address[i];
+          if(parseInt(row_address.is_default)==1)
+          {
+            thiss.setData(
+              {
+                row_address:row_address,
+              }
+            );
+          }
+        }
+      }
+    );
   },
   get_shop:function()
   {
-    
+    var thiss=this;
+    pcapi.get_shop(
+      function(res)
+      {
+        thiss.setData(
+          {
+            rows_shop:res.data.data,
+          }
+        );
+        if(thiss.data.rows_shop.length>0)
+        {
+          thiss.setData(
+            {
+              row_shop:thiss.data.rows_shop[0],
+            }
+          );
+        }
+      }
+    );
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -147,6 +193,28 @@ Page({
         console.log(thiss.data.config);
         console.log(thiss.data.config.navigate_pic1);
       }
+    })
+  },
+  change_deliver_type:function(e)
+  {
+    var thiss=this;
+    console.log(e);
+    thiss.setData(
+      {
+        deliver_type:parseInt(e.currentTarget.dataset.type),
+      }
+    );
+  },
+  pick_address:function()
+  {
+    wx.navigateTo({
+      url: '/pages/pick_address/pick_address',
+    })
+  },
+  pick_shop:function()
+  {
+    wx.navigateTo({
+      url: '/pages/pick_shop/pick_shop',
     })
   },
 })
