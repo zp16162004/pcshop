@@ -1,1 +1,85 @@
 /* pages/pick_address/pick_address.wxss */
+.p_address
+{
+  background-color: #e9e9e9;
+  padding-top: 2rpx;
+  box-sizing: border-box;
+  background: linear-gradient(45deg, #f25953 12.5%, #fbfaf5 12.5%, #fbfaf5 25%, #5590d6 25%, #5590d6 37.5%, #fbfaf5 37.5%, #fbfaf5 50%, #f25953 50%, #f25953 62.5%, #fbfaf5 62.5%, #fbfaf5 75%, #5590d6 75%, #5590d6 87.5%, #fbfaf5 87.5%, #fbfaf5 100%);
+  background-size: 70rpx 70rpx;
+}
+.address
+{
+  width: 100%;
+  padding: 0rpx 20rpx;
+  background-color: #ffffff;
+}
+.address_detail
+{
+  font-weight: 600;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.split
+{
+  width: 100%;
+  height: 20rpx;
+  background-color: #e9e9e9;
+}
+.address_info
+{
+  width: 100%;
+  padding: 20rpx 0rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.address_txt
+{
+  width: 100%;
+  overflow: hidden;
+  font-size: 22rpx;
+  color: #656565;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.address_config 
+{
+  width: 100%;
+  padding: 20rpx 0rpx;
+}
+.moren
+{
+  flex-grow: 1;
+  font-size: 22rpx;
+  padding: 0rpx 20rpx;
+}
+.edit>.txt
+{
+  padding: 0rpx 4rpx;
+  font-size: 22rpx;
+}
+.delete>.txt
+{
+  padding: 0rpx 4rpx;
+  font-size: 22rpx;
+}
+.bottom
+{
+  height: 80rpx;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+  padding: 0rpx 20rpx;
+  width: 100%;
+}
+.btn
+{
+  padding: 0rpx 40rpx;
+  border-radius: 60rpx;
+  background-color: #f10b0b;
+  height: 50rpx;
+
+}
+.btn>.txt
+{
+  font-size: 22rpx;
+}

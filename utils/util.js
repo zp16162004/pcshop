@@ -27,6 +27,16 @@ function show_model_and_back(msg)
     }
   })
 }
+function show_model(msg)
+{
+  wx.showModal({
+    title:"提示",
+    content:msg,
+    success:function()
+    {
+    }
+  })
+}
 //rpx2px
 function rpx2px(r,systeminfo)
 {
@@ -36,5 +46,6 @@ function rpx2px(r,systeminfo)
 module.exports = {
   formatTime: formatTime,
   show_model_and_back: show_model_and_back,
+  show_model:show_model,
   rpx2px: rpx2px,
 }

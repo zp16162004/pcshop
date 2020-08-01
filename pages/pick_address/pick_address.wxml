@@ -1,2 +1,50 @@
 <!--pages/pick_address/pick_address.wxml-->
-<text>pages/pick_address/pick_address.wxml</text>
+<scroll-view scroll-y="true" style="width:100%;height:{{scroll_height}}px;background-color:#e9e9e9">
+  <view class="p_address">
+    <block wx:for="{{rows_address}}">
+      <view class="address flex_column_center">
+        <view class="address_info flex_column_start">
+          <view class="address_detail">
+          收货人:{{item.name}} {{item.mobile}}
+          </view>
+          <view class="address_txt single_line">
+          收货地址:{{item.address}}
+          </view>
+        </view>
+        <view class="address_config flex_row_center">
+          <block wx:if="{{item.is_default==0}}">
+          <image mode="aspectFit" src="/public/image/checkbox.png" style="width:40rpx;height:40rpx"></image>
+          </block>
+          <block wx:if="{{item.is_default==1}}">
+          <image mode="aspectFit" src="/public/image/checkbox_selected.png" style="width:40rpx;height:40rpx"></image>
+          </block>
+          <view class="moren">
+          设为默认
+          </view>
+          <view class="edit flex_row_center">
+            <image mode="aspectFit" src="/public/image/edit.png" style="width:30rpx;height:30rpx"></image>
+            <view class="txt">
+              编辑
+            </view>
+          </view>
+          <view class="delete flex_row_center">
+            <image mode="aspectFit" src="/public/image/delete2.png" style="width:30rpx;height:30rpx"></image>
+            <view class="txt">
+              删除
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="split">
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<view class="bottom flex_row_end">
+  <view class="btn flex_row_center" bindtap="goto_add_address">
+    <image mode="aspectFit" src="/public/image/address_white.png" style="width:30rpx;height:30rpx"></image>
+    <view class="txt color_white">
+    添加新的地址
+    </view>
+  </view>
+</view>

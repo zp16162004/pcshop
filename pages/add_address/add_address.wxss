@@ -1,0 +1,55 @@
+/* pages/add_address/add_address.wxss */
+page
+{
+  background-color: #e9e9e9;
+}
+.line
+{
+  background-color: #ffffff;
+  height: 80rpx;
+  padding: 0rpx 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.key
+{
+  width:160rpx
+}
+.input
+{
+  width: 550rpx;
+  padding: 0rpx 20rpx;
+}
+.input>input
+{
+  width: 100%;
+}
+.val
+{
+  flex-grow: 1;
+  text-align: left;
+  font-weight: 600;
+}
+.txt
+{
+  padding: 0rpx 20rpx;
+}
+picker
+{
+  flex-grow: 1;
+}
+.split
+{
+  width: 100%;
+  height: 20rpx;
+  background-color: #e9e9e9;
+}
+.btn
+{
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  border-radius: 50rpx;
+  background-color: #f10b0b;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+}

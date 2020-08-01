@@ -277,7 +277,32 @@ function get_shop_and_distance(func,latitude,longitude)
     }
   })
 }
-
+function add_address(member_id,name,mobile,region,address,is_default,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/add_address",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      name:name,
+      mobile:mobile,
+      province:region[0],
+      city:region[1],
+      county:region[2],
+      address:address,
+      is_default:is_default,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -293,4 +318,5 @@ module.exports = {
   get_address:get_address,
   get_shop:get_shop,
   get_shop_and_distance:get_shop_and_distance,
+  add_address:add_address,
 }

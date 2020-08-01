@@ -184,7 +184,7 @@ Page({
   goto_category:function()
   {
     wx.navigateTo({
-      url: '/pages/bill_build/bill_build',
+      url: '/pages/pick_address/pick_address',
     })
   },
 })

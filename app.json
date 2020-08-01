@@ -16,7 +16,8 @@
     "pages/product_flash/product_flash",
     "pages/bill_build/bill_build",
     "pages/pick_shop/pick_shop",
-    "pages/pick_address/pick_address"
+    "pages/pick_address/pick_address",
+    "pages/add_address/add_address"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -60,8 +61,7 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "permission":
-  {
+  "permission": {
     "scope.userLocation": {
       "desc": "您的位置用户获取门店位置等方便您购物体验的目的"
     }

@@ -1,0 +1,69 @@
+<!--pages/add_address/add_address.wxml-->
+<view class="line flex_row_center">
+  <view class="key">
+    姓名
+  </view>
+  <view class="input flex_row_center">
+    <input placeholder="请输入姓名" bindblur="change_name"></input>
+  </view>
+</view>
+<view class="line flex_row_center">
+  <view class="key">
+    联系电话
+  </view>
+  <view class="input flex_row_center">
+    <input placeholder="请输入联系电话" bindblur="change_mobile"></input>
+  </view>
+</view>
+<view class="line flex_row_center">
+  <view class="key">
+    所在地区
+  </view>
+  <view class="input flex_row_center">
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+    <block wx:if="{{region.length==0}}">
+    <view class="val">
+      省，市，县
+    </view>
+    </block>
+    <block wx:if="{{region.length>0}}">
+    <view class="val">
+    {{region[0]}}-{{region[1]}}-{{region[2]}}
+    </view>
+    </block>
+    </picker>
+    <image src="/public/image/address_red.png" mode="aspectFit" style="width:30rpx;height:30rpx"></image>
+  </view>
+</view>
+<view class="line flex_row_center">
+  <view class="key">
+    详细地址
+  </view>
+  <view class="input flex_row_center">
+    <input placeholder="请填写具体地址" bindblur="change_address"></input>
+  </view>
+</view>
+<view class="split">
+</view>
+<view class="line flex_row_start">
+  <block wx:if="{{is_default==0}}">
+  <image mode="aspectFit" src="/public/image/checkbox.png" style="width:30rpx;height:30rpx" data-val="1" bindtap="change_is_default"></image>
+  </block>
+  <block wx:if="{{is_default==1}}">
+  <image mode="aspectFit" src="/public/image/checkbox_selected.png" style="width:30rpx;height:30rpx" data-val="0" bindtap="change_is_default"></image>
+  </block>
+  <view class="txt">
+    设为默认地址
+  </view>
+</view>
+<view class="split">
+</view>
+<view class="split">
+</view>
+<view class="btn color_white" bindtap="submit">
+  立即保存
+</view>
+
+
+<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+</picker>
