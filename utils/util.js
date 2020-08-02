@@ -37,6 +37,24 @@ function show_model(msg)
     }
   })
 }
+function alert(msg,func1,func2)
+{
+  wx.showModal({
+    title:"提示",
+    content:msg,
+    success:function(res)
+    {
+      if(res.confirm)
+      {
+        func1();
+      }
+      else
+      {
+        func2();
+      }
+    }
+  })
+}
 //rpx2px
 function rpx2px(r,systeminfo)
 {
@@ -48,4 +66,5 @@ module.exports = {
   show_model_and_back: show_model_and_back,
   show_model:show_model,
   rpx2px: rpx2px,
+  alert:alert,
 }

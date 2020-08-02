@@ -43,7 +43,7 @@
             [默认]
           </view>
           <view class="address single_line">
-            {{row_shop.row_province.name}}-{{row_shop.row_city.name}}-{{row_shop.row_county.name}},{{row_shop.address}}
+            {{row_address.row_province.name}}-{{row_address.row_city.name}}-{{row_address.row_county.name}},{{row_address.address}}
           </view>
         </view>
         </block>
@@ -88,46 +88,47 @@
 
 <!--商品部分-->
 <view class="product_all_count">
-  共1件商品
+  共{{all_number}}件商品
 </view>
+<block wx:for="{{rows_orderlist}}">
 <view  class="product">
-  <image src="/public/image/product.jpg" mode="aspectFit"></image>
+  <block wx:if="{{item.row_productspec.spec_img!=''}}">
+  <image src="{{item.row_productspec.spec_img}}" mode="aspectFit"></image>
+  </block>
+  <block wx:if="{{item.row_productspec.spec_img==''}}">
+  <image src="{{item.row_product.img}}" mode="aspectFit"></image>
+  </block>
   <view class="product_info">
     <view class="p_line1">
       <view class="product_name">
-        iphone11iphone11iphone11iphone11iphone11
+        {{item.row_product.name}}
       </view>
       <view class="product_count">
-        x1
+        x{{item.number}}
       </view>
     </view>
     <view class="p_line2">
-      规格:默认
+      规格:
+      <!--单规格-->
+      <block wx:if="{{item.row_product.single_spec=='1'}}">
+        默认
+      </block>
+      <!--多规格-->
+      <block wx:if="{{item.row_product.single_spec=='0'}}">
+      <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+        <block wx:if="{{index_spec>0}}">
+        ，
+        </block>
+        {{row_spec.name}}
+      </block>
+      </block>
     </view>
     <view class="product_price">
-      ￥10.00
+      ￥{{item.row_productspec.price}}
     </view>
   </view>
 </view>
-<view  class="product">
-  <image src="/public/image/product.jpg" mode="aspectFit"></image>
-  <view class="product_info">
-    <view class="p_line1">
-      <view class="product_name">
-        iphone11iphone11iphone11iphone11iphone11
-      </view>
-      <view class="product_count">
-        x1
-      </view>
-    </view>
-    <view class="p_line2">
-      规格:默认
-    </view>
-    <view class="product_price">
-      ￥10.00
-    </view>
-  </view>
-</view>
+</block>
 
 <view class="split">
 </view>

@@ -13,13 +13,22 @@ Page({
     name:"",
     mobile:"",
     address:"",
+    id:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var thiss=this;
+    if(options.id!=null)
+    {
+      thiss.setData(
+        {
+          id:parseInt(options.id),
+        }
+      );
+    }
   },
 
   /**
@@ -33,7 +42,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var thiss=this;
+    if(thiss.data.id>0)
+    {
+      thiss.get_address_by_id();
+    }
   },
 
   /**
@@ -144,25 +157,76 @@ Page({
     }
     else
     {
-      pcapi.add_address(
-        app.globalData.row_member.id,
-        thiss.data.name,
-        thiss.data.mobile,
-        thiss.data.region,
-        thiss.data.address,
-        thiss.data.is_default,
-        function(res)
-        {
-          if(res.data.code==0)
+      if(thiss.data.id==0)
+      {
+        pcapi.add_address(
+          app.globalData.row_member.id,
+          thiss.data.name,
+          thiss.data.mobile,
+          thiss.data.region,
+          thiss.data.address,
+          thiss.data.is_default,
+          function(res)
           {
-            util.show_model(res.data.msg);
+            if(res.data.code==0)
+            {
+              util.show_model(res.data.msg);
+            }
+            else
+            {
+              util.show_model_and_back(res.data.msg);
+            }
           }
-          else
+        );
+      }
+      else{
+        pcapi.save_address(
+          thiss.data.id,
+          app.globalData.row_member.id,
+          thiss.data.name,
+          thiss.data.mobile,
+          thiss.data.region,
+          thiss.data.address,
+          thiss.data.is_default,
+          function(res)
           {
-            util.show_model_and_back(res.data.msg);
+            if(res.data.code==0)
+            {
+              util.show_model(res.data.msg);
+            }
+            else
+            {
+              util.show_model_and_back(res.data.msg);
+            }
           }
-        }
-      );
+        );
+      }
     }
+  },
+  get_address_by_id:function()
+  {
+    var thiss=this;
+    pcapi.get_address_by_id(
+      thiss.data.id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              name:res.data.data.name,
+              mobile:res.data.data.mobile,
+              address:res.data.data.address,
+              is_default:parseInt(res.data.data.is_default),
+              region:[res.data.data.row_province.name,res.data.data.row_city.name,res.data.data.row_county.name],
+            }
+          );
+        }
+        else
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
   }
 })

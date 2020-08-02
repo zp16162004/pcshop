@@ -101,4 +101,58 @@ Page({
       url: '/pages/add_address/add_address',
     })
   },
+  change_is_default:function(e)
+  {
+    var thiss=this;
+    var id=e.currentTarget.dataset.id;
+    pcapi.set_is_default(app.globalData.row_member.id,id,
+        function()
+        {
+          thiss.get_address();
+        }
+      );
+  },
+  delete_address:function(e)
+  {
+    var thiss=this;
+    var id=e.currentTarget.dataset.id;
+    util.alert(
+      "确定删除该收货地址吗",
+      function()
+      {
+        pcapi.delete_address(id,
+            function()
+            {
+              thiss.get_address();
+            }
+          );
+      },
+      function()
+      {
+        //
+      }
+    );
+  },
+  edit_address:function(e)
+  {
+    var thiss=this;
+    var id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/add_address/add_address?id='+id,
+    })
+  },
+  select_address:function(e)
+  {
+    var thiss=this;
+    var index=parseInt(e.currentTarget.dataset.index);
+    var row_address=thiss.data.rows_address[index];
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.setData({
+          row_address:row_address,
+    })
+    wx.navigateBack({
+          delta: 1,
+    })
+  }
 })

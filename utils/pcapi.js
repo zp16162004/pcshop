@@ -239,6 +239,24 @@ function get_address(member_id,func)
     }
   })
 }
+function get_address_by_id(address_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_address_by_id?address_id="+address_id,
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 function get_shop(func)
 {
   wx.request({
@@ -303,6 +321,72 @@ function add_address(member_id,name,mobile,region,address,is_default,func)
     }
   })
 }
+function save_address(address_id,member_id,name,mobile,region,address,is_default,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/save_address",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      address_id:address_id,
+      member_id:member_id,
+      name:name,
+      mobile:mobile,
+      province:region[0],
+      city:region[1],
+      county:region[2],
+      address:address,
+      is_default:is_default,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function set_is_default(member_id,address_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/set_is_default",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      address_id:address_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function delete_address(address_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/delete_address",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      address_id:address_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -319,4 +403,8 @@ module.exports = {
   get_shop:get_shop,
   get_shop_and_distance:get_shop_and_distance,
   add_address:add_address,
+  set_is_default:set_is_default,
+  delete_address:delete_address,
+  get_address_by_id:get_address_by_id,
+  save_address:save_address,
 }

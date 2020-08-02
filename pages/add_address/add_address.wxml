@@ -4,7 +4,7 @@
     姓名
   </view>
   <view class="input flex_row_center">
-    <input placeholder="请输入姓名" bindblur="change_name"></input>
+    <input placeholder="请输入姓名" value="{{name}}" bindblur="change_name"></input>
   </view>
 </view>
 <view class="line flex_row_center">
@@ -12,7 +12,7 @@
     联系电话
   </view>
   <view class="input flex_row_center">
-    <input placeholder="请输入联系电话" bindblur="change_mobile"></input>
+    <input placeholder="请输入联系电话" value="{{mobile}}" bindblur="change_mobile"></input>
   </view>
 </view>
 <view class="line flex_row_center">
@@ -40,7 +40,7 @@
     详细地址
   </view>
   <view class="input flex_row_center">
-    <input placeholder="请填写具体地址" bindblur="change_address"></input>
+    <input placeholder="请填写具体地址" value="{{address}}" bindblur="change_address"></input>
   </view>
 </view>
 <view class="split">
@@ -65,5 +65,3 @@
 </view>
 
 
-<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-</picker>

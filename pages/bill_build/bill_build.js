@@ -10,6 +10,7 @@ Page({
   data: {
     config:[],
     rows_orderlist:app.globalData.rows_orderlist,
+    all_number:0,
     deliver_type:1,
     row_address:null,
     row_shop:null,
@@ -29,10 +30,17 @@ Page({
       }
     );
     //获取商品的详细信息，包含运费模板
+    var all_number=0;
     for(var i=0;i<thiss.data.rows_orderlist.length;i++)
     {
+      all_number+=thiss.data.rows_orderlist[i].number;
       thiss.get_orderlist_info(i);
     }
+    thiss.setData(
+      {
+        all_number:all_number,
+      }
+    );
     //获取收货地址
     thiss.get_address();
     //获取门店地址
