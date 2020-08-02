@@ -1,72 +1,121 @@
 <!--pages/coupon/coupon.wxml-->
-<view class="coupon flex_row_center">
-  <view class="coupon_left flex_column_center">
-    <view class="coupon_discount flex_row_center">
-      <view class="rmb color_white">
-      ￥
+<block wx:for="{{rows_coupon}}">
+  <block wx:if="{{item.rows_couponlist.length<1}}">
+    <view class="coupon flex_row_center">
+      <view class="coupon_left flex_column_center">
+        <view class="coupon_discount flex_row_center">
+          <view class="rmb color_white">
+          ￥
+          </view>
+          <view class="discount color_white">
+            <block wx:if="{{item.min==item.max}}">
+              {{item.min}}
+            </block>
+            <block wx:if="{{item.min!=item.max}}">
+              {{item.min}}~{{item.max}}
+            </block>
+          </view>
+        </view>
+        <view class="coupon_limit color_white">
+          满{{item.limit}}元可用
+        </view>
       </view>
-      <view class="discount color_white">
-      10
+      <view class="coupon_right flex_column_center">
+        <view class="coupon_line1 flex_row_start">
+          <view class="coupon_type color_red">
+            <block wx:if="{{item.type=='0'}}">
+            通用券
+            </block>
+            <block wx:if="{{item.type=='1'}}">
+            品类券
+            </block>
+            <block wx:if="{{item.type=='2'}}">
+            商品券
+            </block>
+          </view>
+          <view class="coupon_name">
+            {{item.name}}
+          </view>
+        </view>
+        <view class="coupon_line2 flex_row_center">
+          <view class="coupon_date color_gray">
+            <block wx:if="{{item.end_type==0}}">
+            {{item.end_time}}到期
+            </block>
+            <block wx:if="{{item.end_type==1}}">
+            {{item.end_count}}日后
+            </block>
+          </view>
+          <view class="coupon_state color_white" data-id="{{item.id}}" catchtap="add_couponlist">
+            立即领取
+          </view>
+        </view>
+      </view>
+      <view class="coupon_after">
       </view>
     </view>
-    <view class="coupon_limit color_white">
-      满200元可用
-    </view>
-  </view>
-  <view class="coupon_right flex_column_center">
-    <view class="coupon_line1 flex_row_start">
-      <view class="coupon_type color_red">
-        通用券
-      </view>
-      <view class="coupon_name">
-        20200701
-      </view>
-    </view>
-    <view class="coupon_line2 flex_row_center">
-      <view class="coupon_date color_gray">
-        2020/01/01-2020/10/10
-      </view>
-      <view class="coupon_state color_white">
-        立即领取
-      </view>
-    </view>
-  </view>
-  <view class="coupon_after">
-  </view>
-</view>
+  </block>
 
-<view class="coupon flex_row_center">
-  <view class="coupon_left_disable flex_column_center">
-    <view class="coupon_discount flex_row_center">
-      <view class="rmb color_white">
-      ￥
+  <block wx:if="{{item.rows_couponlist.length>0}}">
+    <view class="coupon flex_row_center">
+      <view class="coupon_left_disable flex_column_center">
+        <view class="coupon_discount flex_row_center">
+          <view class="rmb color_white">
+          ￥
+          </view>
+          <view class="discount color_white">
+            <block wx:if="{{item.min==item.max}}">
+              {{item.min}}
+            </block>
+            <block wx:if="{{item.min!=item.max}}">
+              {{item.min}}~{{item.max}}
+            </block>
+          </view>
+        </view>
+        <view class="coupon_limit color_white">
+          满{{item.limit}}元可用
+        </view>
       </view>
-      <view class="discount color_white">
-      10
+      <view class="coupon_right flex_column_center">
+        <view class="coupon_line1 flex_row_start">
+          <view class="coupon_type_disable color_gray">
+            <block wx:if="{{item.type=='0'}}">
+            通用券
+            </block>
+            <block wx:if="{{item.type=='1'}}">
+            品类券
+            </block>
+            <block wx:if="{{item.type=='2'}}">
+            商品券
+            </block>
+          </view>
+          <view class="coupon_name">
+            {{item.name}}
+          </view>
+        </view>
+        <view class="coupon_line2 flex_row_center">
+          <view class="coupon_date color_gray">
+            <block wx:if="{{item.end_type==0}}">
+            {{item.end_time}}到期
+            </block>
+            <block wx:if="{{item.end_type==1}}">
+            {{item.end_count}}日后
+            </block>
+          </view>
+          <view class="coupon_state_disable color_white">
+            已领取
+          </view>
+        </view>
+      </view>
+      <view class="coupon_after_disable">
       </view>
     </view>
-    <view class="coupon_limit color_white">
-      满200元可用
-    </view>
-  </view>
-  <view class="coupon_right flex_column_center">
-    <view class="coupon_line1 flex_row_start">
-      <view class="coupon_type_disable color_gray">
-        通用券
-      </view>
-      <view class="coupon_name">
-        20200701
-      </view>
-    </view>
-    <view class="coupon_line2 flex_row_center">
-      <view class="coupon_date color_gray">
-        2020/01/01-2020/10/10
-      </view>
-      <view class="coupon_state_disable color_white">
-        已领取
-      </view>
-    </view>
-  </view>
-  <view class="coupon_after_disable">
-  </view>
-</view>
+  </block>
+</block>
+
+
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    show_login:false,
   },
 
   /**
@@ -26,7 +26,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.row_member==null)
+    {
+      this.setData(
+        {
+          show_login:true,
+        }
+      );
+    }
   },
 
   /**

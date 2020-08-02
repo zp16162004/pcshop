@@ -387,6 +387,45 @@ function delete_address(address_id,func)
     }
   })
 }
+function get_coupon(member_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_coupon",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function add_couponlist(member_id,coupon_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/add_couponlist",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      coupon_id:coupon_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -407,4 +446,6 @@ module.exports = {
   delete_address:delete_address,
   get_address_by_id:get_address_by_id,
   save_address:save_address,
+  get_coupon:get_coupon,
+  add_couponlist:add_couponlist,
 }
