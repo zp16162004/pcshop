@@ -187,4 +187,16 @@ Page({
       url: '/pages/pick_address/pick_address',
     })
   },
+  goto_coupon:function()
+  {
+    wx.navigateTo({
+      url: '/pages/coupon/coupon',
+    })
+  },
+  goto_sign:function()
+  {
+    wx.navigateTo({
+      url: '/pages/sign/sign',
+    })
+  },
 })

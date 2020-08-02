@@ -48,13 +48,13 @@
       </view>
     </view>
     <view class="p_menu">
-      <image src="/public/image/youhuiquan.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/youhuiquan.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_coupon"/>
       <view class="menu_txt">
         优惠券
       </view>
     </view>
     <view class="p_menu">
-      <image src="/public/image/qiandao.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/qiandao.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_sign"/>
       <view class="menu_txt">
         签到
       </view>

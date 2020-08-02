@@ -1,0 +1,122 @@
+/* pages/coupon/coupon.wxss */
+page
+{
+  background-color: #e9e9e9;
+}
+.coupon
+{
+  padding:0rpx 20rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+.coupon_after
+{
+  content: '';
+  position: absolute;
+  height: 160rpx;
+  width:12rpx;
+  top: 0;
+  left: 20rpx;
+  background-color: #ff9999;
+  background-image:radial-gradient(6rpx at 0rpx 6rpx, #ffffff, #ffffff,#ff9999);  
+  background-size: 12rpx 18rpx;
+}
+.coupon_after_disable
+{
+  content: '';
+  position: absolute;
+  height: 160rpx;
+  width:12rpx;
+  top: 0;
+  left: 20rpx;
+  background-color: #e9e9e9;
+  background-image:radial-gradient(6rpx at 0rpx 6rpx, #ffffff, #ffffff,#e9e9e9);  
+  background-size: 12rpx 18rpx;
+}
+.coupon_left
+{
+  width: 210rpx;
+  height: 160rpx;
+  background-image: linear-gradient(-90deg,#f10b0b,#ff9999);
+}
+.coupon_left_disable
+{
+  width: 210rpx;
+  height: 160rpx;
+  background-image: linear-gradient(-90deg,#656565,#e9e9e9);
+}
+.rmb
+{
+  font-size: 32rpx;
+}
+.discount
+{
+  font-size: 44rpx;
+}
+.coupon_limit
+{
+  font-size: 22rpx;
+}
+.coupon_right
+{
+  flex-grow: 1;
+  padding: 0rpx 20rpx;
+  background-color: #ffffff;
+}
+.coupon_line1
+{
+  border-bottom: 1px solid #e9e9e9;
+  height: 80rpx;
+  width: 100%;
+}
+.coupon_type
+{
+  font-size: 18rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0rpx 10rpx;
+  border-radius: 30rpx;
+  border: 1px solid #f10b0b;
+}
+.coupon_type_disable
+{
+  font-size: 18rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0rpx 10rpx;
+  border-radius: 30rpx;
+  border: 1px solid #656565;
+}
+.coupon_name
+{
+  flex-grow: 1;
+  padding-left: 20rpx;
+}
+.coupon_line2
+{
+  height: 80rpx;
+  width: 100%;
+}
+.coupon_date
+{
+  font-size: 20rpx;
+  flex-grow: 1;
+}
+.coupon_state
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0rpx 20rpx;
+  border-radius: 40rpx;
+  background-color: #f10b0b;
+}
+.coupon_state_disable
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0rpx 20rpx;
+  border-radius: 40rpx;
+  background-color: #656565;
+}

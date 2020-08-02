@@ -17,7 +17,10 @@
     "pages/bill_build/bill_build",
     "pages/pick_shop/pick_shop",
     "pages/pick_address/pick_address",
-    "pages/add_address/add_address"
+    "pages/add_address/add_address",
+    "pages/coupon/coupon",
+    "pages/couponlist/couponlist",
+    "pages/sign/sign"
   ],
   "window": {
     "backgroundTextStyle": "light",

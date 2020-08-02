@@ -1,0 +1,72 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="coupon flex_row_center">
+  <view class="coupon_left flex_column_center">
+    <view class="coupon_discount flex_row_center">
+      <view class="rmb color_white">
+      ￥
+      </view>
+      <view class="discount color_white">
+      10
+      </view>
+    </view>
+    <view class="coupon_limit color_white">
+      满200元可用
+    </view>
+  </view>
+  <view class="coupon_right flex_column_center">
+    <view class="coupon_line1 flex_row_start">
+      <view class="coupon_type color_red">
+        通用券
+      </view>
+      <view class="coupon_name">
+        20200701
+      </view>
+    </view>
+    <view class="coupon_line2 flex_row_center">
+      <view class="coupon_date color_gray">
+        2020/01/01-2020/10/10
+      </view>
+      <view class="coupon_state color_white">
+        立即领取
+      </view>
+    </view>
+  </view>
+  <view class="coupon_after">
+  </view>
+</view>
+
+<view class="coupon flex_row_center">
+  <view class="coupon_left_disable flex_column_center">
+    <view class="coupon_discount flex_row_center">
+      <view class="rmb color_white">
+      ￥
+      </view>
+      <view class="discount color_white">
+      10
+      </view>
+    </view>
+    <view class="coupon_limit color_white">
+      满200元可用
+    </view>
+  </view>
+  <view class="coupon_right flex_column_center">
+    <view class="coupon_line1 flex_row_start">
+      <view class="coupon_type_disable color_gray">
+        通用券
+      </view>
+      <view class="coupon_name">
+        20200701
+      </view>
+    </view>
+    <view class="coupon_line2 flex_row_center">
+      <view class="coupon_date color_gray">
+        2020/01/01-2020/10/10
+      </view>
+      <view class="coupon_state_disable color_white">
+        已领取
+      </view>
+    </view>
+  </view>
+  <view class="coupon_after_disable">
+  </view>
+</view>
