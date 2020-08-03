@@ -276,11 +276,15 @@ Page({
         else
         {
           var product_id=thiss.data.id;
+          var category_id=thiss.data.row_product.category_id;
           var productspec_id=thiss.data.row_productspec.id;
+          var price=thiss.data.row_productspec.price;
           var number=thiss.data.number;
           var row_orderlist=new Object();
           row_orderlist.product_id=product_id;
+          row_orderlist.category_id=category_id;
           row_orderlist.productspec_id=productspec_id;
+          row_orderlist.price=price;
           row_orderlist.number=number;
           var rows_orderlist=new Array();
           rows_orderlist.push(row_orderlist);

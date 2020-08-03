@@ -406,6 +406,25 @@ function get_coupon(member_id,func)
     }
   })
 }
+function get_couponlist(member_id,func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/get_couponlist",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 function add_couponlist(member_id,coupon_id,func)
 {
   wx.request({
@@ -447,5 +466,6 @@ module.exports = {
   get_address_by_id:get_address_by_id,
   save_address:save_address,
   get_coupon:get_coupon,
+  get_couponlist:get_couponlist,
   add_couponlist:add_couponlist,
 }

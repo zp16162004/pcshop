@@ -14,6 +14,7 @@ Page({
     deliver_type:1,
     row_address:null,
     row_shop:null,
+    row_couponlist:null,
     rows_address:null,
     rows_shop:null,
   },
@@ -144,6 +145,7 @@ Page({
       this.data
     );
     this.get_config();
+    console.log(this.data);
   },
 
   /**
@@ -225,4 +227,10 @@ Page({
       url: '/pages/pick_shop/pick_shop',
     })
   },
+  pick_couponlist:function()
+  {
+    wx.navigateTo({
+      url: '/pages/couponlist/couponlist?in_order=1',
+    })
+  }
 })

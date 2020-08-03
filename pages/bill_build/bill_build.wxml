@@ -138,7 +138,7 @@
   <view class="txt">
     优惠券
   </view>
-  <view class="l_right">
+  <view class="l_right" bindtap="pick_couponlist">
     请选择
     <view class="select_address">
     >
