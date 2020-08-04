@@ -139,7 +139,21 @@
     优惠券
   </view>
   <view class="l_right" bindtap="pick_couponlist">
+    <block wx:if="{{row_couponlist==null}}">
+    <view class="txt">
     请选择
+    </view>
+    </block>
+    <block wx:if="{{row_couponlist.can_use==0}}">
+    <view class="txt color_red">
+    不满足优惠条件
+    </view>
+    </block>
+    <block wx:if="{{row_couponlist.can_use==1}}">可优惠
+    <view class="txt color_red">
+    {{row_couponlist.discount}}
+    </view>元
+    </block>
     <view class="select_address">
     >
     </view>
@@ -154,22 +168,13 @@
   <view class="l_right">
     当前积分
     <view class="integral">
-    10.00
+    {{row_member.integral}}
     </view>
     <radio value="r1" checked="true"/>
   </view>
 </view>
 
-
-<view class="line">
-  <view class="txt">
-    快递费用
-  </view>
-  <view class="l_right">
-    ￥1.00
-  </view>
-</view>
-
+<block wx:if="{{deliver_type==1}}">
 <view class="line">
   <view class="txt">
     联系人
@@ -186,6 +191,7 @@
     <input class="weui-input"  auto-focus placeholder="将会获取焦点"/>
   </view>
 </view>
+</block>
 
 <view class="line_column">
   <view class="txt">
@@ -220,16 +226,7 @@
     余额支付
   </view>
   <view class="pt_right">
-    可用余额:￥0.00
-  </view>
-</view>
-<view class="pay_type">
-  <view class="pt_left">
-    <image src="/public/image/xianxia_pay.png" mode="aspectFtx"></image>
-    线下支付
-  </view>
-  <view class="pt_right">
-    线下支付
+    可用余额:￥{{row_member.money}}
   </view>
 </view>
 
@@ -245,17 +242,36 @@
     商品总价:
   </view>
   <view class="l_right">
-    ￥10.00
+    ￥{{all_money}}
   </view>
 </view>
+
+<view class="line">
+  <view class="txt">
+    优惠券优惠:
+  </view>
+  <view class="l_right">
+    -￥{{coupon_discount}}
+  </view>
+</view>
+<view class="line">
+  <view class="txt">
+    积分抵扣:
+  </view>
+  <view class="l_right">
+    -￥{{integral_discount}}
+  </view>
+</view>
+<block wx:if="{{deliver_type==0}}">
 <view class="line">
   <view class="txt">
     运费:
   </view>
   <view class="l_right">
-    +￥1.00
+    +￥{{deliver_money}}
   </view>
 </view>
+</block>
 <view class="split">
 </view>
 </scroll-view>
@@ -265,7 +281,7 @@
     合计:
   </view>
   <view class="money">
-    ￥11.00
+    ￥{{all_money+diliver_money-integral_discount-coupon_discount}}
   </view>
   <view class="bill_btn">
     立即结算

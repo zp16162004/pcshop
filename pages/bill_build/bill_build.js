@@ -11,7 +11,13 @@ Page({
     config:[],
     rows_orderlist:app.globalData.rows_orderlist,
     all_number:0,
-    deliver_type:1,
+    deliver_type:0,
+    all_money:0,//商品总金额
+    diliver_money:0,//运费
+    integral:0,//花费积分
+    integral_discount:0,//积分抵扣
+    coupon_discount:0,//优惠券优惠
+    need_pay:0,//需要支付
     row_address:null,
     row_shop:null,
     row_couponlist:null,
@@ -46,6 +52,8 @@ Page({
     thiss.get_address();
     //获取门店地址
     thiss.get_shop();
+    //刷新用户信息
+    thiss.refresh_member();
   },
   get_orderlist_info:function(index)
   {
@@ -67,6 +75,8 @@ Page({
           thiss.setData(
             thiss.data
           );
+          //计算价格
+          thiss.ini_price();
         }
       }
     );
@@ -94,6 +104,7 @@ Page({
                 row_address:row_address,
               }
             );
+            thiss.ini_price();
           }
         }
       }
@@ -117,7 +128,23 @@ Page({
               row_shop:thiss.data.rows_shop[0],
             }
           );
+          thiss.ini_price();
         }
+      }
+    );
+  },
+  refresh_member:function()
+  {
+    var thiss=this;
+    pcapi.refresh_member(
+      function(res)
+      {
+        console.log(res);
+        thiss.setData(
+          {
+            row_member:res.data.data,
+          }
+        );
       }
     );
   },
@@ -214,6 +241,7 @@ Page({
         deliver_type:parseInt(e.currentTarget.dataset.type),
       }
     );
+    thiss.ini_price();
   },
   pick_address:function()
   {
@@ -232,5 +260,115 @@ Page({
     wx.navigateTo({
       url: '/pages/couponlist/couponlist?in_order=1',
     })
-  }
+  },
+  //获取到优惠券
+  get_couponlist:function()
+  {
+    //
+    var thiss=this;
+    var row_couponlist=thiss.data.row_couponlist;
+    var type=parseInt(row_couponlist.row_coupon.type);
+    console.log("type:"+type);
+    if(type==0)
+    {
+      //通用券
+      //获取总金额
+      var all_money=0;
+      for(var j=0;j<thiss.data.rows_orderlist.length;j++)
+      {
+        var row_orderlist=thiss.data.rows_orderlist[j];
+        all_money+=(parseFloat(row_orderlist.price)*parseInt(row_orderlist.number));
+      }
+      if(all_money>=parseFloat(row_couponlist.row_coupon.limit))
+      {
+        thiss.data.row_couponlist.can_use=1;
+      }
+      else{
+        thiss.data.row_couponlist.can_use=0;
+      }
+      console.log(all_money);
+    }
+    else if(type==1)
+    {
+      //品类券
+      //获取总金额
+      var all_money=0;
+      var row_id=row_couponlist.row_coupon['ids'].split(',');
+      for(var j=0;j<thiss.data.rows_orderlist.length;j++)
+      {
+        var row_orderlist=thiss.data.rows_orderlist[j];
+        console.log(thiss.data.rows_orderlist);
+        console.log((parseFloat(row_orderlist.price)*parseInt(row_orderlist.number)));
+        if(row_id.indexOf(row_orderlist.category_id)>=0)
+        {
+          all_money+=(parseFloat(row_orderlist.price)*parseInt(row_orderlist.number));
+        }
+      }
+      if(all_money>=parseFloat(row_couponlist.row_coupon.limit))
+      {
+        thiss.data.row_couponlist.can_use=1;
+      }
+      else{
+        thiss.data.row_couponlist.can_use=0;
+      }
+      console.log(all_money);
+    }
+    else if(type==2)
+    {
+      //商品券
+      var all_money=0;
+      var row_id=row_couponlist.row_coupon['ids'].split(',');
+      for(var j=0;j<thiss.data.rows_orderlist.length;j++)
+      {
+        var row_orderlist=thiss.data.rows_orderlist[j];
+        if(row_id.indexOf(row_orderlist.product_id)>=0)
+        {
+          all_money+=(parseFloat(row_orderlist.price)*parseInt(row_orderlist.number));
+        }
+      }
+      if(all_money>=parseFloat(row_couponlist.row_coupon.limit))
+      {
+        thiss.data.row_couponlist.can_use=1;
+      }
+      else{
+        thiss.data.row_couponlist.can_use=0;
+      }
+      console.log(all_money);
+    }
+    thiss.setData(
+    {
+      row_couponlist:row_couponlist,
+    }
+    );
+    //计算价格信息
+  },
+  ini_price:function()
+  {
+    //
+    var thiss=this;
+    console.log('ini_price');
+    //计算商品总金额
+    var all_money=0;
+    for(var i=0;i<thiss.data.rows_orderlist;i++)
+    {
+      var row_orderlist=thiss.data.rows_orderlist[i];
+      if(row_orderlist.row_productspec!=null)
+      {
+        all_money+=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+      }
+    }
+    //计算运费
+    var deliver_money=0;
+    for(var i=0;i<thiss.data.rows_orderlist;i++)
+    {
+      var row_orderlist=thiss.data.rows_orderlist[i];
+      if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
+      {
+        orderlist_money=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+      }
+    }
+    //计算积分抵扣
+    //计算优惠券
+    //计算need_pay
+  },
 })

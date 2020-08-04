@@ -151,6 +151,7 @@ Page({
     prevPage.setData({
           row_address:row_address,
     })
+    prevPage.ini_price();
     wx.navigateBack({
           delta: 1,
     })

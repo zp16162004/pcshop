@@ -246,6 +246,7 @@ Page({
     prevPage.setData({
       row_couponlist:row_couponlist,
     })
+    prevPage.ini_price();
     wx.navigateBack({
           delta: 1,
     })

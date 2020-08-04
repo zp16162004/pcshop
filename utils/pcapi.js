@@ -37,6 +37,24 @@ function do_login(code,func)
       }
     })
 }
+function refresh_member(func)
+{
+  wx.request({
+    url: app.globalData.host+"/Service/refresh_member",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:app.globalData.row_member.id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      func(res);
+    }
+  })
+}
 // 获取商城动态
 function get_notice(count,func)
 {
@@ -448,6 +466,7 @@ function add_couponlist(member_id,coupon_id,func)
 module.exports = {
   get_config: get_config,
   do_login: do_login,
+  refresh_member:refresh_member,
   get_notice: get_notice,
   get_category:get_category,
   get_home:get_home,
