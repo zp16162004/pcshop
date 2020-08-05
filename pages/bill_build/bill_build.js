@@ -19,6 +19,7 @@ Page({
     integral_discount:0,//积分抵扣
     coupon_discount:0,//优惠券优惠
     need_pay:0,//需要支付
+    pay_type:0,//0：微信支付，1：余额支付
     row_address:null,
     row_shop:null,
     row_couponlist:null,
@@ -495,11 +496,6 @@ Page({
           }
         }
       }
-      thiss.setData(
-        {
-          deliver_money:deliver_money,
-        }
-      );
       //计算总体积
       //计算可积分兑换的总金额
       if(row_orderlist.row_product!=null)
@@ -507,11 +503,22 @@ Page({
         max_maybe_integral_discount+=(parseInt(row_orderlist.number)*parseFloat(row_orderlist.row_product.integral_discount));
       }
     }
+    if(thiss.data.deliver_type==0)
+    {
     thiss.setData(
       {
         deliver_money:deliver_money,
       }
     );
+    }
+    else
+    {
+      thiss.setData(
+        {
+          deliver_money:0,
+        }
+      );
+    }
     //计算积分抵扣
     if(thiss.data.row_member!=null&&thiss.data.config!=null)
     {
@@ -565,4 +572,17 @@ Page({
     );
     this.ini_price();
   },
+  change_pay_type:function(e)
+  {
+    var val=parseInt(e.currentTarget.dataset.val);
+    this.setData(
+      {
+        pay_type:val,
+      }
+    );
+  },
+  submit:function()
+  {
+    //提交订单并且付款
+  }
 })

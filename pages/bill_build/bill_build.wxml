@@ -220,7 +220,8 @@
 <view class="pick_pay_type">
   共1件商品
 </view>
-<view class="pay_type">
+<block wx:if="{{pay_type==0}}">
+<view class="pay_type_selected" data-val="0" bindtap="change_pay_type">
   <view class="pt_left">
     <image src="/public/image/wechat_pay.png" mode="aspectFtx"></image>
     微信支付
@@ -229,7 +230,20 @@
     微信快捷支付
   </view>
 </view>
-<view class="pay_type">
+</block>
+<block wx:if="{{pay_type==1}}">
+<view class="pay_type" data-val="0" bindtap="change_pay_type">
+  <view class="pt_left">
+    <image src="/public/image/wechat_pay.png" mode="aspectFtx"></image>
+    微信支付
+  </view>
+  <view class="pt_right">
+    微信快捷支付
+  </view>
+</view>
+</block>
+<block wx:if="{{pay_type==0}}">
+<view class="pay_type" data-val="1" bindtap="change_pay_type">
   <view class="pt_left">
     <image src="/public/image/yue_pay.png" mode="aspectFtx"></image>
     余额支付
@@ -238,6 +252,18 @@
     可用余额:￥{{row_member.money}}
   </view>
 </view>
+</block>
+<block wx:if="{{pay_type==1}}">
+<view class="pay_type_selected" data-val="1" bindtap="change_pay_type">
+  <view class="pt_left">
+    <image src="/public/image/yue_pay.png" mode="aspectFtx"></image>
+    余额支付
+  </view>
+  <view class="pt_right">
+    可用余额:￥{{row_member.money}}
+  </view>
+</view>
+</block>
 
 
 
@@ -292,7 +318,7 @@
   <view class="money">
     ￥{{need_pay}}
   </view>
-  <view class="bill_btn">
+  <view class="bill_btn" bindtap="submit">
     立即结算
   </view>
 </view>

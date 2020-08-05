@@ -298,6 +298,16 @@ textarea
   line-height: 80rpx;
   padding: 0rpx 30rpx;
 }
+.pay_type_selected
+{
+  margin: 20rpx 20rpx;
+  padding: 15rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f10b0b;
+}
 
 
 .pay_type
