@@ -15,6 +15,7 @@ Page({
     all_money:0,//商品总金额
     diliver_money:0,//运费
     integral:0,//花费积分
+    exchange_integral:0,
     integral_discount:0,//积分抵扣
     coupon_discount:0,//优惠券优惠
     need_pay:0,//需要支付
@@ -54,6 +55,7 @@ Page({
     thiss.get_shop();
     //刷新用户信息
     thiss.refresh_member();
+    this.get_config();
   },
   get_orderlist_info:function(index)
   {
@@ -71,7 +73,8 @@ Page({
         {
           thiss.data.rows_orderlist[index].row_product=res.data.row_product;
           thiss.data.rows_orderlist[index].row_productspec=res.data.row_productspec;
-          thiss.data.rows_orderlist[index].row_fare=res.data.row_fare;
+          console.log("获取orderlist_info");
+          console.log(thiss.data.rows_orderlist[index]);
           thiss.setData(
             thiss.data
           );
@@ -171,7 +174,6 @@ Page({
     this.setData(
       this.data
     );
-    this.get_config();
     console.log(this.data);
   },
 
@@ -229,6 +231,7 @@ Page({
         );
         console.log(thiss.data.config);
         console.log(thiss.data.config.navigate_pic1);
+        thiss.ini_price();
       }
     })
   },
@@ -349,26 +352,217 @@ Page({
     console.log('ini_price');
     //计算商品总金额
     var all_money=0;
-    for(var i=0;i<thiss.data.rows_orderlist;i++)
+    for(var i=0;i<thiss.data.rows_orderlist.length;i++)
     {
       var row_orderlist=thiss.data.rows_orderlist[i];
       if(row_orderlist.row_productspec!=null)
       {
+        console.log(row_orderlist.row_productspec.price);
+        console.log(row_orderlist.number);
+        console.log(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
         all_money+=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
       }
     }
+    thiss.setData(
+      {
+        all_money:all_money,
+      }
+    );
     //计算运费
     var deliver_money=0;
-    for(var i=0;i<thiss.data.rows_orderlist;i++)
+    //可积分兑换的最大金额
+    var max_maybe_integral_discount=0;
+    for(var i=0;i<thiss.data.rows_orderlist.length;i++)
     {
       var row_orderlist=thiss.data.rows_orderlist[i];
+      //计算总金额
       if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
       {
         orderlist_money=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
       }
+      //计算总重量
+      if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
+      {
+        orderlist_weight=(parseFloat(row_orderlist.row_productspec.weight)*parseInt(row_orderlist.number));
+      }
+      // 计算总体积
+      if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
+      {
+        orderlist_size=(parseFloat(row_orderlist.row_productspec.size)*parseInt(row_orderlist.number));
+      }
+      console.log(row_orderlist);
+      console.log("计算邮费先决条件:"+(thiss.data.row_address!=null&&row_orderlist.row_product.row_fare!=null));
+      if(thiss.data.row_address!=null&&row_orderlist.row_product.row_fare!=null)
+      {
+        console.log("开始计算邮费");
+        var city_id=thiss.data.row_address.city_id;
+        //首先判断保留列表
+        var in_free=0;
+        var in_list=0;
+        if(parseInt(row_orderlist.row_product.row_fare.has_free)==1)
+        {
+          console.log("存在has_free");
+          var rows_farefree=row_orderlist.row_product.row_fare.rows_farefree;
+          for(var j=0;j<rows_farefree.length&&in_free==0;j++)
+          {
+            var row_farefree=rows_farefree[j];
+            var row_city_code=row_farefree.citycodes.split(',');
+            if(row_city_code.indexOf(thiss.data.row_address.row_city.code)>=0)
+            {
+              //所选地址在citycodes里面
+              if(parseInt(row_orderlist.row_product.row_fare.type)==1&&parseInt(row_orderlist.number)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              {
+                //按照件数
+                in_free=1;
+                console.log("符合包邮条件");
+              }
+              else if(parseInt(row_orderlist.row_product.row_fare.type)==2&&parseInt(orderlist_weight)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              {
+                in_free=1;
+              }
+              else if(parseInt(row_orderlist.row_product.row_fare.type)==3&&parseInt(orderlist_size)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              {
+                in_free=1;
+              }
+            }
+          }
+        }
+        if(row_orderlist.row_product.row_fare.rows_farelist.length>0)
+        {
+          console.log("开始farelist判断：in_free="+in_free);
+          if(in_free==0)
+          {
+            console.log("开始farelist判断");
+            var rows_farelist=row_orderlist.row_product.row_fare.rows_farelist;
+            for(var j=0;j<rows_farelist.length&&in_list==0;j++)
+            {
+              var row_farelist=rows_farelist[j];
+              var row_city_code=row_farelist.citycodes.split(',');
+              if(row_city_code.indexOf(thiss.data.row_address.row_city.code)>=0)
+              {
+                //所选地址在citycodes里面
+                if(parseInt(row_orderlist.row_product.row_fare.type)==1)
+                {
+                  //按照件数
+                  in_list=1;
+                  var yushu=parseFloat(row_orderlist.number)-parseFloat(row_farelist.first);
+                  var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+                  deliver_money+=(d_money);
+                  console.log("计算list邮费");
+                }
+                else if(parseInt(row_orderlist.row_product.row_fare.type)==2)
+                {
+                  in_list=1;
+                  var yushu=parseFloat(orderlist_weight)-parseFloat(row_farelist.first);
+                  var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+                  deliver_money+=(d_money);
+                  console.log("计算list邮费");
+                }
+                else if(parseInt(row_orderlist.row_product.row_fare.type)==3)
+                {
+                  in_list=1;
+                  var yushu=parseFloat(orderlist_size)-parseFloat(row_farelist.first);
+                  var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+                  deliver_money+=(d_money);
+                  console.log("计算list邮费");
+                }
+              }
+            }
+          }
+        }
+        if(in_free==0&&in_list==0)
+        {
+          var row_farelist=row_orderlist.row_product.row_fare;
+          //所选地址在citycodes里面
+          if(parseInt(row_orderlist.row_product.row_fare.type)==1)
+          {
+            //按照件数
+            var yushu=parseFloat(row_orderlist.number)-parseFloat(row_farelist.first);
+            var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+            deliver_money+=(d_money);
+          }
+          else if(parseInt(row_orderlist.row_product.row_fare.type)==2)
+          {
+            var yushu=parseFloat(orderlist_weight)-parseFloat(row_farelist.first);
+            var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+            deliver_money+=(d_money);
+          }
+          else if(parseInt(row_orderlist.row_product.row_fare.type)==3)
+          {
+            var yushu=parseFloat(orderlist_size)-parseFloat(row_farelist.first);
+            var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
+            deliver_money+=(d_money);
+          }
+        }
+      }
+      thiss.setData(
+        {
+          deliver_money:deliver_money,
+        }
+      );
+      //计算总体积
+      //计算可积分兑换的总金额
+      if(row_orderlist.row_product!=null)
+      {
+        max_maybe_integral_discount+=(parseInt(row_orderlist.number)*parseFloat(row_orderlist.row_product.integral_discount));
+      }
     }
+    thiss.setData(
+      {
+        deliver_money:deliver_money,
+      }
+    );
     //计算积分抵扣
+    if(thiss.data.row_member!=null&&thiss.data.config!=null)
+    {
+      var max_integral_discount=(thiss.data.row_member.integral/thiss.data.config.integral_rate).toFixed(2);
+      console.log("最多抵扣:"+max_integral_discount);
+      if(thiss.data.exchange_integral==1)
+      {
+        thiss.data.integral_discount=max_integral_discount>max_maybe_integral_discount?max_maybe_integral_discount:max_integral_discount;
+        thiss.data.integral=parseInt(thiss.data.integral_discount*thiss.data.config.integral_rate);
+      }
+      else
+      {
+        thiss.data.integral_discount=0;
+        thiss.data.integral=0;
+      }
+      thiss.setData(
+        {
+          integral_discount:thiss.data.integral_discount,
+          integral:thiss.data.integral,
+        }
+      );
+    }
     //计算优惠券
+    if(thiss.data.row_couponlist!=null)
+    {
+      if(thiss.data.row_couponlist.can_use==1)
+      {
+        thiss.data.coupon_discount=parseFloat(thiss.data.row_couponlist.discount);
+      }
+    }
+    thiss.setData(
+      {
+        coupon_discount:thiss.data.coupon_discount,
+      }
+    );
     //计算need_pay
+      var need_pay=(thiss.data.all_money+thiss.data.deliver_money-thiss.data.integral_discount-thiss.data.coupon_discount).toFixed(2);
+      thiss.setData(
+        {
+          need_pay:need_pay,
+        }
+      );
+  },
+  change_exchange_integral:function(e)
+  {
+    var val=parseInt(e.currentTarget.dataset.val);
+    this.setData(
+      {
+        exchange_integral:val,
+      }
+    );
+    this.ini_price();
   },
 })

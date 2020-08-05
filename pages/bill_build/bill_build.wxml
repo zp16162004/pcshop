@@ -166,11 +166,20 @@
     积分抵扣
   </view>
   <view class="l_right">
+    <block wx:if="{{exchange_integral==1}}">
+    剩余积分
+    <view class="integral">
+    {{row_member.integral-integral}}
+    </view>
+    <radio value="r1" checked="true" data-val="0" bindtap="change_exchange_integral"/>
+    </block>
+    <block wx:if="{{exchange_integral==0}}">
     当前积分
     <view class="integral">
     {{row_member.integral}}
     </view>
-    <radio value="r1" checked="true"/>
+    <radio value="r1" data-val="1" bindtap="change_exchange_integral"/>
+    </block>
   </view>
 </view>
 
@@ -281,7 +290,7 @@
     合计:
   </view>
   <view class="money">
-    ￥{{all_money+diliver_money-integral_discount-coupon_discount}}
+    ￥{{need_pay}}
   </view>
   <view class="bill_btn">
     立即结算
