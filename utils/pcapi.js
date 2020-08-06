@@ -463,6 +463,44 @@ function add_couponlist(member_id,coupon_id,func)
     }
   })
 }
+function add_order(member_id,type,deliver_type,pay_type,row_address,row_shop,contact,mobile,fnote,money_product,money_fare,integral,integral_discount,couponlist_id,coupon_discount,need_pay,detail_id,rows_orderlist,func)
+{
+  var thiss=this;
+  console.log(JSON.stringify(rows_orderlist));
+  wx.request({
+    url: app.globalData.host+"/Service/add_order",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      type:type,
+      deliver_type:deliver_type,
+      pay_type:pay_type,
+      shop_id:row_shop==null?0:row_shop.id,
+      address_id:row_address==null?0:row_address.id,
+      contact:contact,
+      mobile:mobile,
+      fnote:fnote,
+      money_product:money_product,
+      money_fare:money_fare,
+      integral:integral,
+      integral_discount:integral_discount,
+      couponlist_id:couponlist_id,
+      coupon_discount:coupon_discount,
+      need_pay:need_pay,
+      detail_id:detail_id,
+      rows_orderlist:JSON.stringify(rows_orderlist),
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -487,4 +525,5 @@ module.exports = {
   get_coupon:get_coupon,
   get_couponlist:get_couponlist,
   add_couponlist:add_couponlist,
+  add_order:add_order,
 }

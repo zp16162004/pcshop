@@ -189,7 +189,7 @@
     联系人
   </view>
   <view class="l_right">
-    <input class="weui-input"  auto-focus placeholder="将会获取焦点"/>
+    <input class="weui-input" value="{{contact}}" bindblur="change_contact"  auto-focus placeholder="将会获取焦点"/>
   </view>
 </view>
 <view class="line">
@@ -197,7 +197,7 @@
     联系电话
   </view>
   <view class="l_right">
-    <input class="weui-input"  auto-focus placeholder="将会获取焦点"/>
+    <input class="weui-input"  value="{{mobile}}" bindblur="change_mobile" auto-focus placeholder="将会获取焦点"/>
   </view>
 </view>
 </block>
@@ -207,7 +207,7 @@
     备注信息
   </view>
   <view class="p_remark">
-    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" />
+    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" value="{{fnote}}" bindblur="change_fnote" />
   </view>
 </view>
 

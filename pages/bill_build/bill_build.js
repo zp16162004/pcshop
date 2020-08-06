@@ -9,6 +9,8 @@ Page({
    */
   data: {
     config:[],
+    detail:0,
+    type:0,
     rows_orderlist:app.globalData.rows_orderlist,
     all_number:0,
     deliver_type:0,
@@ -25,6 +27,9 @@ Page({
     row_couponlist:null,
     rows_address:null,
     rows_shop:null,
+    mobile:"",
+    contact:"",
+    fnote:"",
   },
 
   /**
@@ -38,6 +43,22 @@ Page({
         rows_orderlist:app.globalData.rows_orderlist,
       }
     );
+    if(options.type!=null)
+    {
+      thiss.setData(
+        {
+          type:parseInt(options.type),
+        }
+      );
+    }
+    if(options.detail_id!=null)
+    {
+      thiss.setData(
+        {
+          detail_id:parseInt(options.detail_id),
+        }
+      );
+    }
     //获取商品的详细信息，包含运费模板
     var all_number=0;
     for(var i=0;i<thiss.data.rows_orderlist.length;i++)
@@ -581,8 +602,92 @@ Page({
       }
     );
   },
+  change_contact:function(e)
+  {
+    thiss.setData(
+      {
+        contact:e.detail.value,
+      }
+    );
+  },
+  change_mobile:function(e)
+  {
+    thiss.setData(
+      {
+        mobile:e.detail.value,
+      }
+    );
+  },
+  change_fnote:function(e)
+  {
+    thiss.setData(
+      {
+        fnote:e.detail.value,
+      }
+    );
+  },
   submit:function()
   {
+    var thiss=this;
     //提交订单并且付款
+    if(thiss.data.deliver_type==0)
+    {
+      //收货地址不为空
+      if(thiss.data.row_address==null)
+      {
+        util.show_model("请选择收货地址");
+        return;
+      }
+    }
+    else if(thiss.data.deliver_type==1)
+    {
+      //选择门店
+      if(thiss.data.row_shop==null)
+      {
+        util.show_model("请选择门店");
+        return;
+      }
+      //mobile，contact不为空
+      if(thiss.data.mobile.length==0)
+      {
+        util.show_model("请填写联系电话");
+        return;
+      }
+      if(thiss.data.contact.length==0)
+      {
+        util.show_model("请填写联系人");
+        return;
+      }
+      //余额必须够
+      if(parseInt(thiss.data.row_member.money)<thiss.data.need_pay)
+      {
+        util.show_model("余额不足");
+        return;
+      }
+    }
+    pcapi.add_order(
+      app.globalData.row_member.id,
+      thiss.data.type,
+      thiss.data.deliver_type,
+      thiss.data.pay_type,
+      thiss.data.row_address,
+      thiss.data.row_shop,
+      thiss.data.contact,
+      thiss.data.mobile,
+      thiss.data.fnote,
+      thiss.data.all_money,
+      thiss.data.diliver_money,
+      thiss.data.integral,
+      thiss.data.integral_discount,
+      thiss.data.row_couponlist==null?0:thiss.data.row_couponlist.id,
+      thiss.data.coupon_discount,
+      thiss.data.need_pay,
+      thiss.data.detail_id,
+      thiss.data.rows_orderlist,
+      function(res)
+      {
+        console.log(res);
+      }
+    );
   }
 })
