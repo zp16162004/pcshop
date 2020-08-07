@@ -60,10 +60,12 @@
       </view>
     </view>
     <view class="p_menu">
+      <button open-type="contact" class="flex_column_center">
       <image src="/public/image/kefu.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         客服
       </view>
+      </button>
     </view>
     <view class="p_menu">
       <image src="/public/image/shoucang.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>

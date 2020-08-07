@@ -1,5 +1,10 @@
 /**index.wxss**/
 /* 标题栏 */
+button
+{
+  width: 100% !important;
+  padding:0rpx !important;
+}
 .p_title
 {
   display:flex;
@@ -67,6 +72,7 @@ swiper .wx-swiper-dot.wx-swiper-dot-active {
 .menu_txt
 {
   font-size: 26rpx;
+  font-weight: normal;
 }
 /* 纵向滚动信息 */
 .p_notices
