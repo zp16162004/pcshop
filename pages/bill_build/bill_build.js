@@ -1,6 +1,7 @@
 // pages/bill_build/bill_build.js
 var util=require("../../utils/util.js");
 var pcapi=require("../../utils/pcapi.js");
+var md5=require("../../utils/md5.js");
 const app=getApp();
 Page({
 
@@ -718,7 +719,71 @@ Page({
       thiss.data.order_id,
       function(res)
       {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              prepay_id:res.data.prepay_id,
+              nonceStr:res.data.nonceStr,
+              timeStamp:res.data.timeStamp,
+              sign:res.data.sign,
+            }
+          );
+          thiss.to_pay();
+        }
+        else{
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  //去付款
+  to_pay:function()
+  {
+    var thiss=this;
+    pcapi.do_pay(
+      thiss.data.nonceStr,
+      thiss.data.prepay_id,
+      thiss.data.timeStamp,
+      thiss.data.sign,
+      function(res)
+      {
         console.log(res);
+      },
+      function(res)
+      {
+        console.log(res);
+      },
+      function(res)
+      {
+        //获取订单状态
+        thiss.get_order_info();
+      }
+    );
+  },
+  get_order_info:function()
+  {
+    var thiss=this;
+    pcapi.get_order_info(
+      thiss.data.order_id,
+      function(res)
+      {
+        if(res.data.code==0)
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+        else
+        {
+          var row_order=res.data.data;
+          if(row_order.state==0)
+          {
+            util.show_model_and_back("订单付款失败");
+          }
+          else
+          {
+            util.show_model_and_back("订单付款成功");
+          }
+        }
       }
     );
   },

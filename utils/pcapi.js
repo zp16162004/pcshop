@@ -521,6 +521,52 @@ function get_prepay_id(order_id,func)
     }
   })
 }
+function do_pay(nonce_str,prepay_id,timeStamp,sign,func_success,func_fail,func_complete)
+{
+  console.log(nonce_str);
+  console.log(prepay_id);
+  console.log(timeStamp);
+  console.log(sign);
+  wx.requestPayment({
+    nonceStr: nonce_str,
+    package: "prepay_id="+prepay_id,
+    paySign: sign,
+    timeStamp: timeStamp+"",
+    signType:"MD5",
+    success:function(res)
+    {
+      func_success(res);
+    },
+    fail:function(res)
+    {
+      func_fail(res);
+    },
+    complete:function()
+    {
+      func_complete();
+    }
+  })
+}
+function get_order_info(order_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_order_info",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      order_id:order_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -547,4 +593,6 @@ module.exports = {
   add_couponlist:add_couponlist,
   add_order:add_order,
   get_prepay_id:get_prepay_id,
+  do_pay:do_pay,
+  get_order_info:get_order_info,
 }
