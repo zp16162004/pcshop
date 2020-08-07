@@ -686,8 +686,40 @@ Page({
       thiss.data.rows_orderlist,
       function(res)
       {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              order_id:res.data.order_id,
+              state:parseInt(res.data.state),
+            }
+          );
+          if(thiss.data.state==0)
+          {
+            thiss.get_prepay_id();
+          }
+          else
+          {
+            app.globalData.rows_orderlist=null,
+            util.show_model_and_back(res.data.msg);
+          }
+        }
+        else
+        {
+          util.show_model(res.data.msg);
+        }
+      }
+    );
+  },
+  get_prepay_id:function()
+  {
+    var thiss=this;
+    pcapi.get_prepay_id(
+      thiss.data.order_id,
+      function(res)
+      {
         console.log(res);
       }
     );
-  }
+  },
 })

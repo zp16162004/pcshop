@@ -501,6 +501,26 @@ function add_order(member_id,type,deliver_type,pay_type,row_address,row_shop,con
     }
   })
 }
+function get_prepay_id(order_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_prepay_id",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      order_id:order_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -526,4 +546,5 @@ module.exports = {
   get_couponlist:get_couponlist,
   add_couponlist:add_couponlist,
   add_order:add_order,
+  get_prepay_id:get_prepay_id,
 }
