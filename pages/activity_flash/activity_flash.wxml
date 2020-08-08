@@ -2,137 +2,102 @@
 <image mode="aspectFit" src="/public/image/head_flash.jpg" style="width:750rpx;height:375rpx"></image>
 <view class="p_section">
   <image mode="aspectFit" src="/public/image/xianshi.png" style="width:50rpx;height:50rpx;margin-right:20rpx"></image>
-  <scroll-view scroll-x="true" style="width:640rpx;height:80rpx">
+  <scroll-view scroll-x="true" style="width:640rpx;height:80rpx" scroll-into-view="flashsection_{{id_select}}">
     <view  class="sections">
-      <view class="section">
+      <block wx:for="{{rows_flashsection}}">
+      <view class="section" data-index="{{index}}" id="flashsection_{{item.id}}" bindtap="change_flashsection">
         <view class="time">
-          12:00
+          <block wx:if="{{item.stime<10}}">0</block>{{item.stime}}:00
         </view>
+        <block wx:if="{{item.id==row_flashsection.id}}">
         <view class="status_on">
+          <block wx:if="{{item.status==0}}">
+          未开始
+          </block>
+          <block wx:if="{{item.status==1}}">
           进行中
+          </block>
+          <block wx:if="{{item.status==2}}">
+          已结束
+          </block>
         </view>
-      </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
+        </block>
+        <block wx:if="{{item.id!=row_flashsection.id}}">
         <view class="status">
+          <block wx:if="{{item.status==0}}">
+          未开始
+          </block>
+          <block wx:if="{{item.status==1}}">
           进行中
+          </block>
+          <block wx:if="{{item.status==2}}">
+          已结束
+          </block>
         </view>
+        </block>
       </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
-        <view class="status">
-          进行中
-        </view>
-      </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
-        <view class="status">
-          进行中
-        </view>
-      </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
-        <view class="status">
-          进行中
-        </view>
-      </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
-        <view class="status">
-          进行中
-        </view>
-      </view>
-      <view class="section">
-        <view class="time">
-          12:00
-        </view>
-        <view class="status">
-          进行中
-        </view>
-      </view>
+      </block>
     </view>
   </scroll-view>
 </view>
 
 <view class="p_flash">
-  <view class="flash" data-id="5" bindtap="goto_product_flash">
-    <image src="/public/image/product.jpg" mode="aspectFit" style="width:160rpx;height:160rpx">
+  <block wx:for="{{row_flashsection.rows_flash}}">
+  <view class="flash" data-id="{{item.id}}" bindtap="goto_product_flash">
+    <image src="{{item.row_product.img}}" mode="aspectFit" style="width:160rpx;height:160rpx">
     </image>
     <view class="flash_right">
       <view class="flash_product_name">
-      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      {{item.row_product.name}}
       </view>
       <view class="flash_price">
+        <block wx:if="{{item.row_product.single_spec=='1'}}">
         <view class="price">
-        ￥100.00
+        ￥{{item.row_product.flash_price}}
         </view>
         <view class="price_old">
-        ￥1000.00
+        ￥{{item.row_product.price}}
         </view>
+        </block>
+        <block wx:if="{{item.row_product.single_spec=='0'}}">
+        <view class="price">
+        ￥{{item.row_product.rows_productspec[0].flash_price}}
+        </view>
+        <view class="price_old">
+        ￥{{item.row_product.rows_productspec[0].price}}
+        </view>
+        </block>
       </view>
       <view class="flash_extra_info">
         <view class="flash_info_left">
           <view class="flash_limit">
-          限量100件
+          限量{{item.all_flash_limit}}件
           </view>
           <view class="flash_process">
-            <view class="process" style="width:66%">
+            <view class="process" style="width:{{item.done_percent}}%">
             </view>
             <view class="number">
-            已抢0件
+            已抢{{item.count_flash_order}}件
             </view>
           </view>
         </view>
-        <view class="flash_btn">
-          秒杀中
+        <block wx:if="{{row_flashsection.status==0}}">
+        <view class="flash_btn_disabled">
+        未开始
         </view>
+        </block>
+        <block wx:if="{{row_flashsection.status==1}}">
+        <view class="flash_btn">
+        进行中
+        </view>
+        </block>
+        <block wx:if="{{row_flashsection.status==2}}">
+        <view class="flash_btn_disabled">
+        已结束
+        </view>
+        </block>
       </view>
     </view>
   </view>
-
-  
-  <view class="flash">
-    <image src="/public/image/product.jpg" mode="aspectFit" style="width:160rpx;height:160rpx">
-    </image>
-    <view class="flash_right">
-      <view class="flash_product_name">
-      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
-      </view>
-      <view class="flash_price">
-        <view class="price">
-        ￥100.00
-        </view>
-        <view class="price_old">
-        ￥1000.00
-        </view>
-      </view>
-      <view class="flash_extra_info">
-        <view class="flash_info_left">
-          <view class="flash_limit">
-          限量100件
-          </view>
-          <view class="flash_process">
-            <view class="process" style="width:66%">
-            </view>
-            <view class="number">
-            已抢0件
-            </view>
-          </view>
-        </view>
-        <view class="flash_btn">
-          秒杀中
-        </view>
-      </view>
-    </view>
-  </view>
+  </block>
 </view>

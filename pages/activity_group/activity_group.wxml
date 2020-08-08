@@ -1,26 +1,37 @@
 <!--pages/activity_group/activity_group.wxml-->
 <image mode="aspectFit" src="/public/image/head_group.jpg" style="width:750rpx;height:375rpx"></image>
 <view class="p_group">
-  <view class="item_group" data-id="5" bindtap="goto_product_group">
-    <image mode="aspectFit" src="/public/image/product.jpg"></image>
+  <block wx:for="{{rows_group}}">
+  <view class="item_group" data-id="{{item.id}}" bindtap="goto_product_group">
+    <image mode="aspectFit" src="{{item.row_product.img}}"></image>
     <view class="p_group_right">
       <view class="product_name">
-      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+      {{item.row_product.name}}
       </view>
       <view class="p_group_limit">
         <image src="/public/image/tuangou_white.png" mode="aspectFit" style="width:45rpx;height:30rpx;background-color:#f10b0b"></image>
         <view class="limit">
-        2人团
+        {{item.limit}}人团
         </view>
       </view>
       <view class="p_group_extra_info">
         <view class="prices">
+          <block wx:if="{{item.row_product.single_spec=='1'}}">
           <view class="price">
-            ￥10.00
+            ￥{{item.row_product.group_price}}
           </view>
           <view class="price_old">
-            ￥100.00
+            ￥{{item.row_product.price}}
           </view>
+          </block>
+          <block wx:if="{{item.row_product.single_spec=='0'}}">
+          <view class="price">
+            ￥{{item.row_product.rows_productspec[0].group_price}}
+          </view>
+          <view class="price_old">
+            ￥{{item.row_product.rows_productspec[0].price}}
+          </view>
+          </block>
         </view>
         <view class="to_group">
           去拼团
@@ -28,6 +39,7 @@
       </view>
     </view>
   </view>
+  </block>
 
   
   <view class="item_group">

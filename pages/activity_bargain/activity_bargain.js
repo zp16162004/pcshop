@@ -1,11 +1,15 @@
 // pages/activity_bargain/activity_bargain.js
+var util=require("../../utils/util.js");
+var pcapi=require("../../utils/pcapi.js");
+var md5=require("../../utils/md5.js");
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    rows_bargain:[],
   },
 
   /**
@@ -26,7 +30,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //获取活动
+    this.get_bargain();
   },
 
   /**
@@ -70,5 +75,23 @@ Page({
     wx.navigateTo({
       url: '/pages/product_bargain/product_bargain?id='+id,
     })
-  }
+  },
+  get_bargain:function()
+  {
+    var thiss=this;
+    pcapi.get_bargain(
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          //判断哪个正在再秒杀
+          thiss.setData(
+            {
+              rows_bargain:res.data.data,
+            }
+          );
+        }
+      }
+    );
+  },
 })

@@ -567,6 +567,66 @@ function get_order_info(order_id,func)
     }
   })
 }
+function get_group(func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_group",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_flashsection(func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_flashsection",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_bargain(func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_bargain",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -595,4 +655,7 @@ module.exports = {
   get_prepay_id:get_prepay_id,
   do_pay:do_pay,
   get_order_info:get_order_info,
+  get_group:get_group,
+  get_flashsection:get_flashsection,
+  get_bargain:get_bargain,
 }

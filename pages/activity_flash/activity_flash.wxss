@@ -153,3 +153,15 @@ page
   text-align: center;
   color: #ffffff;
 }
+.flash_btn_disabled
+{
+  width: 130rpx;
+  margin-left: 20rpx;
+  background-color: #656565;
+  border-radius: 30rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #ffffff;
+}

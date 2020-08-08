@@ -1,11 +1,15 @@
 // pages/activity_group/activity_group.js
+var util=require("../../utils/util.js");
+var pcapi=require("../../utils/pcapi.js");
+var md5=require("../../utils/md5.js");
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    rows_group:[],
   },
 
   /**
@@ -26,7 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.get_group();
   },
 
   /**
@@ -69,5 +73,22 @@ Page({
     wx.navigateTo({
       url: '/pages/product_group/product_group?id='+id,
     })
-  }
+  },
+  get_group:function()
+  {
+    var thiss=this;
+    pcapi.get_group(
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              rows_group:res.data.data,
+            }
+          );
+        }
+      }
+    );
+  },
 })
