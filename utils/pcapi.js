@@ -627,7 +627,7 @@ function get_bargain(func)
     }
   })
 }
-function get_bargain_detail(bargain_id,member_id,func)
+function get_bargain_detail(bargain_id,member_id,bargainlist_id,func)
 {
   var thiss=this;
   wx.request({
@@ -638,6 +638,7 @@ function get_bargain_detail(bargain_id,member_id,func)
     data:{
       bargain_id:bargain_id,
       member_id:member_id,
+      bargainlist_id:bargainlist_id,
     },
     method:'Post',
     dataType:'json',

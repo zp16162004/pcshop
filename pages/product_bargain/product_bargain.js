@@ -128,6 +128,7 @@ Page({
     pcapi.get_bargain_detail(
       thiss.data.id,
       app.globalData.row_member.id,
+      thiss.data.bargainlist_id,
       function(res)
       {
         if(res.data.code==1)
