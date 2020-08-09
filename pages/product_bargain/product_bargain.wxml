@@ -49,7 +49,7 @@
     </view>
   </view>
   <view class="to_bargain">
-    
+    <>
     <view class="btn">
     立即参与砍价
     </view>
