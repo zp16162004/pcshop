@@ -69,6 +69,12 @@ page
   height: 50rpx;
   line-height: 50rpx;
 }
+.spec
+{
+  flex-grow: 1;
+  text-align: right;
+  font-size: 22rpx;
+}
 .bargain_success_count
 {
   font-size: 22rpx;

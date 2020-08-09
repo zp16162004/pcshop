@@ -627,6 +627,27 @@ function get_bargain(func)
     }
   })
 }
+function get_bargain_detail(bargain_id,member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_bargain_detail",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      bargain_id:bargain_id,
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -658,4 +679,5 @@ module.exports = {
   get_group:get_group,
   get_flashsection:get_flashsection,
   get_bargain:get_bargain,
+  get_bargain_detail:get_bargain_detail,
 }

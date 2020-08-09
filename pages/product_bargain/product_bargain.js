@@ -1,18 +1,65 @@
 // pages/product_bargain/product_bargain.js
+var util=require("../../utils/util.js");
+var pcapi=require("../../utils/pcapi.js");
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id:0,
+    bargainlist_id:0,//如果大于0，代表给别人砍价
+    show_login:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var id=options.id;
+    console.log(id);
+    this.setData(
+      {
+        id:id,
+      }
+    );
+  },
+  //获取用户信息权限
+  do_login:function(res)
+  {
+    this.setData(
+      {
+        show_login:false,
+      }
+    );
+    console.log(res);
+    wx.login({
+      success:function(res)
+      {
+        console.log(res.code);
+        pcapi.do_login(res.code,
+            function(res)
+            {
+              console.log(res);
+              if(res.data.code==1)
+              {
+                app.globalData.row_member=res.data.data;
+                app.save_data();
+                //重新获取商品详情
+                this.get_bargain_detail();
+              }
+              else{
+                util.show_model_and_back(res.data.msg);
+              }
+            }
+          );
+      },
+      fail:function(res)
+      {
+        util.show_model_and_back('登录失败');
+      }
+    })
   },
 
   /**
@@ -26,7 +73,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.row_member==null)
+    {
+      this.setData(
+        {
+          show_login:true,
+        }
+      );
+    }
+    else
+    {
+      //获取砍价详情
+      this.get_bargain_detail();
+    }
   },
 
   /**
@@ -62,5 +121,28 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  get_bargain_detail:function()
+  {
+    var thiss=this;
+    pcapi.get_bargain_detail(
+      thiss.data.id,
+      app.globalData.row_member.id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              row_bargain:res.data.data,
+            }
+          );
+        }
+        else
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
 })
