@@ -175,6 +175,7 @@ page
   margin-left: 20rpx;
   margin-right: 20rpx;
   margin-top: 20rpx;
+  margin-bottom: 20rpx;
   padding:30rpx;
   padding-top: 43rpx;
   background-color: #ffffff;

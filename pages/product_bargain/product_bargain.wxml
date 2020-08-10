@@ -49,9 +49,33 @@
     </view>
   </view>
   <view class="to_bargain">
-    <view class="btn">
-    立即参与砍价
-    </view>
+    <block wx:if="{{row_bargain.now_row_bargainlist!=null}}">
+      <block wx:if="{{has_bargain=='1'}}">
+        <block wx:if="{{row_bargain.now_row_bargainlist.state=='1'&&row_member.id==row_bargain.now_row_bargainlist.member_id}}">
+          <view class="btn">
+           立即支付
+          </view>   
+        </block>
+        <block wx:if="{{row_bargain.now_row_bargainlist.state=='0'}}">
+          <view class="btn">
+          邀请好友帮砍价
+          </view>   
+        </block>
+        <view class="btn_more">
+        抢更多商品
+        </view>   
+      </block>
+      <block wx:if="{{has_bargain=='0'}}">
+        <view class="btn">
+        立即砍价
+        </view>   
+      </block>
+    </block>
+    <block wx:if="{{row_bargain.now_row_bargainlist==null}}">
+      <view class="btn" bindtap="create_bargainlist">
+      立即参与砍价
+      </view>
+    </block>
 
   </view>
   <view class="numer_bargain">
@@ -69,29 +93,34 @@
     <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="head_bargain" src="/public/image/kanjiabang.png" mode="aspectFit" style="width:100%;height:32rpx"/>
+    <block wx:for="{{now_row_bargainlist.rows_bargainlist}}">
     <view class="bargain">
-      <image src="/public/image/product.jpg" mode="aspectFit" style="width:65rpx;height:65rpx;border:1px solid #f10b0b;border-radius:65rpx"></image>
+      <image src="{{item.row_member.img}}" mode="aspectFit" style="width:65rpx;height:65rpx;border:1px solid #f10b0b;border-radius:65rpx"></image>
       <view class="bargain_info">
         <view class="username">
-          humanmachine=1194
+          {{item.row_member.nickname}}
         </view>
         <view class="bargain_time">
-          2020-06-30 10:00:00
+          {{item.fdate}}
         </view>
       </view>
       <view class="bargain_money">
         <image mode="aspectFit" src="/public/image/bargain_red.png" style="width:30rpx;height:30rpx"></image>
         <view class="money">
-          砍掉0.46元
+          砍掉{{item.money}}元
         </view>
       </view>
     </view>
+    </block>
 </view>
 <view class="p_product_detail">
     <image class="lianjie1" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="head_bargain" src="/public/image/shangpinxiangqing.png" mode="aspectFit" style="width:100%;height:32rpx"/>
+    <view class="detail">
+      <parser html="{{row_bargain.row_product.detail}}" />
+    </view>
 </view>
 <!--授权组件-->
 <block wx:if="{{show_login}}">

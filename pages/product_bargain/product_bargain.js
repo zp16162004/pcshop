@@ -46,6 +46,11 @@ Page({
               {
                 app.globalData.row_member=res.data.data;
                 app.save_data();
+                this.setData(
+                  {
+                    row_member:app.globalData.row_member,
+                  }
+                );
                 //重新获取商品详情
                 this.get_bargain_detail();
               }
@@ -83,6 +88,11 @@ Page({
     }
     else
     {
+      this.setData(
+        {
+          row_member:app.globalData.row_member,
+        }
+      );
       //获取砍价详情
       this.get_bargain_detail();
     }
@@ -138,6 +148,30 @@ Page({
               row_bargain:res.data.data,
             }
           );
+        }
+        else
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  create_bargainlist:function()
+  {
+    var thiss=this;
+    pcapi.create_bargainlist(
+      app.globalData.row_member.id,
+      thiss.data.id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              bargainlist_id:res.data.data.bargainlist_id,
+            }
+          );
+          this.get_bargain_detail();
         }
         else
         {
