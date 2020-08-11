@@ -3,6 +3,6 @@
 <view class="notice">
   提示：点击图片即可保存至手机相册
 </view>
-<canvas canvas-id="poster" style="width:690rpx;height:1227rpx;">
+<canvas canvas-id="poster" style="width:690rpx;height:1227rpx;" bindtouchend="to_preview">
 </canvas>
 </view>

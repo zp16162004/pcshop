@@ -11,6 +11,8 @@ Page({
     id:0,
     bargainlist_id:0,
     img:null,
+    qrcode:null,
+    qrcode_url:null,
     ctx:null,
   },
   /**
@@ -127,7 +129,7 @@ Page({
   ini_canvas:function()
   {
     var thiss=this;
-    if(thiss.data.img!=null)
+    if(thiss.data.img!=null&&thiss.data.qrcode!=null)
     {
       thiss.data.ctx = wx.createCanvasContext('poster');
       var ctx=thiss.data.ctx;
@@ -179,12 +181,13 @@ Page({
       //填写价格
       ctx.font="normal bold "+util.rpx2px(normal_font_size,thiss.data.systeminfo)+"px 微软雅黑";
       ctx.setFillStyle("#f10b0b");
-      ctx.fillText("￥",util.rpx2px(padding_left,thiss.data.systeminfo),util.rpx2px(padding_top+2*big_line_height+max_line_height,thiss.data.systeminfo));
+      var x=util.rpx2px(padding_left,thiss.data.systeminfo);
+      var y=util.rpx2px(padding_top+2*big_line_height+max_line_height,thiss.data.systeminfo)
+      ctx.fillText("￥",x,y);
       ctx.font="normal bold "+util.rpx2px(max_font_size,thiss.data.systeminfo)+"px 微软雅黑";
       ctx.fillText(""+thiss.data.row_bargain.price,util.rpx2px(padding_left+2*small_font_size,thiss.data.systeminfo),util.rpx2px(padding_top+2*big_line_height+max_line_height,thiss.data.systeminfo));
       //填写bargain_left
-      var y=util.rpx2px(padding_top+2*big_line_height+max_line_height+normal_line_height,thiss.data.systeminfo);
-      var x=util.rpx2px(padding_left,thiss.data.systeminfo);
+      y=y+util.rpx2px(normal_line_height+20,thiss.data.systeminfo);
       ctx.font="normal bold "+util.rpx2px(normal_font_size,thiss.data.systeminfo)+"px 微软雅黑";
       ctx.setFillStyle("#656565");
       ctx.fillText("还差"+thiss.data.row_bargain.bargain_left+"元即可砍价成功",x,y);
@@ -199,6 +202,8 @@ Page({
       ctx.font="normal normal "+util.rpx2px(small_font_size,thiss.data.systeminfo)+"px 微软雅黑";
       ctx.fillText("长按识别或扫描二维码进入",x+(width-ctx.measureText("长按识别或扫描二维码进入").width)/2,y);
       //小程序码
+      var qrcode_width=width/3;
+      ctx.drawImage(thiss.data.qrcode.path,x+qrcode_width,y+20,qrcode_width,qrcode_width);
       ctx.draw();
     }
   },
@@ -231,7 +236,13 @@ Page({
       {
         if(res.data.code==1)
         {
-          thiss.ini_canvas();
+          //获取qrcode图片
+          thiss.setData(
+            {
+              qrcode_url:res.data.data
+            }
+          );
+          thiss.show_qrcode();
         }
         else
         {
@@ -240,4 +251,37 @@ Page({
       }
     );
   },
+  show_qrcode:function()
+  {
+    var thiss=this;
+    wx.getImageInfo({
+      src: thiss.data.qrcode_url,
+      success:function(res)
+      {
+        console.log(res);
+        thiss.setData(
+          {
+            qrcode:res,
+          }
+        );
+        //draw_img
+        thiss.ini_canvas();
+      },
+    })
+  },
+  to_preview:function()
+  {
+    wx.canvasToTempFilePath({
+      canvasId: "poster",
+      success:function(res)
+      {
+        wx.previewImage({
+          urls: [res.tempFilePath],
+        })
+      },
+      fail: function(res) {
+        util.show_model("海报保存失败");
+      }
+    });
+  }
 })

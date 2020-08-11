@@ -58,7 +58,7 @@ function alert(msg,func1,func2)
 //rpx2px
 function rpx2px(r,systeminfo)
 {
-  return (r/750)*systeminfo.windowWidth;
+  return parseInt((r/750)*systeminfo.windowWidth);
 }
 
 module.exports = {

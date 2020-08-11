@@ -230,7 +230,7 @@ Page({
   {
     var thiss=this;
     wx.navigateTo({
-      url: '/pages/poster_bargain/poster_bargain?id='+thiss.data.id,
+      url: '/pages/poster_bargain/poster_bargain?id='+thiss.data.id+"&bargainlist_id="+thiss.data.row_bargain.now_row_bargainlist.id,
     })
   },
 })
