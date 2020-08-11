@@ -20,7 +20,8 @@
     "pages/add_address/add_address",
     "pages/coupon/coupon",
     "pages/couponlist/couponlist",
-    "pages/sign/sign"
+    "pages/sign/sign",
+    "pages/poster_bargain/poster_bargain"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -226,4 +226,11 @@ Page({
       }
     );
   },
+  get_bargain_poster:function()
+  {
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/poster_bargain/poster_bargain?id='+thiss.data.id,
+    })
+  },
 })

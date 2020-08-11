@@ -48,16 +48,16 @@
     还剩{{row_bargain.bargain_left}}元
     </view>
   </view>
-  <view class="to_bargain">
+  <view class="to_bargain flex_column_center">
     <block wx:if="{{row_bargain.now_row_bargainlist!=null}}">
-      <block wx:if="{{has_bargain=='1'}}">
+      <block wx:if="{{row_bargain.has_bargain=='1'}}">
         <block wx:if="{{row_bargain.now_row_bargainlist.state=='1'&&row_member.id==row_bargain.now_row_bargainlist.member_id}}">
           <view class="btn">
            立即支付
           </view>   
         </block>
         <block wx:if="{{row_bargain.now_row_bargainlist.state=='0'}}">
-          <view class="btn">
+          <view class="btn" bindtap="get_bargain_poster">
           邀请好友帮砍价
           </view>   
         </block>
@@ -65,7 +65,7 @@
         抢更多商品
         </view>   
       </block>
-      <block wx:if="{{has_bargain=='0'}}">
+      <block wx:if="{{row_bargain.has_bargain=='0'}}">
         <view class="btn">
         立即砍价
         </view>   

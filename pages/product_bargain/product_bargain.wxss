@@ -114,10 +114,6 @@ page
 }
 .to_bargain
 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   padding:20rpx 0rpx;
 }
 .to_bargain>.btn
@@ -128,6 +124,18 @@ page
   border-radius: 50rpx;
   background-color: #f10b0b;
   color: #ffffff;
+  text-align: center;
+}
+.to_bargain>.btn_more
+{
+  margin-top: 20rpx;
+  width: 600rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  background-color: #ffffff;
+  color: #f10b0b;
+  border: 1px solid #f10b0b;
   text-align: center;
 }
 .percent

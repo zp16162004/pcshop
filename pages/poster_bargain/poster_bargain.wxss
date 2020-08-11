@@ -1,0 +1,13 @@
+/* pages/poster_bargain/poster_bargain.wxss */
+page
+{
+  background-color: #f10b0b;
+}
+.notice
+{
+  text-align: center;
+  font-size: 22rpx;
+  color: gold;
+  height: 60rpx;
+  line-height: 60rpx;
+}
