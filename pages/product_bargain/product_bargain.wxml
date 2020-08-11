@@ -1,7 +1,7 @@
 <!--pages/product_bargain/product_bargain.wxml-->
 <image mode="aspectFit" src="/public/image/head_kanjia.png" style="width:750rpx;height:396rpx"></image>
 <view class="daojishi">
-20天10时20分30秒
+{{time2end}}
 </view>
 <view class="p_product">
   <view class="border-line">

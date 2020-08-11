@@ -11,12 +11,14 @@ Page({
     id:0,
     bargainlist_id:0,//如果大于0，代表给别人砍价
     show_login:false,
+    time2end:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var thiss=this;
     var id=options.id;
     console.log(id);
     this.setData(
@@ -24,10 +26,54 @@ Page({
         id:id,
       }
     );
+    setInterval(
+      function()
+      {
+        thiss.check_time_to_end();
+      },
+      1000
+    )
+  },
+  check_time_to_end:function()
+  {
+    var thiss=this;
+    if(thiss.data.row_bargain!=null)
+    {
+      console.log(thiss.data.row_bargain.edate);
+      var edate=new Date(thiss.data.row_bargain.edate).getTime()/1000;
+      var now=new Date().getTime()/1000;
+      var day=parseInt((edate-now)/86400);
+      var hour=parseInt((edate-now)%86400/3600);
+      var minute=parseInt((edate-now)%86400/60);
+      var second=parseInt((edate-now)%86400%60);
+      var time2end="";
+      if(day>0)
+      {
+        time2end+=(day+"天");
+      }
+      if(hour>0)
+      {
+        time2end+=(day+"时");
+      }
+      if(minute>0)
+      {
+        time2end+=(minute+"分");
+      }
+      if(second>0)
+      {
+        time2end+=(second+"秒");
+      }
+      thiss.setData(
+        {
+          time2end:time2end,
+        }
+      );
+    }
   },
   //获取用户信息权限
   do_login:function(res)
   {
+    var thiss=this;
     this.setData(
       {
         show_login:false,
@@ -52,7 +98,7 @@ Page({
                   }
                 );
                 //重新获取商品详情
-                this.get_bargain_detail();
+                thiss.get_bargain_detail();
               }
               else{
                 util.show_model_and_back(res.data.msg);
@@ -168,10 +214,10 @@ Page({
         {
           thiss.setData(
             {
-              bargainlist_id:res.data.data.bargainlist_id,
+              bargainlist_id:res.data.bargainlist_id,
             }
           );
-          this.get_bargain_detail();
+          thiss.get_bargain_detail();
         }
         else
         {
