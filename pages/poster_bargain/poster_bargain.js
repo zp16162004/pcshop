@@ -115,7 +115,7 @@ Page({
           //下载产品图片
           thiss.show_img();
           //获取小程序码
-          thiss.get_qrcode();
+          thiss.get_bargain_qrcode();
         }
         else
         {
@@ -220,8 +220,24 @@ Page({
       },
     })
   },
-  get_qrcode:function()
+  get_bargain_qrcode:function()
   {
     //获取小程序码
+    var thiss=this;
+    pcapi.get_bargain_qrcode(
+      app.globalData.row_member.id,
+      thiss.data.bargainlist_id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.ini_canvas();
+        }
+        else
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
   },
 })
