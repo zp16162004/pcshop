@@ -66,7 +66,7 @@
         </view>   
       </block>
       <block wx:if="{{row_bargain.has_bargain=='0'}}">
-        <view class="btn">
+        <view class="btn" bindtap="add_bargainlist">
         立即砍价
         </view>   
       </block>
@@ -80,10 +80,10 @@
   </view>
   <view class="numer_bargain">
   已有
-    <block wx:if="{{item.now_row_bargainlist!=null}}">
-    <text style="color:#f10b0b">{{item.now_row_bargainlist.rows_bargainlist.length}}</text>位好友成功砍价
+    <block wx:if="{{row_bargain.now_row_bargainlist!=null}}">
+    <text style="color:#f10b0b">{{row_bargain.now_row_bargainlist.rows_bargainlist.length}}</text>位好友成功砍价
     </block>
-    <block wx:if="{{item.now_row_bargainlist==null}}">
+    <block wx:if="{{row_bargain.now_row_bargainlist==null}}">
     <text style="color:#f10b0b">0</text>位好友成功砍价
     </block>
   </view>
@@ -93,7 +93,7 @@
     <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:71rpx;width:15rpx"/>
     <image class="head_bargain" src="/public/image/kanjiabang.png" mode="aspectFit" style="width:100%;height:32rpx"/>
-    <block wx:for="{{now_row_bargainlist.rows_bargainlist}}">
+    <block wx:for="{{row_bargain.now_row_bargainlist.rows_bargainlist}}">
     <view class="bargain">
       <image src="{{item.row_member.img}}" mode="aspectFit" style="width:65rpx;height:65rpx;border:1px solid #f10b0b;border-radius:65rpx"></image>
       <view class="bargain_info">

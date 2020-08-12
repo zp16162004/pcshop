@@ -670,6 +670,27 @@ function create_bargainlist(member_id,bargain_id,func)
     }
   })
 }
+function add_bargainlist(member_id,bargainlist_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_bargainlist",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      bargainlist_id:bargainlist_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 function get_bargain_qrcode(member_id,bargainlist_id,func)
 {
   var thiss=this;
@@ -724,5 +745,6 @@ module.exports = {
   get_bargain:get_bargain,
   get_bargain_detail:get_bargain_detail,
   create_bargainlist:create_bargainlist,
+  add_bargainlist:add_bargainlist,
   get_bargain_qrcode:get_bargain_qrcode,
 }

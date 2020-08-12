@@ -26,6 +26,14 @@ Page({
         id:id,
       }
     );
+    if(options.bargainlist_id!=null)
+    {
+      this.setData(
+        {
+          bargainlist_id:parseInt(options.bargainlist_id),
+        }
+      );
+    }
     setInterval(
       function()
       {
@@ -92,7 +100,7 @@ Page({
               {
                 app.globalData.row_member=res.data.data;
                 app.save_data();
-                this.setData(
+                thiss.setData(
                   {
                     row_member:app.globalData.row_member,
                   }
@@ -176,7 +184,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var path='/pages/product_bargain/product_bargain?id='+this.data.id;
+    if(this.data.row_bargain.now_row_bargainlist!=null)
+    {
+      path+=('&bargainlist_id='+this.data.row_bargain.now_row_bargainlist.id);
+    }
+    var obj=
+    {
+      title:"帮我砍价",
+      path:path,
+    };
+    return obj;
   },
   get_bargain_detail:function()
   {
@@ -222,6 +240,25 @@ Page({
         else
         {
           util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  add_bargainlist:function()
+  {
+    var thiss=this;
+    pcapi.add_bargainlist(
+      app.globalData.row_member.id,
+      thiss.data.row_bargain.now_row_bargainlist.id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.get_bargain_detail();
+        }
+        else
+        {
+          util.show_model(res.data.msg);
         }
       }
     );
