@@ -10,9 +10,11 @@ Page({
    */
   data: {
     config:[],
-    detail:0,
+    detail_id:0,
     type:0,
+    fare_id:0,
     rows_orderlist:app.globalData.rows_orderlist,
+    row_bargain:null,//如果是砍价订单，完善这个
     all_number:0,
     deliver_type:0,
     all_money:0,//商品总金额
@@ -60,6 +62,14 @@ Page({
         }
       );
     }
+    if(options.fare_id!=null)
+    {
+      thiss.setData(
+        {
+          fare_id:parseInt(options.fare_id),
+        }
+      );
+    }
     //获取商品的详细信息，包含运费模板
     var all_number=0;
     for(var i=0;i<thiss.data.rows_orderlist.length;i++)
@@ -79,6 +89,11 @@ Page({
     //刷新用户信息
     thiss.refresh_member();
     this.get_config();
+    if(thiss.data.type==3)
+    {
+      //砍价订单
+      thiss.get_bargainlist_detail();
+    }
   },
   get_orderlist_info:function(index)
   {
@@ -100,6 +115,30 @@ Page({
           console.log(thiss.data.rows_orderlist[index]);
           thiss.setData(
             thiss.data
+          );
+          //计算价格
+          thiss.ini_price();
+        }
+      }
+    );
+  },
+  get_bargainlist_detail:function()
+  {
+    var thiss=this;
+    pcapi.get_bargainlist_detail(
+      thiss.data.detail_id,
+      function(res)
+      {
+        if(res.data.code==0)
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+        else
+        {
+          thiss.setData(
+            {
+              row_bargain:res.data.data,
+            }
           );
           //计算价格
           thiss.ini_price();
@@ -380,10 +419,17 @@ Page({
       var row_orderlist=thiss.data.rows_orderlist[i];
       if(row_orderlist.row_productspec!=null)
       {
-        console.log(row_orderlist.row_productspec.price);
-        console.log(row_orderlist.number);
-        console.log(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
-        all_money+=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+        if(thiss.data.type==0)
+        {
+          console.log(row_orderlist.row_productspec.price);
+          console.log(row_orderlist.number);
+          console.log(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+          all_money+=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+        }
+        else
+        {
+          all_money+=(parseFloat(row_orderlist.price)*parseInt(row_orderlist.number));
+        }
       }
     }
     thiss.setData(
@@ -398,10 +444,20 @@ Page({
     for(var i=0;i<thiss.data.rows_orderlist.length;i++)
     {
       var row_orderlist=thiss.data.rows_orderlist[i];
+      var orderlist_money=0;
+      var orderlist_weight=0;
+      var orderlist_size=0;
       //计算总金额
       if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
       {
-        orderlist_money=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+        if(thiss.data.type==0)
+        {
+          orderlist_money=(parseFloat(row_orderlist.row_productspec.price)*parseInt(row_orderlist.number));
+        }
+        else
+        {
+          orderlist_money=(parseFloat(row_orderlist.price)*parseInt(row_orderlist.number));
+        }
       }
       //计算总重量
       if(row_orderlist.row_productspec!=null&&thiss.row_address!=null)
@@ -415,17 +471,26 @@ Page({
       }
       console.log(row_orderlist);
       console.log("计算邮费先决条件:"+(thiss.data.row_address!=null&&row_orderlist.row_product.row_fare!=null));
-      if(thiss.data.row_address!=null&&row_orderlist.row_product.row_fare!=null)
+      if(thiss.data.row_address!=null&&((thiss.data.type==0&&row_orderlist.row_product.row_fare!=null)||(thiss.data.type==3&&thiss.data.row_bargain.row_fare!=null)))
       {
         console.log("开始计算邮费");
+        var row_fare=null;
+        if(thiss.data.type==0)
+        {
+          row_fare=row_orderlist.row_productspec.row_fare;
+        }
+        else if(thiss.data.type==3)
+        {
+          row_fare=thiss.data.row_bargain.row_fare;
+        }
         var city_id=thiss.data.row_address.city_id;
         //首先判断保留列表
         var in_free=0;
         var in_list=0;
-        if(parseInt(row_orderlist.row_product.row_fare.has_free)==1)
+        if(parseInt(row_fare.has_free)==1)
         {
           console.log("存在has_free");
-          var rows_farefree=row_orderlist.row_product.row_fare.rows_farefree;
+          var rows_farefree=row_fare.rows_farefree;
           for(var j=0;j<rows_farefree.length&&in_free==0;j++)
           {
             var row_farefree=rows_farefree[j];
@@ -433,30 +498,30 @@ Page({
             if(row_city_code.indexOf(thiss.data.row_address.row_city.code)>=0)
             {
               //所选地址在citycodes里面
-              if(parseInt(row_orderlist.row_product.row_fare.type)==1&&parseInt(row_orderlist.number)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              if(parseInt(row_fare.type)==1&&parseInt(row_orderlist.number)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
               {
                 //按照件数
                 in_free=1;
                 console.log("符合包邮条件");
               }
-              else if(parseInt(row_orderlist.row_product.row_fare.type)==2&&parseInt(orderlist_weight)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              else if(parseInt(row_fare.type)==2&&parseInt(orderlist_weight)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
               {
                 in_free=1;
               }
-              else if(parseInt(row_orderlist.row_product.row_fare.type)==3&&parseInt(orderlist_size)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
+              else if(parseInt(row_fare.type)==3&&parseInt(orderlist_size)>=parseInt(row_farefree.limit)&&orderlist_money>=parseFloat(row_farefree.money))
               {
                 in_free=1;
               }
             }
           }
         }
-        if(row_orderlist.row_product.row_fare.rows_farelist.length>0)
+        if(row_fare.rows_farelist.length>0)
         {
           console.log("开始farelist判断：in_free="+in_free);
           if(in_free==0)
           {
             console.log("开始farelist判断");
-            var rows_farelist=row_orderlist.row_product.row_fare.rows_farelist;
+            var rows_farelist=row_fare.rows_farelist;
             for(var j=0;j<rows_farelist.length&&in_list==0;j++)
             {
               var row_farelist=rows_farelist[j];
@@ -464,7 +529,7 @@ Page({
               if(row_city_code.indexOf(thiss.data.row_address.row_city.code)>=0)
               {
                 //所选地址在citycodes里面
-                if(parseInt(row_orderlist.row_product.row_fare.type)==1)
+                if(parseInt(row_fare.type)==1)
                 {
                   //按照件数
                   in_list=1;
@@ -473,7 +538,7 @@ Page({
                   deliver_money+=(d_money);
                   console.log("计算list邮费");
                 }
-                else if(parseInt(row_orderlist.row_product.row_fare.type)==2)
+                else if(parseInt(row_fare.type)==2)
                 {
                   in_list=1;
                   var yushu=parseFloat(orderlist_weight)-parseFloat(row_farelist.first);
@@ -481,7 +546,7 @@ Page({
                   deliver_money+=(d_money);
                   console.log("计算list邮费");
                 }
-                else if(parseInt(row_orderlist.row_product.row_fare.type)==3)
+                else if(parseInt(row_fare.type)==3)
                 {
                   in_list=1;
                   var yushu=parseFloat(orderlist_size)-parseFloat(row_farelist.first);
@@ -495,22 +560,22 @@ Page({
         }
         if(in_free==0&&in_list==0)
         {
-          var row_farelist=row_orderlist.row_product.row_fare;
+          var row_farelist=row_fare;
           //所选地址在citycodes里面
-          if(parseInt(row_orderlist.row_product.row_fare.type)==1)
+          if(parseInt(row_fare.type)==1)
           {
             //按照件数
             var yushu=parseFloat(row_orderlist.number)-parseFloat(row_farelist.first);
             var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
             deliver_money+=(d_money);
           }
-          else if(parseInt(row_orderlist.row_product.row_fare.type)==2)
+          else if(parseInt(row_fare.type)==2)
           {
             var yushu=parseFloat(orderlist_weight)-parseFloat(row_farelist.first);
             var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
             deliver_money+=(d_money);
           }
-          else if(parseInt(row_orderlist.row_product.row_fare.type)==3)
+          else if(parseInt(row_fare.type)==3)
           {
             var yushu=parseFloat(orderlist_size)-parseFloat(row_farelist.first);
             var d_money=yushu>0?(parseFloat(row_farelist.first)+(yushu%parseFloat(row_farelist.step)>0?parseFloat(row_farelist.step_fare)*(1+parseInt(yushu/parseFloat(row_farelist.step))):parseFloat(row_farelist.step_fare)*parseInt(yushu/parseFloat(row_farelist.step)))):parseFloat(row_farelist.first);
@@ -605,6 +670,7 @@ Page({
   },
   change_contact:function(e)
   {
+    var thiss=this;
     thiss.setData(
       {
         contact:e.detail.value,
@@ -613,6 +679,7 @@ Page({
   },
   change_mobile:function(e)
   {
+    var thiss=this;
     thiss.setData(
       {
         mobile:e.detail.value,
@@ -621,6 +688,7 @@ Page({
   },
   change_fnote:function(e)
   {
+    var thiss=this;
     thiss.setData(
       {
         fnote:e.detail.value,
@@ -659,12 +727,12 @@ Page({
         util.show_model("请填写联系人");
         return;
       }
-      //余额必须够
-      if(parseInt(thiss.data.row_member.money)<thiss.data.need_pay)
-      {
-        util.show_model("余额不足");
-        return;
-      }
+    }
+    //如果余额支付，余额必须大于need_pay
+    if(this.data.pay_type==1&&parseInt(thiss.data.row_member.money)<thiss.data.need_pay)
+    {
+      util.show_model("余额不足");
+      return;
     }
     pcapi.add_order(
       app.globalData.row_member.id,

@@ -52,7 +52,7 @@
     <block wx:if="{{row_bargain.now_row_bargainlist!=null}}">
       <block wx:if="{{row_bargain.has_bargain=='1'}}">
         <block wx:if="{{row_bargain.now_row_bargainlist.state=='1'&&row_member.id==row_bargain.now_row_bargainlist.member_id}}">
-          <view class="btn">
+          <view class="btn" bindtap="build_bill">
            立即支付
           </view>   
         </block>

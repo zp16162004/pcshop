@@ -123,9 +123,16 @@
       </block>
       </block>
     </view>
+    <block wx:if="{{type==0}}">
     <view class="product_price">
       ￥{{item.row_productspec.price}}
     </view>
+    </block>
+    <block wx:if="{{type!=0}}">
+    <view class="product_price">
+      ￥{{item.price}}
+    </view>
+    </block>
   </view>
 </view>
 </block>
@@ -133,7 +140,8 @@
 <view class="split">
 </view>
 
-
+<!--营销活动不允许使用优惠券和积分抵扣-->
+<block wx:if="{{type==0}}">
 <view class="line">
   <view class="txt">
     优惠券
@@ -182,6 +190,7 @@
     </block>
   </view>
 </view>
+</block>
 
 <block wx:if="{{deliver_type==1}}">
 <view class="line">
@@ -280,7 +289,7 @@
     ￥{{all_money}}
   </view>
 </view>
-
+<block wx:if="{{type==0}}">
 <view class="line">
   <view class="txt">
     优惠券优惠:
@@ -297,6 +306,7 @@
     -￥{{integral_discount}}
   </view>
 </view>
+</block>
 <block wx:if="{{deliver_type==0}}">
 <view class="line">
   <view class="txt">

@@ -649,6 +649,26 @@ function get_bargain_detail(bargain_id,member_id,bargainlist_id,func)
     }
   })
 }
+function get_bargainlist_detail(bargainlist_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_bargainlist_detail",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      bargainlist_id:bargainlist_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 function create_bargainlist(member_id,bargain_id,func)
 {
   var thiss=this;
@@ -712,6 +732,27 @@ function get_bargain_qrcode(member_id,bargainlist_id,func)
     }
   })
 }
+function get_flash_detail(flash_id,member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_flash_detail",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      flash_id:flash_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -744,7 +785,9 @@ module.exports = {
   get_flashsection:get_flashsection,
   get_bargain:get_bargain,
   get_bargain_detail:get_bargain_detail,
+  get_bargainlist_detail:get_bargainlist_detail,
   create_bargainlist:create_bargainlist,
   add_bargainlist:add_bargainlist,
   get_bargain_qrcode:get_bargain_qrcode,
+  get_flash_detail:get_flash_detail,
 }

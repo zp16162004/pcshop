@@ -270,4 +270,26 @@ Page({
       url: '/pages/poster_bargain/poster_bargain?id='+thiss.data.id+"&bargainlist_id="+thiss.data.row_bargain.now_row_bargainlist.id,
     })
   },
+  build_bill:function()
+  {
+    //
+    var thiss=this;
+    var product_id=thiss.data.row_bargain.row_product.id;
+    var category_id=thiss.data.row_bargain.row_product.category_id;
+    var productspec_id=thiss.data.row_bargain.productspec_id;
+    var price=thiss.data.row_bargain.price;
+    var number=1;
+    var row_orderlist=new Object();
+    row_orderlist.product_id=product_id;
+    row_orderlist.category_id=category_id;
+    row_orderlist.productspec_id=productspec_id;
+    row_orderlist.price=price;
+    row_orderlist.number=number;
+    var rows_orderlist=new Array();
+    rows_orderlist.push(row_orderlist);
+    app.globalData.rows_orderlist=rows_orderlist;
+    wx.navigateTo({
+      url: '/pages/bill_build/bill_build?type=3&detail_id='+thiss.data.row_bargain.now_row_bargainlist.id,
+    })
+  }
 })

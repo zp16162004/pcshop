@@ -1,12 +1,12 @@
 <!--pages/product/product.wxml-->
 <scroll-view scroll-y="true" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
 <swiper class="swiper1" indicator-dots="true" indicator-active-color="lightblue" circular>
-  <block wx:if="{{row_product.video!=''}}">
+  <block wx:if="{{row_flash.row_product.video!=''}}">
   <swiper-item >
-    <video  src="{{row_product.video}}"></video>
+    <video  src="{{row_flash.row_product.video}}"></video>
   </swiper-item>
   </block>
-  <block wx:for="{{row_product.rows_img}}">
+  <block wx:for="{{row_flash.row_product.rows_img}}">
   <swiper-item >
     <image  mode="aspectFill" bindtap="tapBanner" src="{{item}}" />
   </swiper-item>
@@ -17,24 +17,34 @@
     ￥{{row_product.price}}
   </view>
   <view class="price_old">
-    ￥100.00
+    {{row_productspec.flash_price}}
   </view>
   <view class="p_time_limit">
     <view class="txt">
+      <block wx:if="{{state==0}}">
+      距离开始
+      </block>
+      <block wx:if="{{state==1}}">
       距离结束
+      </block>
+      <block wx:if="{{state==2}}">
+      已结束
+      </block>
     </view>
     <view class="p_time">
+      <block wx:if="{{state!=2}}">
       <view class="time">
-        01
+        {{time_hour}}
       </view>
       :
       <view class="time">
-        20
+        {{time_minute}}
       </view>
       :
       <view class="time">
-        30
+        {{time_second}}
       </view>
+      </block>
     </view>
   </view>
 </view>
@@ -42,16 +52,16 @@
   <view class="title">
   {{row_product.name}}
   </view>
-  <image class="share" mode="aspectFit" src="/public/image/share.png"/>
 </view>
 <view class="p_extra_info">
   <view class="group_sale">
-    累积销量:100件
+    累积销量:{{row_flash.all_flash_limit}}件
   </view>
   <view class="buy_limit">
-    限购:6件
+    限购:{{row_productspec.flash_limit}}件
   </view>
-  <view class="price">
+  <view class="price flex_row_end">
+  <image class="share" mode="aspectFit" src="/public/image/share.png"/>
   </view>
 </view>
 
@@ -63,7 +73,17 @@
     已选择:
   </view>
   <view class="selected_spec">
-  默认
+    <block wx:for="{{row_productspec.id=='0'}}">
+    默认
+    </block>
+    <block wx:if="{{row_productspec.id!='0'}}">
+      <block wx:for="{{row_productspec.rows_spec}}">
+        <block wx:if="{{index>0}}">
+        ,
+        </block>
+        {{item.name}}
+      </block>
+    </block>
   </view>
   <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
 </view>
@@ -73,73 +93,51 @@
 <view class="p_comment">
   <view class="h_comment">
     <view class="txt">
-    用户评价(10)
+    用户评价({{row_flash.row_product.count_comment}})
     </view>
     <view class="p_percent">
       <view class="percent">
-      85.00%
+      {{row_flash.row_product.percent_comment_level2}}%
       </view>
       好评率
     </view>
     <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
   </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+  <block wx:for="{{row_product.rows_comment_level2}}">
+    <view class="comment">
+      <view class="head_comment">
+        <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="{{item.row_member.img}}" />
+        <view class="username">
+          {{item.row_member.nickname}}
+        </view>
+        <block wx:for="{{item.rows_star}}" wx:for-item="row_star">
+          <block wx:if="{{row_star=='1'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+          </block>
+          <block wx:if="{{row_star=='0'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+          </block>
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="info_comment">
+        {{item.fdate}} 规格:
+        <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-index="i" wx:for-item="row_spec">
+          <block wx:if="{{i>0}}">
+          ，
+          </block>
+          {{row_spec.name}}
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="content">
+      {{item.content}}
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <view class="p_comment_img flex_row_start">
+        <block wx:for="{{item.rows_img}}" wx:for-item="img">
+        <image class="comment_img" src="{{img}}" mode="aspectFit"></image>
+        </block>
+      </view>
     </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
+  </block>
 </view>
 <view class="split">
 </view>
@@ -149,7 +147,7 @@
     产品介绍
   </view>
   <view class="detail">
-    <parser html="{{row_product.detail}}" />
+    <parser html="{{row_flash.row_product.detail}}" />
   </view>
 </view>
 </scroll-view>
