@@ -73,7 +73,7 @@
     已选择:
   </view>
   <view class="selected_spec">
-    <block wx:for="{{row_productspec.id=='0'}}">
+    <block wx:if="{{row_productspec.id=='0'}}">
     默认
     </block>
     <block wx:if="{{row_productspec.id!='0'}}">

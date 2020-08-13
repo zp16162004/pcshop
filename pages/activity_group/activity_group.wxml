@@ -42,33 +42,4 @@
   </block>
 
   
-  <view class="item_group">
-    <image mode="aspectFit" src="/public/image/product.jpg"></image>
-    <view class="p_group_right">
-      <view class="product_name">
-      iphone11iphone11iphone11iphone11iphone11iphone11iphone11
-      </view>
-      <view class="p_group_limit">
-        <image src="/public/image/tuangou_white.png" mode="aspectFit" style="width:45rpx;height:30rpx;background-color:#f10b0b"></image>
-        <view class="limit">
-        2人团
-        </view>
-      </view>
-      <view class="p_group_extra_info">
-        <view class="prices">
-          <view class="price">
-            ￥10.00
-          </view>
-          <view class="price_old">
-            ￥100.00
-          </view>
-        </view>
-        <view class="to_group">
-          去拼团
-        </view>
-      </view>
-    </view>
-  </view>
-
-  
 </view>

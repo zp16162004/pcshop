@@ -14,10 +14,10 @@
 </swiper>
 <view class="p_price">
   <view class="price">
-    ￥{{row_product.price}}
+    ￥{{row_productspec.group_price}}
   </view>
   <view class="price_old">
-    ￥100.00
+    ￥{{row_productspec.price}}
   </view>
   <image class="share" mode="aspectFit" src="/public/image/share.png"/>
 </view>
@@ -26,13 +26,13 @@
 </view>
 <view class="p_extra_info">
   <view class="group_limit">
-    2人员
+    {{row_group.limit}}人团
   </view>
   <view class="group_sale">
-    累积销量:100件
+    累积销量:{{row_group.row_product.all_sale}}件
   </view>
   <view class="buy_limit">
-    限购:6件
+    限购:{{row_group.buy_limit}}件
   </view>
 </view>
 <view class="split">
@@ -42,23 +42,27 @@
   <view class="join_title">
   直接参团 立即拼成
   </view>
+  <block wx:for="{{row_group.rows_grouplist}}">
   <view class="join">
-    <image class="user_logo" src="/public/image/product.jpg" mode="aspectFit"></image>
+    <block wx:if="{{item.etime>0}}">
+    <image class="user_logo" src="{{item.row_member.img}}" mode="aspectFit"></image>
     <view class="user_info">
-      human machine=11934
+      {{item.row_member.nickname}}
     </view>
     <view class="join_info">
       <view class="join_remain">
-        还差<view class="remain">1人</view>成团
+        还差<view class="remain">{{item.remain}}人</view>成团
       </view>
       <view class="join_limit">
-        剩余10:20:30
+        剩余{{item.time_remain}}
       </view>
     </view>
     <view class="join_btn">
       去参团
     </view>
+    </block>
   </view>
+  </block>
 </view>
 <view class="split">
 </view>
@@ -68,7 +72,17 @@
     已选择:
   </view>
   <view class="selected_spec">
-  默认
+    <block wx:if="{{row_productspec.id=='0'}}">
+    默认
+    </block>
+    <block wx:if="{{row_productspec.id!='0'}}">
+      <block wx:for="{{row_productspec.rows_spec}}">
+        <block wx:if="{{index>0}}">
+        ,
+        </block>
+        {{item.name}}
+      </block>
+    </block>
   </view>
   <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
 </view>
@@ -78,73 +92,51 @@
 <view class="p_comment">
   <view class="h_comment">
     <view class="txt">
-    用户评价(10)
+    用户评价({{row_group.row_product.count_comment}})
     </view>
     <view class="p_percent">
       <view class="percent">
-      85.00%
+      {{row_group.row_product.percent_comment_level2}}%
       </view>
       好评率
     </view>
     <image src="/public/image/jiantou.png" style="width:30rpx;height:30rpx"></image>
   </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+  <block wx:for="{{row_group.row_product.rows_comment_level2}}">
+    <view class="comment">
+      <view class="head_comment">
+        <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="{{item.row_member.img}}" />
+        <view class="username">
+          {{item.row_member.nickname}}
+        </view>
+        <block wx:for="{{item.rows_star}}" wx:for-item="row_star">
+          <block wx:if="{{row_star=='1'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
+          </block>
+          <block wx:if="{{row_star=='0'}}">
+          <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+          </block>
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="info_comment">
+        {{item.fdate}} 规格:
+        <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-index="i" wx:for-item="row_spec">
+          <block wx:if="{{i>0}}">
+          ，
+          </block>
+          {{row_spec.name}}
+        </block>
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-    </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
-  <view class="comment">
-    <view class="head_comment">
-      <image class="user_img" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/tuangou.png" />
-      <view class="username">
-        测试用户
+      <view class="content">
+      {{item.content}}
       </view>
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/star.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
-      <image class="user_img" style="width:15rpx;height:15rpx;border-radius:15rpx" src="/public/image/unstar.png" />
+      <view class="p_comment_img flex_row_start">
+        <block wx:for="{{item.rows_img}}" wx:for-item="img">
+        <image class="comment_img" src="{{img}}" mode="aspectFit"></image>
+        </block>
+      </view>
     </view>
-    <view class="info_comment">
-      2020-07-11 14:15 默认
-    </view>
-    <view class="content">
-    dadada，大萨达大大大
-    </view>
-  </view>
+  </block>
 </view>
 <view class="split">
 </view>
@@ -154,7 +146,7 @@
     产品介绍
   </view>
   <view class="detail">
-    <parser html="{{row_product.detail}}" />
+    <parser html="{{row_group.row_product.detail}}" />
   </view>
 </view>
 </scroll-view>
@@ -176,49 +168,81 @@
   </view>
 </view>
 <!--弹出选择层-->
-<view class="p_select" wx:if="{{false}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
-  <view class="header_select">
-    <image src="/public/image/product.jpg"></image>
+<view class="p_select" wx:if="{{show_panel}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
+  <view class="header_select" catchtap="do_nothing">
+    <block wx:if="{{row_productspec==null||row_productspec.spec_img==''}}">
+    <image src="{{row_group.row_product.img}}" mode="aspectFit"></image>
+    </block>
+    <block wx:if="{{row_productspec.spec_img!=''}}">
+    <image src="{{row_productspec.spec_img}}" mode="aspectFit"></image>
+    </block>
     <view class="header_select_right">
       <view class="header_product_name">
-        iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+        {{row_group.row_product.name}}
       </view>
       <view class="header_select_extra_info">
         <view class="header_price">
-        ￥10.00
+        ￥{{row_productspec.flash_price}}
         </view>
         <view class="header_stock">
-        库存:0
+        库存:{{row_productspec.stock}}
         </view>
       </view>
     </view>
-    <image class="delete" src="/public/image/delete.png" mode="aspectFit" style="width:30rpx;height:30rpx"></image>
+    <image class="delete" src="/public/image/delete.png" mode="aspectFit" style="width:30rpx;height:30rpx" bindtap="close_panel"></image>
   </view>
-    <view class="select_spec">
+    <block wx:if="{{row_group.row_product.single_spec=='1'}}">
+    <view class="select_spec" catchtap="do_nothing">
       <view class="spec_name">
         规格
       </view>
       <view class="specs">
-        <view class="spec">
-          默认
-        </view>
-        <view class="spec">
+        <view class="spec_selected">
           默认
         </view>
       </view>
     </view>
-    <view class="p_number">
+    </block>
+    <block wx:if="{{row_group.row_product.single_spec=='0'}}">
+    <block wx:for="{{row_group.row_product.rows_specclass}}">
+    <view class="select_spec" catchtap="do_nothing">
+      <view class="spec_name">
+        {{item.name}}
+      </view>
+      <view class="specs">
+        <block wx:for="{{item.rows_spec}}" wx:for-item="row_spec">
+          <block wx:if="{{row_spec.selected=='1'}}">
+          <view class="spec_selected" data-id="{{row_spec.id}}" bindtap="select_spec">
+            {{row_spec.name}}
+          </view>
+          </block>
+          <block wx:if="{{row_spec.selected==null||row_spec.selected=='0'}}">
+          <view class="spec" data-id="{{row_spec.id}}" bindtap="select_spec">
+            {{row_spec.name}}
+          </view>
+          </block>
+          <block wx:if="{{row_spec.selected==null||row_spec.selected=='-1'}}">
+          <view class="spec_disabled color_white" data-id="{{row_spec.id}}">
+            {{row_spec.name}}
+          </view>
+          </block>
+        </block>
+      </view>
+    </view>
+    </block>
+    </block>
+    <view class="p_number" catchtap="do_nothing">
       <view class="number_name">
         数量
       </view>
       <view class="specs">
-        <view class="subduce">
+        <view class="subduce" bindtap="subduce">
           -
         </view>
         <view class="number">
-          1
+          {{number}}
         </view>
-        <view class="add">
+        <view class="add" bindtap="add">
           +
         </view>
       </view>

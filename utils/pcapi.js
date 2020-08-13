@@ -753,6 +753,27 @@ function get_flash_detail(flash_id,member_id,func)
     }
   })
 }
+function get_group_detail(group_id,member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_group_detail",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      group_id:group_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -790,4 +811,5 @@ module.exports = {
   add_bargainlist:add_bargainlist,
   get_bargain_qrcode:get_bargain_qrcode,
   get_flash_detail:get_flash_detail,
+  get_group_detail:get_group_detail,
 }
