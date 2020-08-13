@@ -16,6 +16,8 @@ Page({
     rows_orderlist:app.globalData.rows_orderlist,
     row_bargain:null,//如果是砍价订单，完善这个
     row_flash:null,//如果是砍价订单，完善这个
+    row_group:null,//如果是拼团订单，完善这个
+    grouplist_id:0,//如果是拼团订单，需要确定是否跟团
     all_number:0,
     deliver_type:0,
     all_money:0,//商品总金额
@@ -100,6 +102,11 @@ Page({
       //秒杀
       thiss.get_flash_detail();
     }
+    if(thiss.data.type==1)
+    {
+      //拼团
+      thiss.get_group_detail();
+    }
   },
   get_orderlist_info:function(index)
   {
@@ -170,6 +177,32 @@ Page({
             }
           );
           //计算价格
+          thiss.ini_price();
+        }
+        else
+        {
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  get_group_detail:function()
+  {
+    //
+    var thiss=this;
+    pcapi.get_group_detail(
+      thiss.data.detail_id,
+      app.globalData.row_member.id,
+      function(res)
+      {
+        console.log("get_group_detail");
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              row_group:res.data.data,
+            }
+          );
           thiss.ini_price();
         }
         else
@@ -504,7 +537,7 @@ Page({
       }
       console.log(row_orderlist);
       console.log("计算邮费先决条件:"+(thiss.data.row_address!=null&&row_orderlist.row_product.row_fare!=null));
-      if(thiss.data.row_address!=null&&((thiss.data.type==0&&row_orderlist.row_product.row_fare!=null)||(thiss.data.type==3&&thiss.data.row_bargain.row_fare!=null)||(thiss.data.type==2&&thiss.data.row_flash.row_fare!=null)))
+      if(thiss.data.row_address!=null&&((thiss.data.type==0&&row_orderlist.row_product.row_fare!=null)||(thiss.data.type==3&&thiss.data.row_bargain.row_fare!=null)||(thiss.data.type==2&&thiss.data.row_flash.row_fare!=null)||(thiss.data.type==1&&thiss.data.row_group.row_fare!=null)))
       {
         console.log("开始计算邮费");
         var row_fare=null;
@@ -519,6 +552,10 @@ Page({
         else if(thiss.data.type==2)
         {
           row_fare=thiss.data.row_flash.row_fare;
+        }
+        else if(thiss.data.type==1)
+        {
+          row_fare=thiss.data.row_group.row_fare;
         }
         var city_id=thiss.data.row_address.city_id;
         //首先判断保留列表
@@ -789,6 +826,7 @@ Page({
       thiss.data.coupon_discount,
       thiss.data.need_pay,
       thiss.data.detail_id,
+      thiss.data.grouplist_id,//只有拼团订单需要
       thiss.data.rows_orderlist,
       function(res)
       {

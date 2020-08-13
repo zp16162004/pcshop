@@ -1,12 +1,12 @@
 <!--pages/product/product.wxml-->
 <scroll-view scroll-y="true" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
 <swiper class="swiper1" indicator-dots="true" indicator-active-color="lightblue" circular>
-  <block wx:if="{{row_product.video!=''}}">
+  <block wx:if="{{row_group.row_product.video!=''}}">
   <swiper-item >
-    <video  src="{{row_product.video}}"></video>
+    <video  src="{{row_group.row_product.video}}"></video>
   </swiper-item>
   </block>
-  <block wx:for="{{row_product.rows_img}}">
+  <block wx:for="{{row_group.row_product.rows_img}}">
   <swiper-item >
     <image  mode="aspectFill" bindtap="tapBanner" src="{{item}}" />
   </swiper-item>
@@ -57,7 +57,7 @@
         剩余{{item.time_remain}}
       </view>
     </view>
-    <view class="join_btn">
+    <view class="join_btn" data-id="{{item.list_id}}" bindtap="buy">
       去参团
     </view>
     </block>
@@ -163,7 +163,7 @@
   <view class="add_cart">
     单独购买
   </view>
-  <view class="buy">
+  <view class="buy" data-id="0" bindtap="buy">
     立即开团
   </view>
 </view>
@@ -182,7 +182,7 @@
       </view>
       <view class="header_select_extra_info">
         <view class="header_price">
-        ￥{{row_productspec.flash_price}}
+        ￥{{row_productspec.group_price}}
         </view>
         <view class="header_stock">
         库存:{{row_productspec.stock}}

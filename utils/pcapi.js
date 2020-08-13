@@ -463,7 +463,7 @@ function add_couponlist(member_id,coupon_id,func)
     }
   })
 }
-function add_order(member_id,type,deliver_type,pay_type,row_address,row_shop,contact,mobile,fnote,money_product,money_fare,integral,integral_discount,couponlist_id,coupon_discount,need_pay,detail_id,rows_orderlist,func)
+function add_order(member_id,type,deliver_type,pay_type,row_address,row_shop,contact,mobile,fnote,money_product,money_fare,integral,integral_discount,couponlist_id,coupon_discount,need_pay,detail_id,grouplist_id,rows_orderlist,func)
 {
   var thiss=this;
   console.log(JSON.stringify(rows_orderlist));
@@ -490,6 +490,7 @@ function add_order(member_id,type,deliver_type,pay_type,row_address,row_shop,con
       coupon_discount:coupon_discount,
       need_pay:need_pay,
       detail_id:detail_id,
+      grouplist_id:grouplist_id,
       rows_orderlist:JSON.stringify(rows_orderlist),
     },
     method:'Post',

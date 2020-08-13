@@ -449,4 +449,12 @@ Page({
       }
     }
   },
+  close_panel:function(res)
+  {
+    this.setData(
+      {
+        show_panel:false,
+      }
+    );
+  },
 })
