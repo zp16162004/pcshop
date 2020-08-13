@@ -381,6 +381,17 @@ swiper-item>video
   text-align: center;
   color: #ffffff;
 }
+.buy_disabled
+{
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-top-right-radius: 80rpx;
+  border-bottom-right-radius: 80rpx;
+  background-color: #656565;
+  text-align: center;
+  color: #ffffff;
+}
 
 .p_select
 {
@@ -477,6 +488,27 @@ swiper-item>video
   padding: 0rpx 20rpx;
   margin-right:20rpx ;
   font-size: 22rpx;
+}
+.spec_disabled
+{
+  width: auto;
+  border: 1px solid #656565;
+  border-radius: 8rpx;
+  padding: 0rpx 20rpx;
+  margin-right:20rpx ;
+  font-size: 22rpx;
+  background-color: #656565;
+}
+.spec_selected
+{
+  width: auto;
+  /* border: 1px solid #656565; */
+  border-radius: 8rpx;
+  padding: 5rpx 20rpx;
+  margin-right:20rpx ;
+  font-size: 22rpx;
+  color: #ffffff;
+  background-color: #f10b0b;
 }
 .p_number
 {

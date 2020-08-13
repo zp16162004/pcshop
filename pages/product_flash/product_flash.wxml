@@ -161,57 +161,101 @@
     <image src="/public/image/heart.png"></image>
     <view class="txt">收藏</view>
   </view>
-  <view class="add_cart">
+  <view class="add_cart" bindtap="add_cart">
     单独购买
   </view>
-  <view class="buy">
+  <block wx:if="{{state==0}}">
+  <view class="buy_disabled" bindtap="buy">
+    未开始
+  </view>
+  </block>
+  <block wx:if="{{state==1}}">
+  <view class="buy" bindtap="buy">
     立即秒杀
   </view>
+  </block>
+  <block wx:if="{{state==2}}">
+  <view class="buy_disabled" bindtap="buy">
+    已结束
+  </view>
+  </block>
 </view>
 <!--弹出选择层-->
-<view class="p_select" wx:if="{{false}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
-  <view class="header_select">
-    <image src="/public/image/product.jpg"></image>
+<view class="p_select" wx:if="{{show_panel}}" style="width:100%;height:{{systeminfo.windowHeight-100*systeminfo.windowWidth/750}}px;">
+  <view class="header_select" catchtap="do_nothing">
+    <block wx:if="{{row_productspec==null||row_productspec.spec_img==''}}">
+    <image src="{{row_flash.row_product.img}}" mode="aspectFit"></image>
+    </block>
+    <block wx:if="{{row_productspec.spec_img!=''}}">
+    <image src="{{row_productspec.spec_img}}" mode="aspectFit"></image>
+    </block>
     <view class="header_select_right">
       <view class="header_product_name">
-        iphone11iphone11iphone11iphone11iphone11iphone11iphone11iphone11
+        {{row_flash.row_product.name}}
       </view>
       <view class="header_select_extra_info">
         <view class="header_price">
-        ￥10.00
+        ￥{{row_productspec.flash_price}}
         </view>
         <view class="header_stock">
-        库存:0
+        库存:{{row_productspec.stock}}
         </view>
       </view>
     </view>
-    <image class="delete" src="/public/image/delete.png" mode="aspectFit" style="width:30rpx;height:30rpx"></image>
+    <image class="delete" src="/public/image/delete.png" mode="aspectFit" style="width:30rpx;height:30rpx" bindtap="close_panel"></image>
   </view>
-    <view class="select_spec">
+    <block wx:if="{{row_flash.row_product.single_spec=='1'}}">
+    <view class="select_spec" catchtap="do_nothing">
       <view class="spec_name">
         规格
       </view>
       <view class="specs">
-        <view class="spec">
-          默认
-        </view>
-        <view class="spec">
+        <view class="spec_selected">
           默认
         </view>
       </view>
     </view>
-    <view class="p_number">
+    </block>
+    <block wx:if="{{row_flash.row_product.single_spec=='0'}}">
+    <block wx:for="{{row_flash.row_product.rows_specclass}}">
+    <view class="select_spec" catchtap="do_nothing">
+      <view class="spec_name">
+        {{item.name}}
+      </view>
+      <view class="specs">
+        <block wx:for="{{item.rows_spec}}" wx:for-item="row_spec">
+          <block wx:if="{{row_spec.selected=='1'}}">
+          <view class="spec_selected" data-id="{{row_spec.id}}" bindtap="select_spec">
+            {{row_spec.name}}
+          </view>
+          </block>
+          <block wx:if="{{row_spec.selected==null||row_spec.selected=='0'}}">
+          <view class="spec" data-id="{{row_spec.id}}" bindtap="select_spec">
+            {{row_spec.name}}
+          </view>
+          </block>
+          <block wx:if="{{row_spec.selected==null||row_spec.selected=='-1'}}">
+          <view class="spec_disabled color_white" data-id="{{row_spec.id}}">
+            {{row_spec.name}}
+          </view>
+          </block>
+        </block>
+      </view>
+    </view>
+    </block>
+    </block>
+    <view class="p_number" catchtap="do_nothing">
       <view class="number_name">
         数量
       </view>
       <view class="specs">
-        <view class="subduce">
+        <view class="subduce" bindtap="subduce">
           -
         </view>
         <view class="number">
-          1
+          {{number}}
         </view>
-        <view class="add">
+        <view class="add" bindtap="add">
           +
         </view>
       </view>
