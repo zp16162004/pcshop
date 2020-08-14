@@ -775,6 +775,28 @@ function get_group_detail(group_id,member_id,func)
     }
   })
 }
+function get_check(member_id,day_count,list_count,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_check",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      day_count:day_count,
+      list_count:list_count,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -813,4 +835,5 @@ module.exports = {
   get_bargain_qrcode:get_bargain_qrcode,
   get_flash_detail:get_flash_detail,
   get_group_detail:get_group_detail,
+  get_check:get_check,
 }

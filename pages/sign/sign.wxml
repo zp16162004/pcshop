@@ -1,13 +1,13 @@
 <!--pages/sign/sign.wxml-->
 <view class="header">
   <view class="header_content flex_row_center">
-    <image mode="aspectFit" src="/public/image/product.jpg" style="width:80rpx;height:80rpx;border-radius:80rpx"></image>
+    <image mode="aspectFit" src="{{row_member.img}}" style="width:80rpx;height:80rpx;border-radius:80rpx"></image>
     <view class="user">
       <view class="username color_white">
-      human machine==11394
+      {{row_member.nickname}}
       </view>
       <view class="integral color_white">
-      积分:30
+      积分:{{row_member.integral}}
       </view>
     </view>
     <view class="detail flex_row_center">
@@ -20,73 +20,33 @@
 </view>
 <view class="content">
   <view class="days flex_row_center">
+    <block wx:for="{{row_check.rows_day}}">
     <view class="day flex_column_center">
       <view class="top">
-        第一天
+        第{{item.day}}天
       </view>
+      <block wx:if="{{row_check.continue>=item.day}}">
       <image mode="aspectFti" src="/public/image/check.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第2天
-      </view>
+      </block>
+      <block wx:if="{{row_check.continue<item.day}}">
       <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      </block>
       <view class="bottom">
-        +10
+        +{{item.integral}}
       </view>
     </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第3天
-      </view>
-      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第4天
-      </view>
-      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第5天
-      </view>
-      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第6天
-      </view>
-      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
-    <view class="day flex_column_center">
-      <view class="top">
-        第7天
-      </view>
-      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
-      <view class="bottom">
-        +10
-      </view>
-    </view>
+    </block>
   </view>
-  <view class="btn_check color_white">
+  <block wx:if="{{row_check.has_check==0}}">
+  <view class="btn_check color_white" bindtap="add_checklog">
     签到
   </view>
+  </block>
+  <block wx:if="{{row_check.has_check==1}}">
+  <view class="btn_check_disabled color_white">
+    已签到
+  </view>
+  </block>
 </view>
 <view class="list">
   <image class="lianjie1" src="/public/image/lianjie.png" mode="aspectFit" style="height:70rpx;width:16rpx"/>
@@ -99,54 +59,47 @@
     <view class="day_count_item color_white">
       <view class="split">
       </view>
-      0
+      {{count4}}
     </view>
     <view class="day_count_item color_white">
       <view class="split">
       </view>
-      0
+      {{count3}}
     </view>
     <view class="day_count_item color_white">
       <view class="split">
       </view>
-      0
+      {{count2}}
     </view>
     <view class="day_count_item color_white">
       <view class="split">
       </view>
-      1
+      {{count1}}
     </view>
     <view class="txt">
       天
     </view>
   </view>
+  <block wx:for="{{row_check.rows_check}}">
   <view class="list_item flex_row_center">
     <view class="list_left flex_column_start">
       <view class="txt">
         签到奖励
       </view>
       <view class="list_date">
-        2020-01-01
+        {{item.f_date}}
       </view>
     </view>
     <view class="list_integral color_red">
-      +10.00
+      +{{item.count}}
     </view>
   </view>
-  <view class="list_item flex_row_center">
-    <view class="list_left flex_column_start">
-      <view class="txt">
-        签到奖励
-      </view>
-      <view class="list_date">
-        2020-01-01
-      </view>
-    </view>
-    <view class="list_integral color_red">
-      +10.00
-    </view>
-  </view>
+  </block>
   <view class="more">
     点击加载更多>
   </view>
 </view>
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>
