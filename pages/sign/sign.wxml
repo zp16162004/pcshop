@@ -1,2 +1,152 @@
 <!--pages/sign/sign.wxml-->
-<text>pages/sign/sign.wxml</text>
+<view class="header">
+  <view class="header_content flex_row_center">
+    <image mode="aspectFit" src="/public/image/product.jpg" style="width:80rpx;height:80rpx;border-radius:80rpx"></image>
+    <view class="user">
+      <view class="username color_white">
+      human machine==11394
+      </view>
+      <view class="integral color_white">
+      积分:30
+      </view>
+    </view>
+    <view class="detail flex_row_center">
+      <image mode="aspectFit" src="/public/image/liebiao_red.png" style="width:30rpx;height:30rpx"></image>
+      <view class="txt color_red">
+        明细
+      </view>
+    </view>
+  </view>
+</view>
+<view class="content">
+  <view class="days flex_row_center">
+    <view class="day flex_column_center">
+      <view class="top">
+        第一天
+      </view>
+      <image mode="aspectFti" src="/public/image/check.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第2天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第3天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第4天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第5天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第6天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+    <view class="day flex_column_center">
+      <view class="top">
+        第7天
+      </view>
+      <image mode="aspectFti" src="/public/image/uncheck.png" style="width:50rpx;height:50rpx"></image>
+      <view class="bottom">
+        +10
+      </view>
+    </view>
+  </view>
+  <view class="btn_check color_white">
+    签到
+  </view>
+</view>
+<view class="list">
+  <image class="lianjie1" src="/public/image/lianjie.png" mode="aspectFit" style="height:70rpx;width:16rpx"/>
+  <image class="lianjie2" src="/public/image/lianjie.png" mode="aspectFit" style="height:70rpx;width:16rpx"/>
+  <image class="lianjie3" src="/public/image/lianjie.png" mode="aspectFit" style="height:70rpx;width:16rpx"/>
+  <view class="txt">
+    已累计签到
+  </view>
+  <view class="day_count flex_row_center">
+    <view class="day_count_item color_white">
+      <view class="split">
+      </view>
+      0
+    </view>
+    <view class="day_count_item color_white">
+      <view class="split">
+      </view>
+      0
+    </view>
+    <view class="day_count_item color_white">
+      <view class="split">
+      </view>
+      0
+    </view>
+    <view class="day_count_item color_white">
+      <view class="split">
+      </view>
+      1
+    </view>
+    <view class="txt">
+      天
+    </view>
+  </view>
+  <view class="list_item flex_row_center">
+    <view class="list_left flex_column_start">
+      <view class="txt">
+        签到奖励
+      </view>
+      <view class="list_date">
+        2020-01-01
+      </view>
+    </view>
+    <view class="list_integral color_red">
+      +10.00
+    </view>
+  </view>
+  <view class="list_item flex_row_center">
+    <view class="list_left flex_column_start">
+      <view class="txt">
+        签到奖励
+      </view>
+      <view class="list_date">
+        2020-01-01
+      </view>
+    </view>
+    <view class="list_integral color_red">
+      +10.00
+    </view>
+  </view>
+  <view class="more">
+    点击加载更多>
+  </view>
+</view>

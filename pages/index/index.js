@@ -195,11 +195,11 @@ Page({
   },
   goto_sign:function()
   {
-    // wx.navigateTo({
-    //   url: '/pages/sign/sign',
-    // })
     wx.navigateTo({
-      url: '/pages/couponlist/couponlist?in_order=1',
+      url: '/pages/sign/sign',
     })
+    // wx.navigateTo({
+    //   url: '/pages/couponlist/couponlist?in_order=1',
+    // })
   },
 })

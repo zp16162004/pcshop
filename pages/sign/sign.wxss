@@ -1,1 +1,179 @@
 /* pages/sign/sign.wxss */
+page
+{
+  background-color: #e9e9e9;
+}
+.header
+{
+  padding-left:20rpx ;
+  padding-right: 0rpx;
+  padding-top: 80rpx;
+  padding-bottom: 160rpx;
+  background-color: #f10b0b;
+}
+.user
+{
+  flex-grow: 1;
+  padding: 0rpx 20rpx;
+}
+.username
+{
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.integral
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.username
+{
+  font-size: 22rpx;
+}
+.detail
+{
+  background-color: #ffffff;
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+  padding: 10rpx 20rpx;
+}
+.detail>.txt
+{
+  font-size: 22rpx;
+}
+.content
+{
+  margin-left: 20rpx;
+  margin-right:20rpx ;
+  margin-top: -80rpx;
+  border-radius: 10rpx;
+  background-color: #ffffff;
+  padding: 40rpx 20rpx;
+}
+.day
+{
+  flex-grow: 1;
+}
+.day>.top
+{
+  font-size: 22rpx;
+  color: #656565;
+}
+.day>.bottom
+{
+  column-rule: #656565;
+}
+.btn_check
+{
+  text-align: center;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 60rpx;
+  background-color: #f10b0b;
+  margin: 60rpx auto;
+  width: 400rpx;
+}
+.btn_check_disabled
+{
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 60rpx;
+  background-color: #656565;
+  margin: 60rpx auto;
+  width: 400rpx;
+}
+.list
+{
+  background-color: #ffffff;
+  padding: 20rpx 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+.lianjie1
+{
+  position: absolute;
+  left: 20rpx;
+  top: -50rpx;
+}
+.lianjie2
+{
+  position: absolute;
+  left: 355rpx;
+  top: -50rpx;
+}
+.lianjie3
+{
+  position: absolute;
+  right: 20rpx;
+  top: -50rpx;
+}
+.list>.txt
+{
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.day_count
+{
+  padding: 40rpx;
+  border-bottom: 1px dashed #e9e9e9;
+}
+.day_count_item
+{
+  text-align: center;
+  background-color: #f10b0b;
+  width: 70rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 40rpx;
+  margin-right:20rpx ;
+  border-radius: 10rpx;
+  position: relative;
+}
+.split
+{
+  width: 100%;
+  height: 4rpx;
+  position: absolute;
+  top: 40rpx;
+  left: 0rpx;
+  background-color: #ff996699;
+}
+.list_item
+{
+  padding: 20rpx 0rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.list_left
+{
+  flex-grow: 1;
+}
+.list_date
+{
+  color: #656565;
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.list_left>.txt
+{
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.list_integral
+{
+  font-size: 30rpx;
+}
+.more
+{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 22rpx;
+  text-align: center;
+}
