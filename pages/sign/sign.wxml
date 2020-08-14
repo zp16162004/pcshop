@@ -10,7 +10,7 @@
       积分:{{row_member.integral}}
       </view>
     </view>
-    <view class="detail flex_row_center">
+    <view class="detail flex_row_center" bindtap="goto_list_checklog">
       <image mode="aspectFit" src="/public/image/liebiao_red.png" style="width:30rpx;height:30rpx"></image>
       <view class="txt color_red">
         明细
@@ -95,7 +95,7 @@
     </view>
   </view>
   </block>
-  <view class="more">
+  <view class="more" bindtap="goto_list_checklog">
     点击加载更多>
   </view>
 </view>

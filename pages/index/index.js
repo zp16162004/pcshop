@@ -202,4 +202,10 @@ Page({
     //   url: '/pages/couponlist/couponlist?in_order=1',
     // })
   },
+  goto_collection:function()
+  {
+    wx.navigateTo({
+      url: '/pages/collection/collection',
+    })
+  },
 })

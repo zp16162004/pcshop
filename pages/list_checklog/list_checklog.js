@@ -1,19 +1,15 @@
-// pages/sign/sign.js
+// pages/list_checklog/list_checklog.js
 var util=require("../../utils/util.js");
 var pcapi=require("../../utils/pcapi.js");
-const app = getApp();
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    show_login:false,
-    row_check:null,
-    count4:0,
-    count3:0,
-    count2:0,
-    count1:0,
+    rows_checklog:null,
+    p:1,
   },
 
   /**
@@ -29,7 +25,7 @@ Page({
       );
     }
     else{
-      this.get_check();
+      this.get_checklog();
     }
   },
   //获取用户信息权限
@@ -53,7 +49,7 @@ Page({
               {
                 app.globalData.row_member=res.data.data;
                 app.save_data();
-                thiss.get_check();
+                thiss.get_checklog();
               }
               else{
                 util.show_model_and_back(res.data.msg);
@@ -67,7 +63,6 @@ Page({
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -107,7 +102,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var thiss=this;
+    thiss.setData(
+      {
+        p:thiss.data.p+1,
+      }
+    );
+    thiss.get_checklog();
   },
 
   /**
@@ -116,77 +117,31 @@ Page({
   onShareAppMessage: function () {
 
   },
-  get_check:function()
+  get_checklog:function()
   {
     var thiss=this;
-    pcapi.get_check(
+    pcapi.get_checklog(
       app.globalData.row_member.id,
-      7,
-      7,
+      thiss.data.p,
       function(res)
       {
-        thiss.setData(
-          {
-            row_check:res.data.data,
-          }
-        );
-        thiss.ini_count();
-        thiss.refresh_member();
-      }
-    );
-  },
-  ini_count:function()
-  {
-    var thiss=this;
-    var count_checklog=thiss.data.row_check.count_checklog;
-    thiss.data.count4=parseInt(count_checklog/1000);
-    thiss.data.count3=parseInt(count_checklog%1000/100);
-    thiss.data.count2=parseInt(count_checklog%1000%100/10);
-    thiss.data.count1=parseInt(count_checklog%10);
-    thiss.setData(
-      thiss.data
-    );
-  },
-  refresh_member:function()
-  {
-    var thiss=this;
-    pcapi.refresh_member(
-      function(res)
-      {
-        console.log(res);
-        thiss.setData(
-          {
-            row_member:res.data.data,
-          }
-        );
-      }
-    );
-  },
-  add_checklog:function()
-  {
-    var thiss=this;
-    pcapi.add_checklog(
-      app.globalData.row_member.id,
-      function(res)
-      {
-        console.log(res);
-        if(res.data.code==0)
+        if(thiss.data.p==1)
         {
-          util.show_model(res.data.msg);
+          thiss.setData(
+            {
+              rows_checklog:res.data.data,
+            }
+          );
         }
-        else{
-          wx.showToast({
-            title: res.data.msg,
-          })
-          thiss.get_check();
+        else
+        {
+          thiss.setData(
+            {
+              rows_checklog:thiss.data.rows_checklog.concat(res.data.data),
+            }
+          );
         }
       }
     );
-  },
-  goto_list_checklog:function()
-  {
-    wx.navigateTo({
-      url: '/pages/list_checklog/list_checklog',
-    })
   },
 })

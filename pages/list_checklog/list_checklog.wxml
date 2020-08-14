@@ -1,0 +1,21 @@
+<!--pages/list_checklog/list_checklog.wxml-->
+
+  <block wx:for="{{rows_checklog}}">
+  <view class="list_item flex_row_center">
+    <view class="list_left flex_column_start">
+      <view class="txt">
+        签到奖励
+      </view>
+      <view class="list_date">
+        {{item.f_date}}
+      </view>
+    </view>
+    <view class="list_integral color_red">
+      +{{item.count}}
+    </view>
+  </view>
+  </block>
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

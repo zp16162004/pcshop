@@ -21,7 +21,9 @@
     "pages/coupon/coupon",
     "pages/couponlist/couponlist",
     "pages/sign/sign",
-    "pages/poster_bargain/poster_bargain"
+    "pages/poster_bargain/poster_bargain",
+    "pages/list_checklog/list_checklog",
+    "pages/collection/collection"
   ],
   "window": {
     "backgroundTextStyle": "light",

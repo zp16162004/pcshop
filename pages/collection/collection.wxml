@@ -1,0 +1,33 @@
+<!--pages/collection/collection.wxml-->
+    <block wx:for="{{rows_collection}}">
+    <view class="p_product flex_row_center" data-id="{{item.row_product.id}}" bindtap="goto_product">
+      <image src="{{item.row_product.img}}" style="width:160rpx;height:160rpx;"/>
+      <view class="p_product_right">
+        <view class="product_name">
+          {{item.row_product.name}}
+        </view>
+        <view class="p_product_info">
+          <view class="p_product_info_left">
+            <view class="product_price">
+            ￥{{item.row_product.price}}
+            </view>
+            <view class="product_extra_info">
+                <view class="product_price_old">
+                ￥{{item.row_product.price_old}}
+                </view>
+                <view class="product_sale">
+                已售{{item.row_product.all_sale}}件
+                </view>
+            </view>
+          </view>
+          <view class="delete" data-id="{{item.id}}" bindtap="delete_collection">
+            删除
+          </view>
+        </view>
+      </view>
+    </view>
+    </block>
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

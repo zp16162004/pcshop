@@ -797,6 +797,88 @@ function get_check(member_id,day_count,list_count,func)
     }
   })
 }
+function add_checklog(member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_checklog",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_checklog(member_id,p,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_checklog",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      p:p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_collection(member_id,p,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_collection",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      p:p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function delete_collection(collection_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/delete_collection",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      collection_id:collection_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -836,4 +918,8 @@ module.exports = {
   get_flash_detail:get_flash_detail,
   get_group_detail:get_group_detail,
   get_check:get_check,
+  add_checklog:add_checklog,
+  get_checklog:get_checklog,
+  get_collection:get_collection,
+  delete_collection:delete_collection,
 }

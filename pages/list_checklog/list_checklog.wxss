@@ -1,0 +1,32 @@
+/* pages/list_checklog/list_checklog.wxss */
+page
+{
+  background-color: #e9e9e9;
+}
+.list_item
+{
+  padding: 20rpx 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+  background-color: #ffffff;
+  margin-top: 20rpx;
+}
+.list_left
+{
+  flex-grow: 1;
+}
+.list_date
+{
+  color: #656565;
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.list_left>.txt
+{
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.list_integral
+{
+  font-size: 30rpx;
+}

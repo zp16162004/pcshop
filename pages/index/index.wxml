@@ -67,7 +67,7 @@
       </view>
       </button>
     </view>
-    <view class="p_menu">
+    <view class="p_menu" bindtap="goto_collection">
       <image src="/public/image/shoucang.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         我的收藏
