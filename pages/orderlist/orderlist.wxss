@@ -1,0 +1,64 @@
+/* pages/orderlist/orderlist.wxss */
+.head
+{
+  background-color: #f10b0b;
+  padding-top: 30rpx;
+  padding-bottom: 90rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+.order_info
+{
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.order_info>.txt
+{
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.order_info>.info
+{
+  font-size: 22rpx;
+  font-weight: 600;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.states
+{
+  margin-top: -60rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  background-color: #ffffff;
+  padding: 20rpx 0rpx;
+}
+.state
+{
+  flex-grow: 1;
+  flex-shrink: 0;
+  color: #656565;
+  margin: 0rpx 20rpx;
+}
+.state_selected
+{
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #000000;
+  border-bottom: 1px solid #f10b0b;
+  margin: 0rpx 20rpx;
+}
+.state_txt
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.state_number
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}

@@ -1,6 +1,6 @@
 <!--pages/usercenter/usercenter.wxml-->
 <view class="user_head">
-  <image class="user_logo" src="/public/image/product.jpg" mode="aspectFit"></image>
+  <image class="user_logo" src="{{row_member.img}}" mode="aspectFit"></image>
   <view class="p_userinfo">
     <view class="username">
       {{row_member.nickname}}
@@ -54,7 +54,7 @@
   </view>
   <view class="menus">
     <view class="p_menu" style="width:20%">
-      <view class="menu">
+      <view class="menu" data-state="0" bindtap="goto_orderlist">
         <image src="/public/image/daifukuan_red.png" mode="aspectFit"></image>
         <view class="txt">
           待付款
@@ -66,7 +66,7 @@
         </block>
       </view>
     </view>
-    <view class="p_menu" style="width:20%">
+    <view class="p_menu" style="width:20%" data-state="1" bindtap="goto_orderlist">
       <view class="menu">
         <image src="/public/image/daifahuo_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -79,7 +79,7 @@
         </block>
       </view>
     </view>
-    <view class="p_menu" style="width:20%">
+    <view class="p_menu" style="width:20%" data-state="2" bindtap="goto_orderlist">
       <view class="menu">
         <image src="/public/image/daishouhuo_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -92,7 +92,7 @@
         </block>
       </view>
     </view>
-    <view class="p_menu" style="width:20%">
+    <view class="p_menu" style="width:20%" data-state="3" bindtap="goto_orderlist">
       <view class="menu">
         <image src="/public/image/pingjia_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -105,7 +105,7 @@
         </block>
       </view>
     </view>
-    <view class="p_menu" style="width:20%">
+    <view class="p_menu" style="width:20%" bindtap="goto_refundlist">
       <view class="menu">
         <image src="/public/image/tuikuan_red.png" mode="aspectFit"></image>
         <view class="txt">

@@ -134,4 +134,18 @@ Page({
       }
     );
   },
+  goto_orderlist:function(e)
+  {
+    var state=e.currentTarget.dataset.state;
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/orderlist/orderlist?state='+state,
+    })
+  },
+  goto_refundlist:function()
+  {
+    wx.navigateTo({
+      url: '/pages/refundlist/refundlist',
+    })
+  }
 })

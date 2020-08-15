@@ -1,0 +1,73 @@
+<!--pages/orderlist/orderlist.wxml-->
+<view class="head flex_row_center">
+  <view class="order_info flex_column_start">
+    <view class="txt color_white">
+      订单信息
+    </view>
+    <view class="info color_white">
+      消费订单:4, 总消费:￥2
+    </view>
+  </view>
+  <image mode="aspectFit" src="/public/image/orderlist.png" style="width:80rpx;height:80rpx"></image>
+</view>
+<view class="states flex_row_center">
+  <view class="state_selected flex_column_center">
+    <view class="state_txt">
+      待付款
+    </view>
+    <view class="state_number">
+      3
+    </view>
+  </view>
+  <view class="state flex_column_center">
+    <view class="state_txt">
+      代发货
+    </view>
+    <view class="state_number">
+      3
+    </view>
+  </view>
+  <view class="state flex_column_center">
+    <view class="state_txt">
+      待收货
+    </view>
+    <view class="state_number">
+      3
+    </view>
+  </view>
+  <view class="state flex_column_center">
+    <view class="state_txt">
+      待评价
+    </view>
+    <view class="state_number">
+      3
+    </view>
+  </view>
+  <view class="state flex_column_center">
+    <view class="state_txt">
+      已完成
+    </view>
+    <view class="state_number">
+      3
+    </view>
+  </view>
+</view>
+
+  <view class="order">
+    <view class="order_head">
+      <view class="order_type">
+        拼团
+      </view>
+      <view class="fdate">
+        2020-01-01 10：00：00
+      </view>
+      <view class="order_state">
+        代付款
+      </view>
+    </view>
+    <view class="order_products">
+      <view class="order_product">
+        <view class="img">
+      </view>
+    </view>
+  </view>

@@ -23,7 +23,9 @@
     "pages/sign/sign",
     "pages/poster_bargain/poster_bargain",
     "pages/list_checklog/list_checklog",
-    "pages/collection/collection"
+    "pages/collection/collection",
+    "pages/orderlist/orderlist",
+    "pages/refundlist/refundlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
