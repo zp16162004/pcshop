@@ -879,6 +879,67 @@ function delete_collection(collection_id,func)
     }
   })
 }
+function get_cart(member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_cart",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function delete_cart(ids,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/delete_cart",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      ids:ids,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function edit_cart(cart_id,number,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/edit_cart",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      cart_id:cart_id,
+      number:number,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -922,4 +983,7 @@ module.exports = {
   get_checklog:get_checklog,
   get_collection:get_collection,
   delete_collection:delete_collection,
+  get_cart:get_cart,
+  delete_cart:delete_cart,
+  edit_cart:edit_cart,
 }

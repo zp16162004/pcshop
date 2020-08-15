@@ -2,10 +2,15 @@
 <view class="cart_info">
   购物车数量
   <view class="number">
-    1
+    {{count_cart}}
   </view>
-  <view class="manage">
+  <view class="manage" bindtap="change_is_editing">
+    <block wx:if="{{is_editing==0}}">
     管理
+    </block>
+    <block wx:if="{{is_editing==1}}">
+    取消
+    </block>
   </view>
 </view>
 
@@ -13,57 +18,79 @@
 </view>
 
 <view class="p_cart">
+  <block wx:for="{{rows_cart}}">
   <view class="cart">
-    <radio value="id"></radio>
-    <image src="/public/image/product.jpg" mode="aspectFit"></image>
+    <block wx:if="{{item.selected==1}}">
+    <image mode="aspectFix" src="/public/image/checkbox_selected.png" style="width:40rpx;height:40rpx" data-index="{{index}}" bindtap="change_selected"></image>
+    </block>
+    <block wx:if="{{item.selected==0}}">
+    <image mode="aspectFix" src="/public/image/checkbox.png" style="width:40rpx;height:40rpx" data-index="{{index}}" bindtap="change_selected"></image>
+    </block>
+    <image src="{{item.row_product.img}}" mode="aspectFit"></image>
     <view class="p_cart_info">
       <view class="product_name">
-        iphone11iphone11iphone11iphone11iphone11iphone11
+        {{item.row_product.name}}
       </view>
       <view class="product_spec">
-        规格:默认
+        规格:
+        <block wx:if="{{item.row_product.single_spec=='1'}}">
+          默认
+        </block>
+        <block wx:if="{{item.row_product.single_spec=='0'}}">
+          <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_row_spec">
+            <block wx:if="{{index_row_spec>0}}">
+            ,
+            </block>
+            {{row_spec.name}}
+          </block>
+        </block>
       </view>
       <view class="p_price">
         <view class="price">
-          ￥1.00
+          ￥{{item.row_productspec.price}}
         </view>
         <view class="p_btns">
-          <view class="subduce">
+          <view class="subduce" data-index="{{index}}" bindtap="subduce">
             -
           </view>
           <view class="number">
-            1
+            {{item.number}}
           </view>
-          <view class="add">
+          <view class="add" data-index="{{index}}" bindtap="add">
             +
           </view>
         </view>
       </view>
     </view>
   </view>
-
+  </block>
 
 </view>
 
 
   <view class="p_bottom">
-    <radio value="all"></radio>
+    <block wx:if="{{select_all==1}}">
+    <image mode="aspectFix" src="/public/image/checkbox_selected.png" style="width:40rpx;height:40rpx" bindtap="change_select_all"></image>
+    </block>
+    <block wx:if="{{select_all==0}}">
+    <image mode="aspectFix" src="/public/image/checkbox.png" style="width:40rpx;height:40rpx" bindtap="change_select_all"></image>
+    </block>
     <view class="select_all">
-      全选(2)
+      全选({{count_cart}})
     </view>
-    <block wx:if="{{false}}">
+    <block wx:if="{{is_editing==0}}">
     <view class="p_build_bill">
       <view class="all_price">
-        ￥10.00
+        ￥{{all_money}}
       </view>
-      <view class="build_bill">
+      <view class="build_bill" bindtap="build_bill">
         立即下单
       </view>
     </view>
     </block>
-    <block wx:if="{{true}}">
+    <block wx:if="{{is_editing==1}}">
     <view class="p_edit">
-      <view class="delete">
+      <view class="delete" bindtap="delete_cart">
         删除
       </view>
     </view>

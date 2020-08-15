@@ -17,6 +17,7 @@ page
 {
   color: #f10b0b;
   flex-grow: 1;
+  flex-shrink: 0;
   border: none;
   text-align: left;
   padding: 0rpx 20rpx;
@@ -55,7 +56,8 @@ page
   width: 160rpx;
   height: 160rpx;
   border-radius: 20rpx;
-  flex-grow: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .p_cart_info
 {
