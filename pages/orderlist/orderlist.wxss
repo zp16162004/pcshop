@@ -62,3 +62,138 @@
   height: 40rpx;
   line-height: 40rpx;
 }
+.order
+{
+  margin:20rpx 20rpx;
+  padding: 0rpx 20rpx;
+}
+.order_head
+{
+  padding: 10rpx 0rpx;
+  /* border-bottom: 1px solid #e9e9e9; */
+}
+.order_type
+{
+  color: #f10b0b;
+  font-size: 24rpx;
+  border: 1px solid #f10b0b;
+  padding: 0rpx 10rpx;
+}
+.fdate
+{
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 0rpx 10rpx;
+}
+.order_state
+{
+  color: #f10b0b;
+  padding: 0rpx 10rpx;
+}
+
+
+.product
+{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10rpx 0rpx;
+}
+.product>image
+{
+  width: 120rpx;
+  height: 120rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.product_info
+{
+  padding-left:20rpx ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.p_line1
+{
+  width: 100%;
+  height: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.product_name
+{
+  font-weight: 600;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  flex-grow: 1;
+}
+.product_count
+{
+  padding: 0rpx 20rpx;
+  flex-grow: 0;
+  color: #656565;
+}
+.p_line2
+{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: #656565;
+}
+.product_price
+{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #f10b0b;
+}
+
+.money_info
+{
+  font-size: 22rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.money_info>.color_red
+{
+  font-size: 26rpx;
+}
+
+
+
+
+.btns
+{
+  padding: 20rpx 0rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.btn_disabled
+{
+  font-size: 22rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+  padding: 0rpx 50rpx;
+  margin-left: 20rpx;
+  color: #656565;
+  border: 1px solid #e9e9e9;
+}
+.btn
+{
+  font-size: 22rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+  padding: 0rpx 50rpx;
+  margin-left: 20rpx;
+  color: #ffffff;
+  background-color: #f10b0b;
+}

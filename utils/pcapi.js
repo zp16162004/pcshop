@@ -940,6 +940,28 @@ function edit_cart(cart_id,number,func)
     }
   })
 }
+function get_order(member_id,state,p,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_order",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      state:state,
+      p:p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -986,4 +1008,5 @@ module.exports = {
   get_cart:get_cart,
   delete_cart:delete_cart,
   edit_cart:edit_cart,
+  get_order:get_order,
 }
