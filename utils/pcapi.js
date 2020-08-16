@@ -962,6 +962,28 @@ function get_order(member_id,state,p,func)
     }
   })
 }
+function change_order_state(member_id,order_id,state,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/change_order_state",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      order_id:order_id,
+      state:state,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1009,4 +1031,5 @@ module.exports = {
   delete_cart:delete_cart,
   edit_cart:edit_cart,
   get_order:get_order,
+  change_order_state:change_order_state,
 }

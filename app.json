@@ -25,7 +25,8 @@
     "pages/list_checklog/list_checklog",
     "pages/collection/collection",
     "pages/orderlist/orderlist",
-    "pages/refundlist/refundlist"
+    "pages/refundlist/refundlist",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

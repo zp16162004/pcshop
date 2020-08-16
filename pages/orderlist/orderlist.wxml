@@ -285,15 +285,15 @@
     <!--按钮-->
     <view class="btns flex_row_end">
       <block wx:if="{{item.state==0}}">
-      <view class="btn_disabled">
+      <view class="btn_disabled" data-id="{{item.id}}" bindtap="cancel_order">
         取消订单
       </view>
-      <view class="btn">
+      <view class="btn" data-id="{{item.id}}" bindtap="pay_order">
         立即付款
       </view>
       </block>
       <block wx:if="{{item.state!=0}}">
-      <view class="btn">
+      <view class="btn" data-id="{{item.id}}" bindtap="view_order">
         查看详情
       </view>
       </block>

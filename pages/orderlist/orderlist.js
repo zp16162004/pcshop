@@ -198,4 +198,88 @@ Page({
       }
     );
   },
+  cancel_order:function(e)
+  {
+    var order_id=e.currentTarget.dataset.id;
+    var thiss=this;
+    pcapi.change_order_state(
+      thiss.data.row_member.id,
+      order_id,
+      9,
+      function(res)
+      {
+        if(res.data.code==0)
+        {
+          util.show_model(res.data.msg);
+        }
+        else{
+          wx.showToast({
+            title: res.data.msg,
+          });
+          thiss.refresh_member();
+          thiss.get_order();
+        }
+      }
+    );
+  },
+  pay_order:function(e)
+  {
+    var order_id=e.currentTarget.dataset.id;
+    var thiss=this;
+    thiss.setData(
+      {
+        order_id:order_id,
+      }
+    );
+    thiss.get_prepay_id();
+  },
+  get_prepay_id:function()
+  {
+    var thiss=this;
+    pcapi.get_prepay_id(
+      thiss.data.order_id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              prepay_id:res.data.prepay_id,
+              nonceStr:res.data.nonceStr,
+              timeStamp:res.data.timeStamp,
+              sign:res.data.sign,
+            }
+          );
+          thiss.to_pay();
+        }
+        else{
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  //去付款
+  to_pay:function()
+  {
+    var thiss=this;
+    pcapi.do_pay(
+      thiss.data.nonceStr,
+      thiss.data.prepay_id,
+      thiss.data.timeStamp,
+      thiss.data.sign,
+      function(res)
+      {
+        console.log(res);
+      },
+      function(res)
+      {
+        console.log(res);
+      },
+      function(res)
+      {
+        //获取订单状态
+        thiss.get_order();
+      }
+    );
+  },
 })
