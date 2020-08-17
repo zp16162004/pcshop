@@ -20,6 +20,7 @@ Page({
   //获取用户信息权限
   do_login:function(res)
   {
+    var thiss=this;
     this.setData(
       {
         show_login:false,
@@ -68,6 +69,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("show");
+    console.log(app.globalData);
     if(app.globalData.row_member==null)
     {
       this.setData(

@@ -1,1 +1,51 @@
 /* pages/order/order.wxss */
+.head
+{
+  padding: 30rpx 20rpx;
+  background-color: #f10b0b;
+}
+.head_right
+{
+  flex-grow: 1;
+  padding: 0rpx 20rpx;
+}
+.head_right>.info
+{
+  font-weight: 600;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.head_right>.fdate
+{
+  font-size: 22rpx;
+  color: #e9e9e9;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+
+
+.p_item
+{
+  flex-grow: 1;
+  position: relative;
+  padding: 20rpx 0rpx;
+}
+.p_item>.txt
+{
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.line
+{
+  position: absolute;
+  top: 70rpx;
+  left: 50%;
+  padding:0rpx 20rpx;
+  height: 2rpx;
+  background-color: #656565;
+  box-sizing: border-box;
+  background-size: 80%;
+}

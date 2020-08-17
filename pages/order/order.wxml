@@ -1,2 +1,24 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="head flex_row_center">
+  <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading1.gif" style="width:100rpx;height:100rpx"></image>
+  <view class="head_right">
+    <view class="info color_white">
+      请于24小时内完成支付
+    </view>
+    <view class="fdate">
+      2020-01-01 10:00:00
+    </view>
+  </view>
+</view>
+
+<!--进度-->
+<view class="process flex_row_center">
+  <view class="p_item flex_column_center">
+    <view class="txt">
+      代付款
+    </view>
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    <view class="line" style="left:{{line_left}}px;">
+    </view>
+  </view>
+</view>

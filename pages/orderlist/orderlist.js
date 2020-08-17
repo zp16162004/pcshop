@@ -233,6 +233,14 @@ Page({
     );
     thiss.get_prepay_id();
   },
+  view_order:function(e)
+  {
+    var order_id=e.currentTarget.dataset.id;
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/order/order?order_id='+order_id,
+    })
+  },
   get_prepay_id:function()
   {
     var thiss=this;

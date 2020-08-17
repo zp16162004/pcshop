@@ -44,6 +44,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    domain:'https://shop.e-notice.cn',
     host:"https://shop.e-notice.cn/admin.php",
   }
 })
