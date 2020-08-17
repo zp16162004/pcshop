@@ -1,24 +1,296 @@
 <!--pages/order/order.wxml-->
 <view class="head flex_row_center">
+  <block wx:if="{{row_order.state==0}}">
   <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading1.gif" style="width:100rpx;height:100rpx"></image>
   <view class="head_right">
     <view class="info color_white">
-      请于24小时内完成支付
+      请于{{row_order.last_paytime}}前完成支付
     </view>
     <view class="fdate">
-      2020-01-01 10:00:00
+      {{row_order.fdate}}
     </view>
   </view>
+  </block>
+  <block wx:if="{{row_order.state==1}}">
+  <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading3.gif" style="width:100rpx;height:100rpx"></image>
+  <view class="head_right">
+    <view class="info color_white">
+      请耐心等待商家发货
+    </view>
+    <view class="fdate">
+      {{row_order.fdate}}
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{row_order.state==2}}">
+  <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading3.gif" style="width:100rpx;height:100rpx"></image>
+  <view class="head_right">
+    <view class="info color_white">
+      <block wx:for="{{row_order.rows_orderlog}}">
+        <block wx:if="{{item.state==2}}">
+          商家已于{{item.fdate}}发货
+        </block>
+      </block>
+    </view>
+    <view class="fdate">
+      {{row_order.fdate}}
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{row_order.state==3}}">
+  <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading4.gif" style="width:100rpx;height:100rpx"></image>
+  <view class="head_right">
+    <view class="info color_white">
+      <block wx:for="{{row_order.rows_orderlog}}">
+        <block wx:if="{{item.state==3}}">
+          已于{{item.fdate}}收到货物
+        </block>
+      </block>
+    </view>
+    <view class="fdate">
+      {{row_order.fdate}}
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{row_order.state==4}}">
+  <image mode="aspectFit" src="{{domain}}/Public/images/wechat/loading5.gif" style="width:100rpx;height:100rpx"></image>
+  <view class="head_right">
+    <view class="info color_white">
+      订单已完成，感谢您的支持
+    </view>
+    <view class="fdate">
+      {{row_order.fdate}}
+    </view>
+  </view>
+  </block>
 </view>
 
 <!--进度-->
 <view class="process flex_row_center">
+  <block wx:if="{{row_order.deliver_type=='0'}}">
   <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=0}}">
+    <view class="txt color_red">
+      待付款
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<0}}">
     <view class="txt">
-      代付款
+      待付款
     </view>
+    </block>
+    <block wx:if="{{row_order.state>=0}}">
     <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
-    <view class="line" style="left:{{line_left}}px;">
+    </block>
+    <block wx:if="{{row_order.state<0}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>0}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
     </view>
+    </block>
+    <block wx:if="{{row_order.state<=0}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
   </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=1}}">
+    <view class="txt color_red">
+      待发货
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<1}}">
+    <view class="txt">
+      待发货
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=1}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<1}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>1}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=1}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=2}}">
+    <view class="txt color_red">
+      待收货
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<2}}">
+    <view class="txt">
+      待收货
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=2}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<2}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>2}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=2}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=3}}">
+    <view class="txt color_red">
+      待评论
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<3}}">
+    <view class="txt">
+      待评论
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=3}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<3}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>3}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=3}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=4}}">
+    <view class="txt color_red">
+      已完成
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<4}}">
+    <view class="txt">
+      已完成
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=4}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<4}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+  </view>
+  </block>
+  <block wx:if="{{row_order.deliver_type=='1'}}">
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=0}}">
+    <view class="txt color_red">
+      待付款
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<0}}">
+    <view class="txt">
+      待付款
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=0}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<0}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>0}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=0}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=2}}">
+    <view class="txt color_red">
+      待核销
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<2}}">
+    <view class="txt">
+      待核销
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=2}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<2}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>2}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=2}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=3}}">
+    <view class="txt color_red">
+      待评论
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<3}}">
+    <view class="txt">
+      待评论
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=3}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<3}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state>3}}">
+    <view class="line_selected" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<=3}}">
+    <view class="line" style="left:{{line_left}}px;width:{{line_width}}px">
+    </view>
+    </block>
+  </view>
+  <view class="p_item flex_column_center">
+    <block wx:if="{{row_order.state>=4}}">
+    <view class="txt color_red">
+      已结束
+    </view>
+    </block>
+    <block wx:if="{{row_order.state<4}}">
+    <view class="txt">
+      已结束
+    </view>
+    </block>
+    <block wx:if="{{row_order.state>=4}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle_red.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+    <block wx:if="{{row_order.state<4}}">
+    <image mode="aspectFit" src="{{domain}}/Public/images/wechat/circle.png" style="width:20rpx;height:20rpx"></image>
+    </block>
+  </view>
+  </block>
 </view>
+
+
+
+

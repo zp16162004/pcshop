@@ -37,6 +37,12 @@
   height: 40rpx;
   line-height: 40rpx;
 }
+.p_item>.txt_item
+{
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
 
 .line
 {
@@ -46,6 +52,13 @@
   padding:0rpx 20rpx;
   height: 2rpx;
   background-color: #656565;
-  box-sizing: border-box;
-  background-size: 80%;
+}
+.line_selected
+{
+  position: absolute;
+  top: 70rpx;
+  left: 50%;
+  padding:0rpx 20rpx;
+  height: 2rpx;
+  background-color: #f10b0b;
 }

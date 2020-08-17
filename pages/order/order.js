@@ -10,6 +10,7 @@ Page({
   data: {
     domain:'',
     line_left:0,
+    line_width:0,
     order_id:0,
     get_order_detail:null,
   },
@@ -119,5 +120,28 @@ Page({
   ini_extra_info:function()
   {
     //
+    var thiss=this;
+    if(parseInt(thiss.data.row_order.deliver_type)==0)
+    {
+      thiss.data.line_width=util.rpx2px((750/5)-40,thiss.data.systeminfo);
+      thiss.data.line_left=util.rpx2px((750/10)+20,thiss.data.systeminfo);
+      thiss.setData(
+        {
+          line_left:thiss.data.line_left,
+          line_width:thiss.data.line_width,
+        }
+      );
+    }
+    else if(parseInt(thiss.data.row_order.deliver_type)==1)
+    {
+      thiss.data.line_width=util.rpx2px(parseInt((750/4)-40),thiss.data.systeminfo);
+      thiss.data.line_left=util.rpx2px(parseInt((750/8)+20),thiss.data.systeminfo);
+      thiss.setData(
+        {
+          line_left:thiss.data.line_left,
+          line_width:thiss.data.line_width,
+        }
+      );
+    }
   },
 })
