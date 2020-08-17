@@ -423,7 +423,7 @@
     <block wx:if="{{row_order.pay_type==0}}">
     微信支付
     </block>
-    <block wx:if="{{row_order.pay_type==0}}">
+    <block wx:if="{{row_order.pay_type==1}}">
     余额支付
     </block>
   </view>
@@ -494,12 +494,12 @@
         立即付款
       </view>
       </block>
-      <block wx:if="{{row_order.state==2}}">
-      <view class="btn" data-id="{{item.id}}">
-        确认收货
+      <block wx:if="{{row_order.state!=0}}">
+      <view class="btn_disabled" data-id="{{item.id}}">
+        申请退款
       </view>
       </block>
-      <block wx:if="{{row_order.state==3}}">
+      <block wx:if="{{row_order.state==2}}">
       <view class="btn" data-id="{{item.id}}">
         确认收货
       </view>
