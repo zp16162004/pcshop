@@ -1004,6 +1004,27 @@ function get_order_detail(order_id,func)
     }
   })
 }
+function pay_with_money(member_id,order_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/pay_with_money",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      order_id:order_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1053,4 +1074,5 @@ module.exports = {
   get_order:get_order,
   change_order_state:change_order_state,
   get_order_detail:get_order_detail,
+  pay_with_money:pay_with_money,
 }

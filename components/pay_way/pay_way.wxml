@@ -1,0 +1,33 @@
+<!--components/pay_way/pay_way.wxml-->
+<view class="background flex_column_end" bindtap="cancel">
+  <view class="head bg_white flex_row_center">
+    <view class="txt">
+      选择支付方式
+    </view>
+    <image mode="aspectFit" style="width:50rpx;height:50rpx" src="/public/image/delete.png" catchtap="cancel"></image>
+  </view>
+  <view class="pay_way flex_row_center bg_white" data-id="0" catchtap="pick_pay_way">
+    <image mode="aspectFit" style="width:50rpx;height:50rpx" src="/public/image/wechat_pay.png"></image>
+    <view class="pay_info">
+      <view class="txt">
+        微信支付
+      </view>
+      <view class="info color_gray">
+        微信快捷支付
+      </view>
+    </view>
+  </view>
+  <view class="pay_way flex_row_center bg_white" data-id="1" catchtap="pick_pay_way">
+    <image mode="aspectFit" style="width:50rpx;height:50rpx" src="/public/image/yue_pay.png"></image>
+    <view class="pay_info flex_column_start">
+      <view class="txt">
+        余额支付
+      </view>
+      <view class="info color_gray">
+        可用余额:￥{{row_member.money}}
+      </view>
+    </view>
+  </view>
+  <view class="empty bg_white">
+  </view>
+</view>

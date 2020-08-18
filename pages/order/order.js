@@ -8,10 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    show_login:false,
+    show_pay_way:false,
     domain:'',
     line_left:0,
     line_width:0,
     order_id:0,
+    row_member:null,
     get_order_detail:null,
   },
 
@@ -55,7 +58,76 @@ Page({
    */
   onShow: function () {
     var thiss=this;
-    thiss.get_order_detail();
+    if(app.globalData.row_member==null)
+    {
+      this.setData(
+        {
+          show_login:true,
+        }
+      );
+    }
+    else{
+      this.refresh_member();
+    }
+    // thiss.get_order_detail();
+  },
+  //获取用户信息权限
+  do_login:function(res)
+  {
+    this.setData(
+      {
+        show_login:false,
+      }
+    );
+    console.log(res);
+    wx.login({
+      success:function(res)
+      {
+        console.log(res.code);
+        pcapi.do_login(res.code,
+            function(res)
+            {
+              console.log(res);
+              if(res.data.code==1)
+              {
+                app.globalData.row_member=res.data.data;
+                app.save_data();
+                thiss.setData(
+                  {
+                    p:1,
+                    row_member:res.data.data,
+                  }
+                );
+                thiss.get_order_detail();
+              }
+              else{
+                util.show_model_and_back(res.data.msg);
+              }
+            }
+          );
+      },
+      fail:function(res)
+      {
+        util.show_model_and_back('登录失败');
+      }
+    })
+  },
+  refresh_member:function()
+  {
+    var thiss=this;
+    pcapi.refresh_member(
+      function(res)
+      {
+        console.log(res);
+        thiss.setData(
+          {
+            p:1,
+            row_member:res.data.data,
+          }
+        );
+        thiss.get_order_detail();
+      }
+    );
   },
 
   /**
@@ -143,5 +215,27 @@ Page({
         }
       );
     }
+  },
+  cancel_order:function(e)
+  {
+    var thiss=this;
+    pcapi.change_order_state(
+      thiss.data.row_member.id,
+      thiss.data.order_id,
+      9,
+      function(res)
+      {
+        if(res.data.code==0)
+        {
+          util.show_model(res.data.msg);
+        }
+        else{
+          wx.showToast({
+            title: res.data.msg,
+          });
+          thiss.get_order_detail();
+        }
+      }
+    );
   },
 })

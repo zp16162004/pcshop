@@ -9,6 +9,7 @@ Page({
    */
   data: {
     show_login:false,
+    show_pay_way:false,
     state:0,//
     row_member:null,
     p:1,
@@ -229,9 +230,31 @@ Page({
     thiss.setData(
       {
         order_id:order_id,
+        show_pay_way:true,
       }
     );
-    thiss.get_prepay_id();
+    // thiss.get_prepay_id();
+  },
+  do_pay:function(e)
+  {
+    var thiss=this;
+    thiss.setData(
+      {
+        show_pay_way:false,
+      }
+    );
+    if(e.detail.code==1)
+    {
+      var pay_type=parseInt(e.detail.pay_type);
+      if(pay_type==0)
+      {
+        thiss.get_prepay_id();
+      }
+      else
+      {
+        thiss.pay_with_money();//使用余额支付
+      }
+    }
   },
   view_order:function(e)
   {
@@ -290,4 +313,30 @@ Page({
       }
     );
   },
+  pay_with_money:function()
+  {
+    var thiss=this;
+    pcapi.pay_with_money(
+      thiss.data.row_member.id,
+      thiss.data.order_id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          wx.showToast({
+            title: res.data.msg,
+          })
+          thiss.setData(
+            {
+              p:1,
+            }
+          );
+          thiss.get_order();
+        }
+        else{
+          util.show_model(res.data.msg);
+        }
+      }
+    );
+  }
 })

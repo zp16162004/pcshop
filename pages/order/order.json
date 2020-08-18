@@ -1,3 +1,4 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "login":"/components/login/login"}
 }

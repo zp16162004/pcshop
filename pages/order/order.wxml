@@ -374,13 +374,27 @@
       </block>
     </view>
     <block wx:if="{{type==0}}">
-    <view class="product_price">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
       ￥{{item.row_productspec.price}}
+      </view>
+      <block wx:if="{{row_order.state==1}}">
+      <view class="comment">
+        评论
+      </view>
+      </block>
     </view>
     </block>
     <block wx:if="{{type!=0}}">
-    <view class="product_price">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
       ￥{{item.price}}
+      </view>
+      <block wx:if="{{row_order.state==1}}">
+      <view class="comment">
+        评论
+      </view>
+      </block>
     </view>
     </block>
   </view>
@@ -436,7 +450,7 @@
     <block wx:if="{{row_order.state==0}}">
     未支付
     </block>
-    <block wx:if="{{row_order.pay_type!=0}}">
+    <block wx:if="{{row_order.state!=0}}">
     已支付
     </block>
   </view>
@@ -506,3 +520,13 @@
       </block>
     </view>
 
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>
+<!--付款方式选择-->
+<block wx:if="{{show_pay_way}}">
+  <pay_way row_member="{{row_member}}" bindconfirm="do_pay">
+  </pay_way>
+</block>

@@ -202,9 +202,19 @@
 .product_price
 {
   width: 100%;
+}
+.comment
+{
+  padding: 0rpx 10rpx;
+  font-size: 22rpx;
+  color: #656565;
+  border: 1px solid #656565;
+}
+.product_price>.txt
+{
   height: 40rpx;
   line-height: 40rpx;
-  color: #f10b0b;
+  flex-grow: 1;
 }
 
 

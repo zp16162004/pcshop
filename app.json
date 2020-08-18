@@ -26,7 +26,10 @@
     "pages/collection/collection",
     "pages/orderlist/orderlist",
     "pages/refundlist/refundlist",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/add_comment/add_comment",
+    "pages/add_orderrefund/add_orderrefund",
+    "pages/refund/refund"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -66,7 +69,8 @@
     ]
   },
   "usingComponents": {
-    "parser": "/components/parser.20200414.min/parser"
+    "parser": "/components/parser.20200414.min/parser",
+    "pay_way": "/components/pay_way/pay_way"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

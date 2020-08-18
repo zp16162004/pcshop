@@ -300,3 +300,13 @@
     </view>
   </view>
 </block>
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>
+<!--付款方式选择-->
+<block wx:if="{{show_pay_way}}">
+  <pay_way row_member="{{row_member}}" bindconfirm="do_pay">
+  </pay_way>
+</block>
