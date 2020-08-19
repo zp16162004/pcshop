@@ -1,2 +1,133 @@
 <!--pages/add_orderrefund/add_orderrefund.wxml-->
-<text>pages/add_orderrefund/add_orderrefund.wxml</text>
+<block wx:for="{{row_order.rows_orderlist}}">
+<view  class="product">
+  <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/checkbox.png"></image>
+  <block wx:if="{{item.row_productspec.spec_img!=''}}">
+  <image src="{{item.row_productspec.spec_img}}" mode="aspectFit"></image>
+  </block>
+  <block wx:if="{{item.row_productspec.spec_img==''}}">
+  <image src="{{item.row_product.img}}" mode="aspectFit"></image>
+  </block>
+  <view class="product_info">
+    <view class="p_line1">
+      <view class="product_name">
+        {{item.row_product.name}}
+      </view>
+      <view class="product_count">
+        x{{item.count}}
+      </view>
+    </view>
+    <view class="p_line2">
+      规格:
+      <!--单规格-->
+      <block wx:if="{{item.row_product.single_spec=='1'}}">
+        默认
+      </block>
+      <!--多规格-->
+      <block wx:if="{{item.row_product.single_spec=='0'}}">
+      <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+        <block wx:if="{{index_spec>0}}">
+        ，
+        </block>
+        {{row_spec.name}}
+      </block>
+      </block>
+    </view>
+    <block wx:if="{{type==0}}">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
+      ￥{{item.row_productspec.price}}
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{type!=0}}">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
+      ￥{{item.price}}
+      </view>
+    </view>
+    </block>
+  </view>
+</view>
+</block>
+
+
+<view class="line flex_row_center">
+  <view class="txt color_gray">
+    退货件数
+  </view>
+  <view class="val flex_row_end">
+    <view class="p_number flex_row_center">
+      <view class="reduce color_gray">
+        -
+      </view>
+      <view class="number">
+      2
+      </view>
+      <view class="add color_gray">
+        +
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="line flex_row_center">
+  <view class="txt color_gray">
+    退款金额
+  </view>
+  <view class="val flex_row_end">
+    ￥2.00
+  </view>
+</view>
+
+
+<view class="line flex_row_center">
+  <view class="txt color_gray">
+    退款原因
+  </view>
+  <view class="val flex_row_end">
+    收货地址填错了>
+  </view>
+</view>
+<view class="flex_row_center" style="padding:20rpx">
+  <view class="txt color_gray">
+    备注说明
+  </view>
+  <view class="val flex_row_end">
+    <textarea class="content" placeholder="请填写描述">
+    </textarea>
+  </view>
+</view>
+<view class="line flex_row_center">
+  <view class="txt color_gray">
+    上传凭证
+  </view>
+  <view class="val flex_row_end">
+    <view class="color_gray">
+      最多上传3张图片
+    </view>
+  </view>
+</view>
+
+<view class="imgs flex_row_start">
+  <view class="img">
+    <image mode="aspectFit" style="width:120rpx;height:120rpx;margin-left:20rpx" src="/public/image/product.jpg"></image>
+    <image mode="aspectFit" class="delete_img" style="width:30rpx;height:30rpx" src="/public/image/delete.png"></image>
+  </view>
+  <view class="img">
+    <image mode="aspectFit" class="add_img" style="width:120rpx;height:120rpx;margin-left:20rpx" src="{{domain}}/Public/images/wechat/upload_img.png"></image>
+  </view>
+</view>
+
+<view class="btns flex_row_center">
+  <view class="btn color_white">
+    提交申请
+  </view>
+</view>
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

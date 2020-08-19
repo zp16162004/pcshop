@@ -543,7 +543,7 @@ Page({
         var row_fare=null;
         if(thiss.data.type==0)
         {
-          row_fare=row_orderlist.row_productspec.row_fare;
+          row_fare=row_orderlist.row_product.row_fare;
         }
         else if(thiss.data.type==3)
         {
@@ -819,7 +819,7 @@ Page({
       thiss.data.mobile,
       thiss.data.fnote,
       thiss.data.all_money,
-      thiss.data.diliver_money,
+      thiss.data.deliver_money,
       thiss.data.integral,
       thiss.data.integral_discount,
       thiss.data.row_couponlist==null?0:thiss.data.row_couponlist.id,

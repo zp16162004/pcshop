@@ -238,4 +238,161 @@ Page({
       }
     );
   },
+  do_recieve:function()
+  {
+    var thiss=this;
+    pcapi.change_order_state(
+      thiss.data.row_member.id,
+      thiss.data.order_id,
+      3,
+      function(res)
+      {
+        if(res.data.code==0)
+        {
+          util.show_model(res.data.msg);
+        }
+        else{
+          wx.showToast({
+            title: res.data.msg,
+          });
+          thiss.get_order_detail();
+        }
+      }
+    );
+  },
+  copy:function(e)
+  {
+    var thiss=this;
+    wx.setClipboardData({
+      data: thiss.data.row_order.orderno,
+      success:function()
+      {
+        wx.showToast({
+          title: '订单编号复制成功',
+        })
+      }
+    })
+  },
+  comment:function(e)
+  {
+    var thiss=this;
+    var index=parseInt(e.currentTarget.dataset.index);
+    console.log('/pages/add_comment/add_comment?order_id='+thiss.data.order_id+"&orderlist_id="+thiss.data.row_order.rows_orderlist[index].id);
+    wx.navigateTo({
+      url: '/pages/add_comment/add_comment?order_id='+thiss.data.order_id+"&orderlist_id="+thiss.data.row_order.rows_orderlist[index].id,
+    })
+  },
+  add_orderrefund:function()
+  {
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/add_orderrefund/add_orderrefund?order_id='+thiss.data.order_id,
+    })
+  },
+  pay_order:function(e)
+  {
+    var thiss=this;
+    thiss.setData(
+      {
+        show_pay_way:true,
+      }
+    );
+    // thiss.get_prepay_id();
+  },
+  do_pay:function(e)
+  {
+    var thiss=this;
+    thiss.setData(
+      {
+        show_pay_way:false,
+      }
+    );
+    if(e.detail.code==1)
+    {
+      var pay_type=parseInt(e.detail.pay_type);
+      if(pay_type==0)
+      {
+        thiss.get_prepay_id();
+      }
+      else
+      {
+        thiss.pay_with_money();//使用余额支付
+      }
+    }
+  },
+  get_prepay_id:function()
+  {
+    var thiss=this;
+    pcapi.get_prepay_id(
+      thiss.data.order_id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          thiss.setData(
+            {
+              prepay_id:res.data.prepay_id,
+              nonceStr:res.data.nonceStr,
+              timeStamp:res.data.timeStamp,
+              sign:res.data.sign,
+            }
+          );
+          thiss.to_pay();
+        }
+        else{
+          util.show_model_and_back(res.data.msg);
+        }
+      }
+    );
+  },
+  //去付款
+  to_pay:function()
+  {
+    var thiss=this;
+    pcapi.do_pay(
+      thiss.data.nonceStr,
+      thiss.data.prepay_id,
+      thiss.data.timeStamp,
+      thiss.data.sign,
+      function(res)
+      {
+        console.log(res);
+      },
+      function(res)
+      {
+        console.log(res);
+      },
+      function(res)
+      {
+        //获取订单状态
+        thiss.get_order_detail();
+      }
+    );
+  },
+  pay_with_money:function()
+  {
+    var thiss=this;
+    pcapi.pay_with_money(
+      thiss.data.row_member.id,
+      thiss.data.order_id,
+      function(res)
+      {
+        if(res.data.code==1)
+        {
+          wx.showToast({
+            title: res.data.msg,
+          })
+          thiss.setData(
+            {
+              p:1,
+            }
+          );
+          thiss.get_order_detail();
+        }
+        else{
+          util.show_model(res.data.msg);
+        }
+      }
+    );
+  }
 })

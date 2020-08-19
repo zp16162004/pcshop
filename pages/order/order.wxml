@@ -391,7 +391,7 @@
       ￥{{item.price}}
       </view>
       <block wx:if="{{row_order.state==1}}">
-      <view class="comment">
+      <view class="comment" data-index="{{index}}" bindtap="comment">
         评论
       </view>
       </block>
@@ -416,7 +416,7 @@
   </view>
   <view class="info_right flex_row_end color_gray">
     {{row_order.orderno}}
-    <view class="copy">
+    <view class="copy" bindtap="copy">
       复制
     </view>
   </view>
@@ -450,7 +450,10 @@
     <block wx:if="{{row_order.state==0}}">
     未支付
     </block>
-    <block wx:if="{{row_order.state!=0}}">
+    <block wx:if="{{row_order.state==9}}">
+    已取消
+    </block>
+    <block wx:if="{{row_order.state!=0&&row_order.state!=9}}">
     已支付
     </block>
   </view>
@@ -508,13 +511,13 @@
         立即付款
       </view>
       </block>
-      <block wx:if="{{row_order.state!=0}}">
-      <view class="btn_disabled" data-id="{{item.id}}">
+      <block wx:if="{{row_order.state!=0&&row_order.state!=9}}">
+      <view class="btn_disabled" data-id="{{item.id}}" catchtap="add_orderrefund">
         申请退款
       </view>
       </block>
       <block wx:if="{{row_order.state==2}}">
-      <view class="btn" data-id="{{item.id}}">
+      <view class="btn" data-id="{{item.id}}" bindtap="do_recieve">
         确认收货
       </view>
       </block>

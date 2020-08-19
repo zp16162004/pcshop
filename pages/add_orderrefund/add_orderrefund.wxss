@@ -1,1 +1,154 @@
 /* pages/add_orderrefund/add_orderrefund.wxss */
+.product
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+}
+.product>image
+{
+  width: 120rpx;
+  height: 120rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.product_info
+{
+  padding-left:20rpx ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.p_line1
+{
+  width: 100%;
+  height: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.product_name
+{
+  font-weight: 600;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  flex-grow: 1;
+}
+.product_count
+{
+  padding: 0rpx 20rpx;
+  flex-grow: 0;
+  color: #656565;
+}
+.p_line2
+{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: #656565;
+}
+.product_price
+{
+  width: 100%;
+}
+.comment
+{
+  padding: 0rpx 10rpx;
+  font-size: 22rpx;
+  color: #656565;
+  border: 1px solid #656565;
+}
+.product_price>.txt
+{
+  height: 40rpx;
+  line-height: 40rpx;
+  flex-grow: 1;
+}
+
+.content
+{
+  width: 100%;
+  height: 80rpx;
+  padding: 10rpx;
+  text-align: right;
+}
+
+.line
+{
+  padding: 0rpx 20rpx;
+  height: 60rpx;
+}
+.val
+{
+  flex-grow: 1;
+}
+.p_number
+{
+  border-radius: 10rpx;
+  border: 1px solid #656565;
+}
+.reduce
+{
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+.number
+{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0rpx 10rpx;
+}
+.add
+{
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+
+
+
+
+.imgs
+{
+  padding: 20rpx 0rpx;
+}
+.img
+{
+  position: relative;
+}
+.delete_img
+{
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+}
+.add_img
+{
+  border: 1px solid #656565;
+  border-radius: 10rpx;
+}
+
+.btns
+{
+  padding: 20rpx 0rpx;
+}
+.btn
+{
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  background-color: #f10b0b;
+  width: 600rpx;
+}

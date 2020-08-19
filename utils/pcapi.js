@@ -1025,6 +1025,20 @@ function pay_with_money(member_id,order_id,func)
     }
   })
 }
+function upload_img(src,func)
+{
+  var thiss=this;
+  wx.uploadFile({
+    filePath: src,
+    name: "img",
+    url: app.globalData.host+"/Service/uploadimg",
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1075,4 +1089,5 @@ module.exports = {
   change_order_state:change_order_state,
   get_order_detail:get_order_detail,
   pay_with_money:pay_with_money,
+  upload_img:upload_img,
 }

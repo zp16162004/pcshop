@@ -1,2 +1,116 @@
 <!--pages/add_comment/add_comment.wxml-->
-<text>pages/add_comment/add_comment.wxml</text>
+<block wx:for="{{row_order.rows_orderlist}}">
+<view  class="product">
+  <block wx:if="{{item.row_productspec.spec_img!=''}}">
+  <image src="{{item.row_productspec.spec_img}}" mode="aspectFit"></image>
+  </block>
+  <block wx:if="{{item.row_productspec.spec_img==''}}">
+  <image src="{{item.row_product.img}}" mode="aspectFit"></image>
+  </block>
+  <view class="product_info">
+    <view class="p_line1">
+      <view class="product_name">
+        {{item.row_product.name}}
+      </view>
+      <view class="product_count">
+        x{{item.count}}
+      </view>
+    </view>
+    <view class="p_line2">
+      规格:
+      <!--单规格-->
+      <block wx:if="{{item.row_product.single_spec=='1'}}">
+        默认
+      </block>
+      <!--多规格-->
+      <block wx:if="{{item.row_product.single_spec=='0'}}">
+      <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+        <block wx:if="{{index_spec>0}}">
+        ，
+        </block>
+        {{row_spec.name}}
+      </block>
+      </block>
+    </view>
+    <block wx:if="{{type==0}}">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
+      ￥{{item.row_productspec.price}}
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{type!=0}}">
+    <view class="product_price flex_row_center">
+      <view class="txt color_red">
+      ￥{{item.price}}
+      </view>
+    </view>
+    </block>
+  </view>
+</view>
+</block>
+
+<view class="stars flex_column_start">
+  <view class="p_star flex_row_center">
+    <view class="txt">
+      商品质量
+    </view>
+    <block wx:for="{{rows_star}}">
+      <block wx:if="{{star_count>=item}}">
+      <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/check.png" data-count="{{item}}" bindtap="change_star_count"></image>
+      </block>
+      <block wx:if="{{star_count<item}}">
+      <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/uncheck.png" data-count="{{item}}" bindtap="change_star_count"></image>
+      </block>
+    </block>
+    <view class="count color_gray">
+    {{star_count}}分
+    </view>
+  </view>
+  <view class="p_star flex_row_center">
+    <view class="txt">
+      商品质量
+    </view>
+    <block wx:for="{{rows_star}}">
+      <block wx:if="{{service_count>=item}}">
+      <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/check.png" data-count="{{item}}" bindtap="change_service_count"></image>
+      </block>
+      <block wx:if="{{service_count<item}}">
+      <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/uncheck.png" data-count="{{item}}" bindtap="change_service_count"></image>
+      </block>
+    </block>
+    <view class="count color_gray">
+    {{service_count}}分
+    </view>
+  </view>
+</view>
+
+
+<textarea class="content" placeholder="请填写描述" bindblur="change_content">
+{{content}}
+</textarea>
+
+<view class="imgs flex_row_start">
+  <block wx:for="{{imgs}}">
+    <view class="img">
+      <image mode="aspectFit" style="width:120rpx;height:120rpx;margin-left:20rpx" src="{{item}}"></image>
+      <image mode="aspectFit" class="delete_img" style="width:30rpx;height:30rpx" src="/public/image/delete.png" data-index="{{index}}" bindtap="delete_img"></image>
+    </view>
+  </block>
+  <view class="img" bindtap="add_img">
+    <image mode="aspectFit" class="add_img" style="width:120rpx;height:120rpx;margin-left:20rpx" src="{{domain}}/Public/images/wechat/upload_img.png"></image>
+  </view>
+</view>
+
+<view class="btns flex_row_center">
+  <view class="btn color_white">
+    立即评价
+  </view>
+</view>
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>
+
+
