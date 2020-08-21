@@ -70,13 +70,12 @@
 {
   height: 40rpx;
   line-height: 40rpx;
-  flex-grow: 1;
 }
 
 .content
 {
   width: 100%;
-  height: 80rpx;
+  height: 120rpx;
   padding: 10rpx;
   text-align: right;
 }
@@ -84,7 +83,8 @@
 .line
 {
   padding: 0rpx 20rpx;
-  height: 60rpx;
+  height: 80rpx;
+  border-bottom: 1px solid #e9e9e9;
 }
 .val
 {

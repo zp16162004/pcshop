@@ -1025,13 +1025,68 @@ function pay_with_money(member_id,order_id,func)
     }
   })
 }
-function upload_img(src,func)
+function upload_img(src,type,func)
 {
   var thiss=this;
   wx.uploadFile({
     filePath: src,
     name: "img",
-    url: app.globalData.host+"/Service/uploadimg",
+    url: app.globalData.host+"/Service/wxuploadimg?type="+type,
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function add_comment(order_id,orderlist_id,product_id,productspec_id,member_id,star_count,service_count,content,imgs,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_comment",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      order_id:order_id,
+      orderlist_id:orderlist_id,
+      product_id:product_id,
+      productspec_id:productspec_id,
+      member_id:member_id,
+      star_count:star_count,
+      service_count:service_count,
+      content:content,
+      imgs:imgs,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function add_orderrefund(member_id,order_id,orderlist_id,count,money,reason,fnote,imgs,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_orderrefund",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      order_id:order_id,
+      orderlist_id:orderlist_id,
+      count:count,
+      money:money,
+      reason:reason,
+      fnote:fnote,
+      imgs:imgs,
+    },
+    method:'Post',
+    dataType:'json',
     success:function(res)
     {
       console.log(res);
@@ -1090,4 +1145,6 @@ module.exports = {
   get_order_detail:get_order_detail,
   pay_with_money:pay_with_money,
   upload_img:upload_img,
+  add_comment:add_comment,
+  add_orderrefund:add_orderrefund,
 }

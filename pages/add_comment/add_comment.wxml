@@ -1,30 +1,29 @@
 <!--pages/add_comment/add_comment.wxml-->
-<block wx:for="{{row_order.rows_orderlist}}">
 <view  class="product">
-  <block wx:if="{{item.row_productspec.spec_img!=''}}">
-  <image src="{{item.row_productspec.spec_img}}" mode="aspectFit"></image>
+  <block wx:if="{{row_orderlist.row_productspec.spec_img!=''}}">
+  <image src="{{row_orderlist.row_productspec.spec_img}}" mode="aspectFit"></image>
   </block>
-  <block wx:if="{{item.row_productspec.spec_img==''}}">
-  <image src="{{item.row_product.img}}" mode="aspectFit"></image>
+  <block wx:if="{{row_orderlist.row_productspec.spec_img==''}}">
+  <image src="{{row_orderlist.row_product.img}}" mode="aspectFit"></image>
   </block>
   <view class="product_info">
     <view class="p_line1">
       <view class="product_name">
-        {{item.row_product.name}}
+        {{row_orderlist.row_product.name}}
       </view>
       <view class="product_count">
-        x{{item.count}}
+        x{{row_orderlist.count}}
       </view>
     </view>
     <view class="p_line2">
       规格:
       <!--单规格-->
-      <block wx:if="{{item.row_product.single_spec=='1'}}">
+      <block wx:if="{{row_orderlist.row_product.single_spec=='1'}}">
         默认
       </block>
       <!--多规格-->
-      <block wx:if="{{item.row_product.single_spec=='0'}}">
-      <block wx:for="{{item.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+      <block wx:if="{{row_orderlist.row_product.single_spec=='0'}}">
+      <block wx:for="{{row_orderlist.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
         <block wx:if="{{index_spec>0}}">
         ，
         </block>
@@ -35,20 +34,19 @@
     <block wx:if="{{type==0}}">
     <view class="product_price flex_row_center">
       <view class="txt color_red">
-      ￥{{item.row_productspec.price}}
+      ￥{{row_orderlist.row_productspec.price}}
       </view>
     </view>
     </block>
     <block wx:if="{{type!=0}}">
     <view class="product_price flex_row_center">
       <view class="txt color_red">
-      ￥{{item.price}}
+      ￥{{row_orderlist.price}}
       </view>
     </view>
     </block>
   </view>
 </view>
-</block>
 
 <view class="stars flex_column_start">
   <view class="p_star flex_row_center">
@@ -103,7 +101,7 @@
 </view>
 
 <view class="btns flex_row_center">
-  <view class="btn color_white">
+  <view class="btn color_white" bindtap="add_comment">
     立即评价
   </view>
 </view>

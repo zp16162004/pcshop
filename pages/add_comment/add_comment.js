@@ -13,6 +13,7 @@ Page({
     order_id:0,
     orderlist_id:0,
     row_order:null,
+    row_orderlist:null,
     show_login:false,
     star_count:0,
     service_count:0,
@@ -182,6 +183,30 @@ Page({
               row_order:res.data.data,
             }
           );
+          for(var i=0;i<thiss.data.row_order.rows_orderlist.length;i++)
+          {
+            var row_orderlist=thiss.data.row_order.rows_orderlist[i];
+            if(row_orderlist.id==thiss.data.orderlist_id)
+            {
+              thiss.setData(
+                {
+                  row_orderlist:row_orderlist,
+                }
+              );
+              //如果已经评论过了，就把内容更欣赏
+              if(parseInt(row_orderlist.has_comment)==1)
+              {
+                thiss.setData(
+                  {
+                    star_count:row_orderlist.row_comment.star_count,
+                    service_count:row_orderlist.row_comment.service_count,
+                    content:row_orderlist.row_comment.content,
+                    imgs:row_orderlist.row_comment.imgs.split(','),
+                  }
+                );
+              }
+            }
+          }
         }
         else
         {
@@ -217,6 +242,17 @@ Page({
     thiss.setData(
       {
         content:e.detail.value,
+      }
+    );
+  },
+  delete_img:function(e)
+  {
+    var thiss=this;
+    var index=parseInt(e.currentTarget.dataset.index);
+    thiss.data.imgs.splice(index,1);
+    thiss.setData(
+      {
+        imgs:thiss.data.imgs,
       }
     );
   },
@@ -282,30 +318,73 @@ Page({
     console.log('开始上传图片');
     if(thiss.data.compressed_paths.length>0)
     {
-      pcapi.upload_img(
-        thiss.data.compressed_paths[0],
-        function(res)
+      //获取文件类型
+      wx.getImageInfo({
+        src: thiss.data.compressed_paths[0],
+        success:function(res)
         {
-          res.data=JSON.parse(res.data);
-          console.log(res.data);
-          if(res.data.code==1)
-          {
-            wx.showToast({
-              title: res.data.msg,
-            })
-          }
-          else
-          {
-            thiss.data.compressed_paths.splice(0,1);
-            thiss.data.imgs.push(res.data.data);
-            thiss.upload_imgs();
-          }
+          console.log(res);
+          pcapi.upload_img(
+            thiss.data.compressed_paths[0],
+            res.type,
+            function(res)
+            {
+              res.data=JSON.parse(res.data);
+              console.log(res.data);
+              if(res.data.code==1)
+              {
+                wx.showToast({
+                  title: res.data.msg,
+                })
+              }
+              else
+              {
+                thiss.data.compressed_paths.splice(0,1);
+                thiss.data.imgs.push(res.data.data);
+                thiss.upload_imgs();
+              }
+            }
+          );
+        },
+        fail:function(res)
+        {
+          util.show_model("获取图片格式失败，图片上传终止");
         }
-      );
+      })
     }
     thiss.setData(
       {
         imgs:thiss.data.imgs,
+      }
+    );
+  },
+  add_comment:function()
+  {
+    var thiss=this;
+    pcapi.add_comment(
+      thiss.data.order_id,
+      thiss.data.orderlist_id,
+      thiss.data.row_orderlist.product_id,
+      thiss.data.row_orderlist.productspec_id,
+      app.globalData.row_member.id,
+      thiss.data.star_count,
+      thiss.data.service_count,
+      thiss.data.content,
+      thiss.data.imgs.join(','),
+      function(res)
+      {
+        console.log(res);
+        if(res.data.code==1)
+        {
+          wx.showToast({
+            title: res.data.msg,
+          })
+          thiss.get_order_detail();
+        }
+        else
+        {
+          util.show_model(res.data.msg);
+        }
       }
     );
   },

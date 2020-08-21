@@ -1,7 +1,14 @@
 <!--pages/add_orderrefund/add_orderrefund.wxml-->
 <block wx:for="{{row_order.rows_orderlist}}">
+<!--如果可退货的个数<=0的时候不显示-->
+<block wx:if="{{item.can_refund>0}}">
 <view  class="product">
-  <image mode="aspectFit" style="width:40rpx;height:40rpx" src="/public/image/checkbox.png"></image>
+  <block wx:if="{{item.selected==1}}">
+  <image mode="aspectFit" src="/public/image/checkbox_selected.png" style="width:40rpx;height:40rpx" data-index="{{index}}" bindtap="change_selected"></image>
+  </block>
+  <block wx:if="{{item.selected==0}}">
+  <image mode="aspectFit" src="/public/image/checkbox.png" style="width:40rpx;height:40rpx" data-index="{{index}}" bindtap="change_selected"></image>
+  </block>
   <block wx:if="{{item.row_productspec.spec_img!=''}}">
   <image src="{{item.row_productspec.spec_img}}" mode="aspectFit"></image>
   </block>
@@ -33,43 +40,28 @@
       </block>
       </block>
     </view>
-    <block wx:if="{{type==0}}">
-    <view class="product_price flex_row_center">
-      <view class="txt color_red">
-      ￥{{item.row_productspec.price}}
-      </view>
-    </view>
-    </block>
-    <block wx:if="{{type!=0}}">
     <view class="product_price flex_row_center">
       <view class="txt color_red">
       ￥{{item.price}}
       </view>
+      <view class="val flex_row_end">
+        <view class="p_number flex_row_center">
+          <view class="reduce color_gray" data-index="{{index}}" bindtap="reduce">
+            -
+          </view>
+          <view class="number">
+          {{item.count_refund}}
+          </view>
+          <view class="add color_gray" data-index="{{index}}" bindtap="add">
+            +
+          </view>
+        </view>
+      </view>
     </view>
-    </block>
   </view>
 </view>
 </block>
-
-
-<view class="line flex_row_center">
-  <view class="txt color_gray">
-    退货件数
-  </view>
-  <view class="val flex_row_end">
-    <view class="p_number flex_row_center">
-      <view class="reduce color_gray">
-        -
-      </view>
-      <view class="number">
-      2
-      </view>
-      <view class="add color_gray">
-        +
-      </view>
-    </view>
-  </view>
-</view>
+</block>
 
 
 
@@ -78,7 +70,7 @@
     退款金额
   </view>
   <view class="val flex_row_end">
-    ￥2.00
+    ￥{{refund_money}}
   </view>
 </view>
 
@@ -88,15 +80,20 @@
     退款原因
   </view>
   <view class="val flex_row_end">
-    收货地址填错了>
+    <picker bindchange="bindPickerChange" value="{{index_reason}}" range="{{rows_reason}}" bindchange="change_index_reason">
+      <view class="picker">
+        {{rows_reason[index_reason]}}>
+      </view>
+    </picker>
   </view>
 </view>
-<view class="flex_row_center" style="padding:20rpx">
+<view class="flex_row_start" style="padding:40rpx 20rpx;border-bottom: 1px solid #e9e9e9;">
   <view class="txt color_gray">
     备注说明
   </view>
   <view class="val flex_row_end">
-    <textarea class="content" placeholder="请填写描述">
+    <textarea class="content" placeholder="请填写描述" bindblur="change_fnote">
+    {{fnote}}
     </textarea>
   </view>
 </view>
@@ -112,17 +109,19 @@
 </view>
 
 <view class="imgs flex_row_start">
-  <view class="img">
-    <image mode="aspectFit" style="width:120rpx;height:120rpx;margin-left:20rpx" src="/public/image/product.jpg"></image>
-    <image mode="aspectFit" class="delete_img" style="width:30rpx;height:30rpx" src="/public/image/delete.png"></image>
-  </view>
-  <view class="img">
+  <block wx:for="{{imgs}}">
+    <view class="img">
+      <image mode="aspectFit" style="width:120rpx;height:120rpx;margin-left:20rpx" src="{{item}}"></image>
+      <image mode="aspectFit" class="delete_img" style="width:30rpx;height:30rpx" src="/public/image/delete.png" data-index="{{index}}" bindtap="delete_img"></image>
+    </view>
+  </block>
+  <view class="img" bindtap="add_img">
     <image mode="aspectFit" class="add_img" style="width:120rpx;height:120rpx;margin-left:20rpx" src="{{domain}}/Public/images/wechat/upload_img.png"></image>
   </view>
 </view>
 
 <view class="btns flex_row_center">
-  <view class="btn color_white">
+  <view class="btn color_white" bindtap="submit">
     提交申请
   </view>
 </view>
