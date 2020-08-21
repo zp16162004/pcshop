@@ -1,2 +1,79 @@
 <!--pages/refundlist/refundlist.wxml-->
-<text>pages/refundlist/refundlist.wxml</text>
+<block wx:for="{{rows_orderrefund}}">
+<view class="orderrefund flex_column_center" data-index="{{index}}" bindtap="goto_refund">
+  <view class="order_info">
+    订单号:{{item.row_order.orderno}}
+  </view>
+
+  <view  class="product">
+    <block wx:if="{{item.row_orderlist.row_productspec.spec_img!=''}}">
+    <image src="{{item.row_orderlist.row_productspec.spec_img}}" mode="aspectFit"></image>
+    </block>
+    <block wx:if="{{item.row_orderlist.row_productspec.spec_img==''}}">
+    <image src="{{item.row_orderlist.row_product.img}}" mode="aspectFit"></image>
+    </block>
+    <view class="product_info">
+      <view class="p_line1">
+        <view class="product_name">
+          {{item.row_orderlist.row_product.name}}
+        </view>
+        <view class="product_count">
+          x{{item.row_orderlist.count}}
+        </view>
+      </view>
+      <view class="p_line2">
+        规格:
+        <!--单规格-->
+        <block wx:if="{{item.row_orderlist.row_product.single_spec=='1'}}">
+          默认
+        </block>
+        <!--多规格-->
+        <block wx:if="{{item.row_orderlist.row_product.single_spec=='0'}}">
+        <block wx:for="{{item.row_orderlist.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+          <block wx:if="{{index_spec>0}}">
+          ，
+          </block>
+          {{row_spec.name}}
+        </block>
+        </block>
+      </view>
+      <view class="product_price flex_row_center">
+        <view class="txt color_red">
+        ￥{{item.row_orderlist.price}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order_bottom flex_row_end">
+    <view class="txt">
+      共{{item.count}}件商品，总金额
+    </view>
+    <view class="money color_red">
+      ￥{{item.money}}
+    </view>
+  </view>
+  <block wx:if="{{item.state==0}}">
+  <image mode="aspectFit" class="img_state" style="width:80rpx;height:80rpx" src="{{domain}}/Public/images/wechat/refund0.png"></image>
+  </block>
+  <block wx:if="{{item.state==1}}">
+  <image mode="aspectFit" class="img_state" style="width:80rpx;height:80rpx" src="{{domain}}/Public/images/wechat/refund1.png"></image>
+  </block>
+  <block wx:if="{{item.state==2}}">
+  <image mode="aspectFit" class="img_state" style="width:80rpx;height:80rpx" src="{{domain}}/Public/images/wechat/refund2.png"></image>
+  </block>
+  <block wx:if="{{item.state==3}}">
+  <image mode="aspectFit" class="img_state" style="width:80rpx;height:80rpx" src="{{domain}}/Public/images/wechat/refund3.png"></image>
+  </block>
+</view>
+</block>
+
+
+
+
+
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

@@ -111,9 +111,9 @@
         <view class="txt">
           售后/退款
         </view>
-        <block wx:if="{{row_member.row_order_state.state_5>0}}">
+        <block wx:if="{{row_member.count_unclosed_orderrefund>0}}">
         <view class="number">
-          {{row_member.row_order_state.state_5}}
+          {{row_member.count_unclosed_orderrefund}}
         </view>
         </block>
       </view>

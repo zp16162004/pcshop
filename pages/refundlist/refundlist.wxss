@@ -1,1 +1,149 @@
 /* pages/refundlist/refundlist.wxss */
+
+.orderrefund>view
+{
+  width: 100%;
+}
+.product
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+}
+.product>image
+{
+  width: 120rpx;
+  height: 120rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.product_info
+{
+  padding-left:20rpx ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.p_line1
+{
+  width: 100%;
+  height: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.product_name
+{
+  font-weight: 600;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  flex-grow: 1;
+}
+.product_count
+{
+  padding: 0rpx 20rpx;
+  flex-grow: 0;
+  color: #656565;
+}
+.p_line2
+{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: #656565;
+}
+.product_price
+{
+  width: 100%;
+}
+.comment
+{
+  padding: 0rpx 10rpx;
+  font-size: 22rpx;
+  color: #656565;
+  border: 1px solid #656565;
+}
+.product_price>.txt
+{
+  height: 40rpx;
+  line-height: 40rpx;
+  flex-grow: 1;
+}
+
+.content
+{
+  width: 100%;
+  height: 120rpx;
+  padding: 10rpx;
+  text-align: right;
+}
+
+.line
+{
+  padding: 0rpx 20rpx;
+  height: 80rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.val
+{
+  flex-grow: 1;
+}
+.p_number
+{
+  border-radius: 10rpx;
+  border: 1px solid #656565;
+}
+.reduce
+{
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+.number
+{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0rpx 10rpx;
+}
+.add
+{
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+
+.order_info
+{
+  font-size: 22rpx;
+  padding: 0rpx 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.img_state
+{
+  position: absolute;
+  top: 20rpx;
+  right: 40rpx;
+}
+.order_bottom
+{
+  font-size: 22rpx;
+  padding: 0rpx 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.order_bottom>.txt
+{
+  font-size: 24rpx;
+}
