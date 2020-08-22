@@ -132,7 +132,7 @@
     </view>
   </view>
   <view class="menus">
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_spread">
       <view class="menu">
         <image src="/public/image/tuiguang_red.png" mode="aspectFit"></image>
         <view class="txt">

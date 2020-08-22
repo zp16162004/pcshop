@@ -29,7 +29,8 @@
     "pages/order/order",
     "pages/add_comment/add_comment",
     "pages/add_orderrefund/add_orderrefund",
-    "pages/refund/refund"
+    "pages/refund/refund",
+    "pages/spread/spread"
   ],
   "window": {
     "backgroundTextStyle": "light",

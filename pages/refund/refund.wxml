@@ -101,21 +101,13 @@
 </view>
 <view class="info flex_row_center">
   <view class="info_left">
-    申请时间:
-  </view>
-  <view class="info_right flex_row_end color_gray">
-    {{row_orderrefund.fdate}}
-  </view>
-</view>
-<view class="info flex_row_center">
-  <view class="info_left">
     支付方式:
   </view>
   <view class="info_right flex_row_end color_gray">
-    <block wx:if="{{row_order.pay_type==0}}">
+    <block wx:if="{{row_orderrefund.row_order.pay_type==0}}">
     微信支付
     </block>
-    <block wx:if="{{row_order.pay_type==1}}">
+    <block wx:if="{{row_orderrefund.row_order.pay_type==1}}">
     余额支付
     </block>
   </view>
@@ -136,28 +128,111 @@
     </block>
   </view>
 </view>
-<block wx:if="{{row_orderrefund.state==1||row_orderrefund.state==2||row_orderrefund.state==1}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    申请时间:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.fdate}}
+  </view>
+</view>
+<view class="info flex_row_center">
+  <view class="info_left">
+    退货原因:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.reason}}
+  </view>
+</view>
+<view class="info flex_row_center">
+  <view class="info_left">
+    退货备注:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.fnote}}
+  </view>
+</view>
+<block wx:if="{{row_orderrefund.state==1||row_orderrefund.state==2||row_orderrefund.state==3}}">
 <view class="info flex_row_center">
   <view class="info_left">
     审核状态:
   </view>
-<block wx:if="{{row_orderrefund.state==1||row_orderrefund.state==2||row_orderrefund.state==1}}">
+  <block wx:if="{{row_orderrefund.state==1}}">
   <view class="info_right flex_row_end color_gray">
-    {{row_order.money_product}}
+    审核中
+  </view>
+  </block>
+  <block wx:if="{{row_orderrefund.state==2}}">
+  <view class="info_right flex_row_end color_gray">
+    审核通过
+  </view>
+  </block>
+  <block wx:if="{{row_orderrefund.state==3}}">
+  <view class="info_right flex_row_end color_gray">
+    被拒绝
+  </view>
+  </block>
+</view>
+</block>
+
+<block wx:if="{{row_orderrefund.state==1||row_orderrefund.state==2||row_orderrefund.state==3}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    审核备注:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.summary}}
+  </view>
+</view>
+</block>
+
+
+<block wx:if="{{row_orderrefund.state==1||row_orderrefund.state==2||row_orderrefund.state==3}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    退货地址:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{config.refund_address}}
+  </view>
+</view>
+<view class="info flex_row_center">
+  <view class="info_left">
+    退货联系电话:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{config.refund_mobile}}
+  </view>
+</view>
+</block>
+
+
+<block wx:if="{{row_orderrefund.state==3}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    退款金额:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.row_cashflow.money}}
+  </view>
+</view>
+<view class="info flex_row_center">
+  <view class="info_left">
+    退款订单号:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_orderrefund.row_cashflow.wx_order_id}}
   </view>
 </view>
 </block>
 
 
 
-<view class="info flex_row_center" style="border-top:1px solid #e9e9e9">
-  <view class="info_right flex_row_end" style="font-size:26rpx">
-    实付款:
-    <view class="color_red">
-      ￥{{row_order.need_pay}}
-    </view>
-  </view>
-</view>
 
 
 
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

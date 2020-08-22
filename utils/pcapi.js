@@ -1115,6 +1115,26 @@ function get_orderrefund(member_id,p,func)
     }
   })
 }
+function get_orderrefund_detail(orderrefund_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_orderrefund_detail",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      orderrefund_id:orderrefund_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1169,4 +1189,5 @@ module.exports = {
   add_comment:add_comment,
   add_orderrefund:add_orderrefund,
   get_orderrefund:get_orderrefund,
+  get_orderrefund_detail:get_orderrefund_detail,
 }

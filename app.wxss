@@ -39,6 +39,18 @@ input{
 {
   color: #f10b0b;
 }
+.bg_white
+{
+  background-color: #ffffff;
+}
+.color_gray
+{
+  color: #656565;
+}
+.color_red
+{
+  color: #f10b0b;
+}
 
 .flex_fill
 {

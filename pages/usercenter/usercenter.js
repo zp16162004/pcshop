@@ -150,5 +150,11 @@ Page({
     wx.navigateTo({
       url: '/pages/refundlist/refundlist',
     })
-  }
+  },
+  goto_spread:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread/spread',
+    })
+  },
 })
