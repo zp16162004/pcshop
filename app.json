@@ -30,7 +30,8 @@
     "pages/add_comment/add_comment",
     "pages/add_orderrefund/add_orderrefund",
     "pages/refund/refund",
-    "pages/spread/spread"
+    "pages/spread/spread",
+    "pages/poster_rebate/poster_rebate"
   ],
   "window": {
     "backgroundTextStyle": "light",

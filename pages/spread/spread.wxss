@@ -1,1 +1,95 @@
 /* pages/spread/spread.wxss */
+.head
+{
+  background-size: 100% 100%;
+  height: 421rpx;
+}
+.l1
+{
+  padding-top: 80rpx;
+  height: 140rpx;
+  line-height: 60rpx;
+  position: relative;
+}
+.l1>.txt
+{
+  text-align: center;
+}
+.l1>.cashout_list
+{
+  font-size: 22rpx;
+  position: absolute;
+  top: 80rpx;
+  right: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.l2
+{
+  text-align: center;
+  font-size: 60rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+}
+.l3
+{
+  height: 140rpx;
+}
+.lastday_rebate
+{
+  flex-grow: 1;
+}
+.lastday_rebate>.txt{
+  font-size: 20rpx;
+}
+.lastday_rebate>.number{
+  font-size: 24rpx;
+}
+.fill2
+{
+  flex-grow: 2;
+}
+.all_cashout
+{
+  flex-grow: 1;
+  font-size: 20rpx;
+}
+.all_cashout>.txt{
+  font-size: 20rpx;
+}
+.all_cashout>.number{
+  font-size: 24rpx;
+}
+
+.goto_cashout
+{
+  height: 120rpx;
+  width: 375rpx;
+  padding: 20rpx;
+  border-radius: 120rpx;
+  margin-top: -60rpx;
+}
+.goto_cashout>.btn
+{
+  border-radius: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+
+
+.menus
+{
+  flex-wrap: wrap;
+}
+.menu
+{
+  width: 50%;
+  height: 300rpx;
+}
+.menu>.txt
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
