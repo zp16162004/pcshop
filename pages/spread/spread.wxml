@@ -41,37 +41,37 @@
   </view>
 
 <view class="menus flex_row_start">
-  <view class="menu flex_column_center">
+  <view class="menu flex_column_center" bindtap="goto_poster_rebate">
     <image src="{{domain}}/Public/images/wechat/erweima.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       推广名片
     </view>
   </view>
-  <view class="menu flex_column_center">
+  <view class="menu flex_column_center" bindtap="goto_spread_child">
     <image src="{{domain}}/Public/images/wechat/bingzhuangtu.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       推广人统计
     </view>
   </view>
-  <view class="menu flex_column_center">
+  <view class="menu flex_column_center" bindtap="goto_spread_rebate">
     <image src="{{domain}}/Public/images/wechat/yongjin.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       佣金明细
     </view>
   </view>
-  <view class="menu flex_column_center">
+  <!-- <view class="menu flex_column_center" bindtap="goto_spread_child_order">
     <image src="{{domain}}/Public/images/wechat/dingdan.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       推广人订单
     </view>
-  </view>
-  <view class="menu flex_column_center">
+  </view> -->
+  <!-- <view class="menu flex_column_center" bindtap="goto_spread_child_sort">
     <image src="{{domain}}/Public/images/wechat/paiming1.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       推广人排行
     </view>
-  </view>
-  <view class="menu flex_column_center">
+  </view> -->
+  <view class="menu flex_column_center" bindtap="goto_spread_rebate_sort">
     <image src="{{domain}}/Public/images/wechat/paiming2.png" style="width:70rpx;height:70rpx"></image>
     <view class="txt">
       佣金排行

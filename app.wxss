@@ -81,7 +81,7 @@ input{
 .flex_row_center
 {
   display: flex;
-  flex-direction: colu;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }

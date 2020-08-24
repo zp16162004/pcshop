@@ -31,7 +31,12 @@
     "pages/add_orderrefund/add_orderrefund",
     "pages/refund/refund",
     "pages/spread/spread",
-    "pages/poster_rebate/poster_rebate"
+    "pages/poster_rebate/poster_rebate",
+    "pages/spread_child/spread_child",
+    "pages/spread_child_order/spread_child_order",
+    "pages/spread_child_sort/spread_child_sort",
+    "pages/spread_rebate/spread_rebate",
+    "pages/spread_rebate_sort/spread_rebate_sort"
   ],
   "window": {
     "backgroundTextStyle": "light",

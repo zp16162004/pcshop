@@ -132,4 +132,40 @@ Page({
       }
     );
   },
+  goto_poster_rebate:function()
+  {
+    wx.navigateTo({
+      url: '/pages/poster_rebate/poster_rebate',
+    })
+  },
+  goto_spread_child:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread_child/spread_child',
+    })
+  },
+  goto_spread_rebate:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread_rebate/spread_rebate',
+    })
+  },
+  goto_spread_child_order:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread_child_order/spread_child_order',
+    })
+  },
+  goto_spread_child_sort:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread_child_sort/spread_child_sort',
+    })
+  },
+  goto_spread_rebate_sort:function()
+  {
+    wx.navigateTo({
+      url: '/pages/spread_rebate_sort/spread_rebate_sort',
+    })
+  },
 })

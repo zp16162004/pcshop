@@ -1,1 +1,25 @@
 /* pages/poster_rebate/poster_rebate.wxss */
+page
+{
+  background-color: #656565;
+}
+swiper
+{
+  width: 750rpx;
+  height: 947rpx;
+}
+.swiper-item>image
+{
+  margin: 20rpx;
+}
+
+
+.btn
+{
+  width: 600rpx;
+  margin-top: 40rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 60rpx;
+}

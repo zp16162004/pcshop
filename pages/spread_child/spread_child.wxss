@@ -1,0 +1,69 @@
+/* pages/spread_child/spread_child.wxss */
+
+.head
+{
+  padding: 60rpx 20rpx;
+}
+.head_info>view
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.head_right
+{
+  flex-grow: 1;
+}
+
+.tabs
+{
+  border-radius: 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: -40rpx;
+}
+.tab
+{
+  flex-grow: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-weight: 600;
+}
+.tab_selected
+{
+  flex-grow: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #f10b0b;
+}
+
+
+
+.sorts
+{
+  padding: 0rpx 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.sort
+{
+  flex-grow: 1;
+}
+.sort>.txt
+{
+  font-size: 22rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.child
+{
+  padding: 20rpx;
+}
+.child>view
+{
+  flex: 1;
+  flex-shrink: 0;
+  text-align: center;
+}

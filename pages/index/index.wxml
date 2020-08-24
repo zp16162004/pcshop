@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <!--顶部标题栏-->
 <view class="p_title" style="margin-top:{{menu_rect.top}}px;height:{{menu_rect.height}}px;">
-    <image mode="aspectFit" src="/public/image/logo_img_sc.png" style="padding-left:{{systeminfo.windowWidth-menu_rect.right}}px;height:100%;width:{{2*menu_rect.height}}px"></image>
+    <image mode="aspectFit" src="/public/image/logo.png" style="padding-left:{{systeminfo.windowWidth-menu_rect.right}}px;height:100%;width:{{menu_rect.height}}px"></image>
   <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{menu_rect.left-(systeminfo.windowWidth-menu_rect.right)-2*menu_rect.height-20}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
     <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
     <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />

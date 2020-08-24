@@ -1155,6 +1155,26 @@ function get_rebate(member_id,func)
     }
   })
 }
+function get_poster_rebate(member_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_poster_rebate",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1211,4 +1231,5 @@ module.exports = {
   get_orderrefund:get_orderrefund,
   get_orderrefund_detail:get_orderrefund_detail,
   get_rebate:get_rebate,
+  get_poster_rebate:get_poster_rebate,
 }

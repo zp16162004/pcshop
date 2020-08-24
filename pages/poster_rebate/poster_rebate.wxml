@@ -1,2 +1,14 @@
 <!--pages/poster_rebate/poster_rebate.wxml-->
-<text>pages/poster_rebate/poster_rebate.wxml</text>
+<view class="flex_column_center" style="width:100%;height:{{systeminfo.windowHeight}}px">
+  <swiper scroll-x="true" previous-margin="30rpx" next-margin="30rpx" current="{{index}}" bindchange="change_index">
+    <block wx:for="{{rows_img}}">
+    <swiper-item>
+      <image style="width:680rpx;height:906rpx;margin-left:10rpx" mode="aspectFit" src="{{item}}"></image>
+    </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="btn bg_red color_white" bindtap="save_poster">
+    保存海报
+  </view>
+</view>
