@@ -1,4 +1,4 @@
-// pages/spread_rebate_sort/spread_rebate_sort.js
+// pages/my_money/my_money.js
 var util=require("../../utils/util.js");
 var pcapi=require("../../utils/pcapi.js");
 const app = getApp();

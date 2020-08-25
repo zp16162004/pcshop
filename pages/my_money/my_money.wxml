@@ -1,0 +1,98 @@
+<!--pages/spread/spread.wxml-->
+<view class="head" style="background-image:url({{domain}}/Public/images/wechat/bg_rebate.png)">
+  <view class="l1">
+    <view class="txt color_white">
+      当前佣金
+    </view>
+    <!-- <view class="cashout_list color_lightwhite">
+      提现记录>
+    </view> -->
+  </view>
+  <view class="l2 color_white">
+    ￥100
+  </view>
+  <view class="l3 flex_row_center color_white">
+    <view class="lastday_rebate flex_column_center">
+    </view>
+    <view class="fill2">
+    </view>
+    <view class="all_cashout flex_column_center">
+    </view>
+  </view>
+</view>
+  <view class="flex_row_center">
+    <view class="goto_cashout bg_white">
+      <view class="btn bg_red color_white">
+      立即提现
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+<view class="tabs flex_row_center bg_white">
+  <view class="tab_selected color_red">
+    <view class="number">
+    100
+    </view>
+    <view class="txt">
+    现金充值
+    </view>
+  </view>
+  <view class="tab color_gray">
+    <view class="number">
+    100
+    </view>
+    <view class="txt">
+    佣金提现
+    </view>
+  </view>
+  <view class="tab color_gray">
+    <view class="number">
+    100
+    </view>
+    <view class="txt">
+    余额退款
+    </view>
+  </view>
+  <view class="tab color_gray">
+    <view class="number">
+    100
+    </view>
+    <view class="txt">
+    余额消费
+    </view>
+  </view>
+  <view class="tab color_gray">
+    <view class="number">
+    100
+    </view>
+    <view class="txt">
+    余额提现
+    </view>
+  </view>
+</view>
+
+
+
+<view class="cashflow flex_row_center">
+  <image mode="aspectFit" style="width:40rpx;height:40rpx;" src="{{domain}}/Public/images/wechat/process.png"></image>
+  <view class="left flex_column_start">
+    <view class="type">
+      签到奖励
+    </view>
+    <view class="fdate color_gral">
+      2020-01-01 10:00:00
+    </view>
+  </view>
+  <view class="money color_red">
+    +10
+  </view>
+</view>
+
+<!--授权组件-->
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

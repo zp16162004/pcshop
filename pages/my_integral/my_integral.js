@@ -1,26 +1,18 @@
-// pages/spread_rebate_sort/spread_rebate_sort.js
-var util=require("../../utils/util.js");
-var pcapi=require("../../utils/pcapi.js");
-const app = getApp();
+// pages/my_integral/my_integral.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    domain:'',
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var thiss=this;
-    thiss.setData(
-      {
-        domain:app.globalData.domain,
-      }
-    );
+
   },
 
   /**

@@ -36,7 +36,9 @@
     "pages/spread_child_order/spread_child_order",
     "pages/spread_child_sort/spread_child_sort",
     "pages/spread_rebate/spread_rebate",
-    "pages/spread_rebate_sort/spread_rebate_sort"
+    "pages/spread_rebate_sort/spread_rebate_sort",
+    "pages/my_money/my_money",
+    "pages/my_integral/my_integral"
   ],
   "window": {
     "backgroundTextStyle": "light",

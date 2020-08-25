@@ -157,4 +157,16 @@ Page({
       url: '/pages/spread/spread',
     })
   },
+  goto_my_money:function()
+  {
+    wx.navigateTo({
+      url: '/pages/my_money/my_money',
+    })
+  },
+  goto_my_integral:function()
+  {
+    wx.navigateTo({
+      url: '/pages/my_integral/my_integral',
+    })
+  },
 })

@@ -1,2 +1,56 @@
-<!--pages/spread_rebate/spread_rebate.wxml-->
-<text>pages/spread_rebate/spread_rebate.wxml</text>
+
+<view class="head flex_row_center bg_red">
+  <view class="head_info flex_column_start">
+    <view class="txt color_white">
+      佣金明细
+    </view>
+    <view class="number color_white">
+      ￥0
+    </view>
+  </view>
+  <view class="head_right flex_row_end">
+    <image mode="aspectFit" style="width:120rpx;height:120rpx" src="{{domain}}/Public/images/wechat/rebate.png"></image>
+  </view>
+</view>
+
+<view class="order flex_column_center">
+  <view class="orderno">
+  订单编号:pcshop_1234556
+  </view>
+  <view  class="product">
+    <image src="/public/image/product.jpg" mode="aspectFit"></image>
+    <view class="product_info">
+      <view class="p_line1">
+        <view class="product_name">
+          product_name
+        </view>
+        <view class="product_count">
+          x1
+        </view>
+      </view>
+      <view class="p_line2">
+        规格:
+          默认
+      </view>
+      <view class="product_price flex_row_center">
+        <view class="txt color_red">
+        ￥100
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="order_bottom flex_row_center">
+    <view class="member flex_row_start">
+      <image mode="aspectFit" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/product.jpg"></image>
+      <view class="txt">
+        human machine
+      </view>
+      <view class="level">
+        (一级)
+      </view>
+    </view>
+    <view class="rebate color_red">
+      +￥10.00
+    </view>
+  </view>
+</view>

@@ -1,0 +1,150 @@
+/* pages/spread/spread.wxss */
+.head
+{
+  background-size: 100% 100%;
+  height: 421rpx;
+}
+.l1
+{
+  padding-top: 80rpx;
+  height: 140rpx;
+  line-height: 60rpx;
+  position: relative;
+}
+.l1>.txt
+{
+  text-align: center;
+}
+.l1>.cashout_list
+{
+  font-size: 22rpx;
+  position: absolute;
+  top: 80rpx;
+  right: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.l2
+{
+  text-align: center;
+  font-size: 60rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+}
+.l3
+{
+  height: 140rpx;
+}
+.lastday_rebate
+{
+  flex-grow: 1;
+}
+.lastday_rebate>.txt{
+  font-size: 20rpx;
+}
+.lastday_rebate>.number{
+  font-size: 24rpx;
+}
+.fill2
+{
+  flex-grow: 2;
+}
+.all_cashout
+{
+  flex-grow: 1;
+  font-size: 20rpx;
+}
+.all_cashout>.txt{
+  font-size: 20rpx;
+}
+.all_cashout>.number{
+  font-size: 24rpx;
+}
+
+.goto_cashout
+{
+  height: 100rpx;
+  width: 375rpx;
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  border-top-left-radius: 60rpx;
+  border-top-right-radius: 60rpx;
+  margin-top: -100rpx;
+}
+.goto_cashout>.btn
+{
+  border-radius: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+
+
+
+.tabs
+{
+  border-bottom: 1px solid #e9e9e9;
+}
+.tab
+{
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+}
+.tab>view
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.tab>.number
+{
+  font-size: 22rpx;
+}
+.tab_selected
+{
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #f10b0b;
+}
+.tab_selected>view
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.tab_selected>.number
+{
+  font-size: 22rpx;
+}
+
+
+.cashflow
+{
+  margin: 0rpx 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.left
+{
+  flex-grow: 1;
+  padding: 0rpx 20rpx;
+}
+.left>.type
+{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 22rpx;
+}
+.left>.fdate
+{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 20rpx;
+}
+.money
+{
+  font-size: 30rpx;
+}
+
+

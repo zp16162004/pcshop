@@ -140,11 +140,19 @@
         </view>
       </view>
     </view>
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_my_money">
       <view class="menu">
         <image src="/public/image/yue_red.png" mode="aspectFit"></image>
         <view class="txt">
           我的余额
+        </view>
+      </view>
+    </view>
+    <view class="p_menu" style="width:25%" bindtap="goto_my_integral">
+      <view class="menu">
+        <image src="/public/image/integral.png" mode="aspectFit"></image>
+        <view class="txt">
+          我的积分
         </view>
       </view>
     </view>

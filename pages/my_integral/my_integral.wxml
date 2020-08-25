@@ -1,0 +1,52 @@
+<!--pages/my_integral/my_integral.wxml-->
+<view class="head bg_red">
+  <view class="line1 flex_column_center color_white">
+    <view class="txt">
+      当前积分
+    </view>
+    <view class="number">
+      0.00
+    </view>
+  </view>
+  <view class="line2 flex_row_center">
+    <view class="line_item flex_column_center color_white">
+      <view class="number">
+        0.00
+      </view>
+      <view class="txt">
+        累积积分
+      </view>
+    </view>
+    <view class="line_item flex_column_center color_white">
+      <view class="number">
+        0.00
+      </view>
+      <view class="txt">
+        累积消费
+      </view>
+    </view>
+    <view class="line_item flex_column_center color_white">
+      <view class="number">
+        0.00
+      </view>
+      <view class="txt">
+        今日获得
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="integrallog flex_row_center">
+  <view class="left flex_column_start">
+    <view class="type">
+      签到奖励
+    </view>
+    <view class="fdate color_gral">
+      2020-01-01 10:00:00
+    </view>
+  </view>
+  <view class="integral color_red">
+    +10
+  </view>
+</view>

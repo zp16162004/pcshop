@@ -1,0 +1,57 @@
+/* pages/my_integral/my_integral.wxss */
+.head
+{
+  padding-left:20rpx ;
+  padding-right:20rpx ;
+  padding-top:20rpx ;
+  padding-bottom:80rpx ;
+}
+.line1>.number
+{
+  font-size: 50rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.line_item
+{
+  flex: 1;
+}
+.txt
+{
+  color: #e9e9e9;
+  font-size: 22rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.line_item>.number
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+
+.integrallog
+{
+  margin: 0rpx 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.left
+{
+  flex-grow: 1;
+}
+.left>.type
+{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 22rpx;
+}
+.left>.fdate
+{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 20rpx;
+}
+.integral
+{
+  font-size: 30rpx;
+}
