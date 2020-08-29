@@ -5,7 +5,7 @@
       推广人数
     </view>
     <view class="number color_white">
-      0人
+      {{row_rebate.count_child}}人
     </view>
   </view>
   <view class="head_right flex_row_end">
@@ -14,12 +14,22 @@
 </view>
 
 <view class="tabs flex_row_center bg_white">
-  <view class="tab_selected color_red">
-    一级(0)
+  <block wx:if="{{index==0}}">
+  <view class="tab_selected color_red" data-index="0" bindtap="change_index">
+    一级({{row_rebate.count_child1}})
   </view>
-  <view class="tab color_gray">
-    二级(0)
+  <view class="tab color_gray" data-index="1" bindtap="change_index">
+    二级({{row_rebate.count_child2}})
   </view>
+  </block>
+  <block wx:if="{{index==1}}">
+  <view class="tab color_gray" data-index="0" bindtap="change_index">
+    一级({{row_rebate.count_child1}})
+  </view>
+  <view class="tab_selected color_red" data-index="1" bindtap="change_index">
+    二级({{row_rebate.count_child2}})
+  </view>
+  </block>
 </view>
 
 <view class="sorts flex_row_center">
@@ -28,31 +38,94 @@
     团队人员
     </view>
   </view>
-  <view class="sort flex_row_center">
-    <view class="txt">
-    消费金额
-    </view>
-    <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort0.png"></image>
-  </view>
-  <view class="sort flex_row_center">
-    <view class="txt">
-    订单数
-    </view>
-    <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort0.png"></image>
-  </view>
+    <block wx:if="{{sort_type=='sum_money'&&sort=='asc'}}">
+      <view class="sort flex_row_center" data-sort="desc" data-type="sum_money" bindtap="change_sort">
+        <view class="txt">
+        消费金额
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort1.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{sort_type=='sum_money'&&sort=='desc'}}">
+      <view class="sort flex_row_center" data-sort="" data-type="sum_money" bindtap="change_sort">
+        <view class="txt">
+        消费金额
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort2.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{sort_type!='sum_money'}}">
+      <view class="sort flex_row_center" data-sort="asc" data-type="sum_money" bindtap="change_sort">
+        <view class="txt">
+        消费金额
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort0.png"></image>
+      </view>
+    </block>
+
+
+
+    <block wx:if="{{sort_type=='count_order'&&sort=='asc'}}">
+      <view class="sort flex_row_center" data-sort="desc" data-type="count_order" bindtap="change_sort">
+        <view class="txt">
+        订单数
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort1.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{sort_type=='count_order'&&sort=='desc'}}">
+      <view class="sort flex_row_center" data-sort="" data-type="count_order" bindtap="change_sort">
+        <view class="txt">
+        订单数
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort2.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{sort_type!='count_order'}}">
+      <view class="sort flex_row_center" data-sort="asc" data-type="count_order" bindtap="change_sort">
+        <view class="txt">
+        订单数
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/sort0.png"></image>
+      </view>
+    </block>
 </view>
 
+<block wx:if="{{index==0}}">
+<block wx:for="{{row_rebate.rows_child1}}">
 <view class="child flex_row_center">
   <view class="info flex_row_center">
     <image mode="aspectFit" style="width:30rpx;height:30rpx" src="/public/image/product.jpg"></image>
     <view class="txt single_line">
-      human machine
+      {{item.nickname}}
     </view>
   </view>
   <view class="consume">
-    10.00
+    {{item.sum_money}}
   </view>
   <view class="count_order">
-    20
+    {{item.count_order}}
   </view>
 </view>
+</block>
+</block>
+
+
+<block wx:if="{{index==1}}">
+<block wx:for="{{row_rebate.rows_child2}}">
+<view class="child flex_row_center">
+  <view class="info flex_row_center">
+    <image mode="aspectFit" style="width:30rpx;height:30rpx" src="/public/image/product.jpg"></image>
+    <view class="txt single_line">
+      {{item.nickname}}
+    </view>
+  </view>
+  <view class="consume">
+    {{item.sum_money}}
+  </view>
+  <view class="count_order">
+    {{item.count_order}}
+  </view>
+</view>
+</block>
+</block>

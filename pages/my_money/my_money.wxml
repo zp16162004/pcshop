@@ -2,14 +2,14 @@
 <view class="head" style="background-image:url({{domain}}/Public/images/wechat/bg_rebate.png)">
   <view class="l1">
     <view class="txt color_white">
-      当前佣金
+      当前余额
     </view>
     <!-- <view class="cashout_list color_lightwhite">
       提现记录>
     </view> -->
   </view>
   <view class="l2 color_white">
-    ￥100
+    ￥{{row_member.money}}
   </view>
   <view class="l3 flex_row_center color_white">
     <view class="lastday_rebate flex_column_center">
@@ -22,7 +22,7 @@
 </view>
   <view class="flex_row_center">
     <view class="goto_cashout bg_white">
-      <view class="btn bg_red color_white">
+      <view class="btn bg_red color_white" bindtap="show_cashout">
       立即提现
       </view>
     </view>
@@ -33,66 +33,144 @@
 
 
 <view class="tabs flex_row_center bg_white">
-  <view class="tab_selected color_red">
-    <view class="number">
-    100
-    </view>
+  <block wx:if="{{type==1}}">
+  <view class="tab_selected color_red" data-type="1" bindtap="change_type">
     <view class="txt">
     现金充值
     </view>
   </view>
-  <view class="tab color_gray">
-    <view class="number">
-    100
+  </block>
+  <block wx:if="{{type!=1}}">
+  <view class="tab color_gray" data-type="1" bindtap="change_type">
+    <view class="txt">
+    现金充值
     </view>
+  </view>
+  </block>
+  <block wx:if="{{type==7}}">
+  <view class="tab_selected color_red" data-type="7" bindtap="change_type">
     <view class="txt">
     佣金提现
     </view>
   </view>
-  <view class="tab color_gray">
-    <view class="number">
-    100
+  </block>
+  <block wx:if="{{type!=7}}">
+  <view class="tab color_gray" data-type="7" bindtap="change_type">
+    <view class="txt">
+    佣金提现
     </view>
+  </view>
+  </block>
+  <block wx:if="{{type==5}}">
+  <view class="tab_selected color_red" data-type="5 " bindtap="change_type">
+    <!-- <view class="number">
+    100
+    </view> -->
     <view class="txt">
     余额退款
     </view>
   </view>
-  <view class="tab color_gray">
-    <view class="number">
-    100
+  </block>
+  <block wx:if="{{type!=5}}">
+  <view class="tab color_gray" data-type="5 " bindtap="change_type">
+    <view class="txt">
+    余额退款
     </view>
+  </view>
+  </block>
+  <block wx:if="{{type==3}}">
+  <view class="tab_selected color_red" data-type="3" bindtap="change_type">
     <view class="txt">
     余额消费
     </view>
   </view>
-  <view class="tab color_gray">
-    <view class="number">
-    100
+  </block>
+  <block wx:if="{{type!=3}}">
+  <view class="tab color_gray" data-type="3" bindtap="change_type">
+    <view class="txt">
+    余额消费
     </view>
+  </view>
+  </block>
+  <block wx:if="{{type==2}}">
+  <view class="tab_selected color_red" data-type="2" bindtap="change_type">
     <view class="txt">
     余额提现
     </view>
   </view>
+  </block>
+  <block wx:if="{{type!=2}}">
+  <view class="tab color_gray" data-type="2" bindtap="change_type">
+    <view class="txt">
+    余额提现
+    </view>
+  </view>
+  </block>
 </view>
 
 
-
+<block wx:for="{{rows_cashflow}}">
 <view class="cashflow flex_row_center">
+  <block wx:if="{{item.state==0}}">
   <image mode="aspectFit" style="width:40rpx;height:40rpx;" src="{{domain}}/Public/images/wechat/process.png"></image>
+  </block>
+  <block wx:if="{{item.state==-1}}">
+  <image mode="aspectFit" style="width:40rpx;height:40rpx;" src="{{domain}}/Public/images/wechat/fail.png"></image>
+  </block>
+  <block wx:if="{{item.state==1}}">
+  <image mode="aspectFit" style="width:40rpx;height:40rpx;" src="{{domain}}/Public/images/wechat/success.png"></image>
+  </block>
   <view class="left flex_column_start">
+    <block wx:if="{{item.type==1}}">
     <view class="type">
-      签到奖励
+      充值
     </view>
+    </block>
+    <block wx:if="{{item.type==2}}">
+    <view class="type">
+      提现
+    </view>
+    </block>
+    <block wx:if="{{item.type==3}}">
+    <view class="type">
+      余额支付
+    </view>
+    </block>
+    <block wx:if="{{item.type==4}}">
+    <view class="type">
+      微信支付
+    </view>
+    </block>
+    <block wx:if="{{item.type==5}}">
+    <view class="type">
+      余额退款
+    </view>
+    </block>
+    <block wx:if="{{item.type==6}}">
+    <view class="type">
+      微信退款
+    </view>
+    </block>
+    <block wx:if="{{item.type==7}}">
+    <view class="type">
+      佣金提现
+    </view>
+    </block>
     <view class="fdate color_gral">
-      2020-01-01 10:00:00
+      {{item.fdate}}
     </view>
   </view>
   <view class="money color_red">
-    +10
+    <block wx:if="{{item.money>0}}">+</block>{{item.money}}
   </view>
 </view>
+</block>
 
 <!--授权组件-->
 <block wx:if="{{show_login}}">
 <login bind:confirm="do_login"></login>
+</block>
+<!--提现组件-->
+<block wx:if="{{show_cash_out}}">
+<cash_out title="提现到微信钱包" money="{{row_member.money}}"  bind:confirm="add_cashout"></cash_out>
 </block>

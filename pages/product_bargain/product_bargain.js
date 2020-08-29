@@ -52,8 +52,8 @@ Page({
       var now=new Date().getTime()/1000;
       var day=parseInt((edate-now)/86400);
       var hour=parseInt((edate-now)%86400/3600);
-      var minute=parseInt((edate-now)%86400/60);
-      var second=parseInt((edate-now)%86400%60);
+      var minute=parseInt((edate-now)%3600/60);
+      var second=parseInt((edate-now)%3600%60);
       var time2end="";
       if(day>0)
       {

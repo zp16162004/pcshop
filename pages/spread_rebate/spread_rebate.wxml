@@ -5,52 +5,68 @@
       佣金明细
     </view>
     <view class="number color_white">
-      ￥0
+      ￥{{row_rebate.all_rebate}}
     </view>
   </view>
   <view class="head_right flex_row_end">
     <image mode="aspectFit" style="width:120rpx;height:120rpx" src="{{domain}}/Public/images/wechat/rebate.png"></image>
   </view>
 </view>
-
+<block wx:for="{{row_rebate.rows_rebate}}">
 <view class="order flex_column_center">
   <view class="orderno">
-  订单编号:pcshop_1234556
+  订单编号:{{item.row_order.orderno}}
   </view>
   <view  class="product">
-    <image src="/public/image/product.jpg" mode="aspectFit"></image>
+    <image src="{{item.row_orderlist.row_productspec.spec_img}}" mode="aspectFit"></image>
     <view class="product_info">
       <view class="p_line1">
         <view class="product_name">
-          product_name
+          {{item.row_orderlist.row_product.name}}
         </view>
         <view class="product_count">
-          x1
+          x{{item.row_orderlist.count}}
         </view>
       </view>
       <view class="p_line2">
         规格:
+          <block wx:if="{{item.row_orderlist.row_product.single_spec=='1'}}">
           默认
+          </block>
+          <block wx:if="{{item.row_orderlist.row_product.single_spec=='0'}}">
+            <block wx:if="{{item.row_orderlist.row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_row_spec">
+              <block wx:if="{{index_row_spec>0}}">
+              ,
+              </block>
+              {{row_spec.name}}
+            </block>
+          </block>
       </view>
       <view class="product_price flex_row_center">
         <view class="txt color_red">
-        ￥100
+        ￥{{item.row_orderlist.price}}
         </view>
       </view>
     </view>
   </view>
   <view class="order_bottom flex_row_center">
     <view class="member flex_row_start">
-      <image mode="aspectFit" style="width:30rpx;height:30rpx;border-radius:30rpx" src="/public/image/product.jpg"></image>
+      <image mode="aspectFit" style="width:30rpx;height:30rpx;border-radius:30rpx" src="{{item.row_order.row_member.img}}"></image>
       <view class="txt">
-        human machine
+        {{item.row_order.row_member.nickname}}
       </view>
       <view class="level">
+        <block wx:if="{{item.level==1}}">
         (一级)
+        </block>
+        <block wx:if="{{item.level==2}}">
+        (二级)
+        </block>
       </view>
     </view>
     <view class="rebate color_red">
-      +￥10.00
+      <block wx:if="{{item.rebate>0}}">+</block>￥{{item.rebate}}
     </view>
   </view>
 </view>
+</block>

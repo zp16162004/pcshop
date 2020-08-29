@@ -1,0 +1,33 @@
+<!--pages/my_phone/my_phone.wxml-->
+<view class="line flex_row_center">
+  <view class="txt">
+    手机号码
+  </view>
+  <view class="val flex_row_center">
+    <input class="mobile" value="{{mobile}}" placeholder="请输入手机号码" bindblur="change_mobile"></input>
+  </view>
+</view>
+<view class="line flex_row_center">
+  <view class="txt">
+    验证码
+  </view>
+  <view class="val flex_row_center">
+    <input class="vcode" value="{{my_vcode}}" placeholder="请输入验证码" bindblur="change_my_vcode"></input>
+    <block wx:if="{{interval==0}}">
+      <view class="btn color_red" bindtap="get_vcode">
+        发送验证码
+      </view>
+    </block>
+    <block wx:if="{{interval>0}}">
+      <view class="btn color_red" bindtap="get_vcode">
+        {{interval}}秒后重试
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="btns flex_row_center">
+  <view class="btn color_white bg_red" bindtap="submit">
+    提交
+  </view>
+</view>

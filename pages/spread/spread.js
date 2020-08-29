@@ -10,6 +10,7 @@ Page({
   data: {
     domain:'',
     show_login:false,
+    show_cash_out:false,
   },
 
   /**
@@ -121,7 +122,10 @@ Page({
   {
     var thiss=this;
     pcapi.get_rebate(
-      app.globalData.row_member.id,
+      {
+        member_id:app.globalData.row_member.id,
+        p:1
+      },
       function(res)
       {
         thiss.setData(
@@ -167,5 +171,44 @@ Page({
     wx.navigateTo({
       url: '/pages/spread_rebate_sort/spread_rebate_sort',
     })
+  },
+  show_cashout:function(e)
+  {
+    var thiss=this;
+    thiss.setData(
+      {
+        show_cash_out:true,
+      }
+    );
+  },
+  add_rebateout:function(e)
+  {
+    var thiss=this;
+    thiss.setData(
+      {
+        show_cash_out:false,
+      }
+    );
+    if(e.detail.code==1)
+    {
+      var money=e.detail.money;
+      pcapi.add_rebateout(
+        {
+          member_id:app.globalData.row_member.id,
+          money:money,
+        },
+        function(res)
+        {
+          if(res.data.code==1)
+          {
+            util.show_model(res.data.msg);
+            thiss.get_rebate();
+          }
+          else{
+            util.show_model(res.data.msg);
+          }
+        }
+      );
+    }
   },
 })

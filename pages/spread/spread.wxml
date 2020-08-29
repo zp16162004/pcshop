@@ -4,9 +4,9 @@
     <view class="txt color_white">
       当前佣金
     </view>
-    <view class="cashout_list color_lightwhite">
+    <!-- <view class="cashout_list color_lightwhite">
       提现记录>
-    </view>
+    </view> -->
   </view>
   <view class="l2 color_white">
     {{row_rebate.rebate}}
@@ -34,7 +34,7 @@
 </view>
   <view class="flex_row_center">
     <view class="goto_cashout bg_white">
-      <view class="btn bg_red color_white">
+      <view class="btn bg_red color_white" bindtap="show_cashout">
       立即提现
       </view>
     </view>
@@ -84,4 +84,8 @@
 <!--授权组件-->
 <block wx:if="{{show_login}}">
 <login bind:confirm="do_login"></login>
+</block>
+<!--提现组件-->
+<block wx:if="{{show_cash_out}}">
+<cash_out title="提现到微信钱包" money="{{row_rebate.rebate}}"  bind:confirm="add_rebateout"></cash_out>
 </block>

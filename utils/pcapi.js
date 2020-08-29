@@ -1135,7 +1135,7 @@ function get_orderrefund_detail(orderrefund_id,func)
     }
   })
 }
-function get_rebate(member_id,func)
+function get_rebate(params,func)
 {
   var thiss=this;
   wx.request({
@@ -1144,7 +1144,10 @@ function get_rebate(member_id,func)
       'content-type': 'application/x-www-form-urlencoded',
     },
     data:{
-      member_id:member_id,
+      member_id:params.member_id,
+      p:params.member_id,
+      sort_type:params.sort_type,
+      sort:params.sort,
     },
     method:'Post',
     dataType:'json',
@@ -1165,6 +1168,198 @@ function get_poster_rebate(member_id,func)
     },
     data:{
       member_id:member_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_my_bargainlist(member_id,p,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_my_bargainlist",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      p:p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function cancel_bargainlist(member_id,bargainlist_id,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/cancel_bargainlist",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:member_id,
+      bargainlist_id:bargainlist_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+
+function get_rebate_sort(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_rebate_sort",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      p:params.p,
+      sdate:params.sdate,
+      edate:params.edate,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_my_integrallog(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_my_integrallog",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      p:params.p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_my_cashflow(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_my_cashflow",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      type:params.type,
+      p:params.p,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function add_cashout(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_cashout",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      money:params.money,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function add_rebateout(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/add_rebateout",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      money:params.money,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_vcode(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_vcode",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      mobile:params.mobile,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function change_mobile(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/change_mobile",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      mobile:params.mobile,
     },
     method:'Post',
     dataType:'json',
@@ -1232,4 +1427,13 @@ module.exports = {
   get_orderrefund_detail:get_orderrefund_detail,
   get_rebate:get_rebate,
   get_poster_rebate:get_poster_rebate,
+  get_my_bargainlist:get_my_bargainlist,
+  cancel_bargainlist:cancel_bargainlist,
+  get_rebate_sort:get_rebate_sort,
+  get_my_integrallog:get_my_integrallog,
+  get_my_cashflow:get_my_cashflow,
+  add_cashout:add_cashout,
+  add_rebateout:add_rebateout,
+  get_vcode:get_vcode,
+  change_mobile:change_mobile,
 }

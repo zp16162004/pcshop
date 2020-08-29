@@ -1,0 +1,44 @@
+/* pages/my_phone/my_phone.wxss */
+.line
+{
+  padding: 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.line>.txt
+{
+  width: 175rpx;
+}
+.line>.val
+{
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.mobile
+{
+  background-color: transparent;
+}
+.vcode
+{
+  width: auto;
+  flex-grow: 1;
+  background-color: transparent;
+}
+.val>.btn
+{
+  width: 175rpx;
+  font-size: 22rpx;
+  text-align: center;
+}
+.btns
+{
+  margin-top: 20rpx;
+}
+.btns>.btn
+{
+  width:600rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 70rpx;
+}

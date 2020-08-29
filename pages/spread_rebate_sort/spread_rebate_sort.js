@@ -9,6 +9,10 @@ Page({
    */
   data: {
     domain:'',
+    p:1,
+    rows_rebate_sort:null,
+    index:0,
+    sort:-1,
   },
 
   /**
@@ -21,6 +25,7 @@ Page({
         domain:app.globalData.domain,
       }
     );
+    thiss.get_rebate_sort();
   },
 
   /**
@@ -62,7 +67,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var thiss=this;
+    thiss.setData(
+      {
+        p:thiss.data.p+1,
+      }
+    );
+    thiss.get_rebate_sort();
   },
 
   /**
@@ -70,5 +81,61 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  change_index:function(e)
+  {
+    var thiss=this;
+    var index=parseInt(e.currentTarget.dataset.index);
+    thiss.setData(
+      {
+        index:index,
+        p:1
+      }
+    );
+    thiss.get_rebate_sort();
+  },
+  get_rebate_sort:function()
+  {
+    var thiss=this;
+    //计算开始日期和结束日期
+    var sdate='';
+    if(thiss.data.index==0)
+    {
+      sdate=util.ftime(new Date().getTime()-6*24*3600*1000,'Y-M-D')+" 00:00:00";
+    }
+    else
+    {
+      sdate=util.ftime(new Date().getTime()-29*24*3600*1000,'Y-M-D')+" 00:00:00";
+    }
+    var edate=util.ftime(new Date().getTime(),'Y-M-D')+" 23:59:59";
+    pcapi.get_rebate_sort(
+      {
+        member_id:app.globalData.row_member.id,
+        p:thiss.data.p,
+        sdate:sdate,
+        edate:edate,
+      },
+      function(res)
+      {
+        if(thiss.data.p==1)
+        {
+          thiss.setData(
+            {
+              rows_rebate_sort:res.data.data,
+              sort:res.data.sort,
+            }
+          );
+        }
+        else
+        {
+          thiss.setData(
+            {
+              rows_rebate_sort:thiss.data.rows_rebate_sort.concat(res.data.data),
+              sort:res.data.sort,
+            }
+          );
+        }
+      }
+    );
+  },
 })

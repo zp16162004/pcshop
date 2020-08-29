@@ -9,6 +9,8 @@ Page({
    */
   data: {
     domain:'',
+    p:1,
+    row_rebate:null,
   },
 
   /**
@@ -21,6 +23,7 @@ Page({
         domain:app.globalData.domain,
       }
     );
+    thiss.get_rebate();
   },
 
   /**
@@ -62,7 +65,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var thiss=this;
+    thiss.setData(
+      {
+        p:thiss.data.p+1,
+      }
+    );
+    thiss.get_rebate();
   },
 
   /**
@@ -70,5 +79,39 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  get_rebate:function()
+  {
+    var thiss=this;
+    pcapi.get_rebate(
+      {
+        member_id:app.globalData.row_member.id,
+        p:thiss.data.p,
+        sort_type:thiss.data.sort_type,
+        sort:thiss.data.sort,
+      },
+      function(res)
+      {
+        if(thiss.data.p==1)
+        {
+          thiss.setData(
+            {
+              row_rebate:res.data.data,
+            }
+          );
+        }
+        else
+        {
+          thiss.data.row_rebate.rows_child1.concat(res.data.data.rows_child1);
+          thiss.data.row_rebate.rows_child2.concat(res.data.data.rows_child2);
+          thiss.data.row_rebate.rows_rebate.concat(res.data.data.rows_rebate);
+          thiss.setData(
+            {
+              row_rebate:thiss.data.row_rebate,
+            }
+          );
+        }
+      }
+    );
+  },
 })

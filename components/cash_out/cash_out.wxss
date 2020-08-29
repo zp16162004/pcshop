@@ -1,4 +1,60 @@
 /**app.wxss**/
+
+.background
+{
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #00000099;
+}
+.panel
+{
+  width: 600rpx;
+  padding: 20rpx;
+}
+.panel>view
+{
+  width: 100%;
+}
+input
+{
+  background-color: #e9e9e9;
+  width: 100%;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+}
+.btns
+{
+  margin-top: 20rpx;
+}
+.btn
+{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-weight: 600;
+}
+.title
+{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+}
+.money
+{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.btn
+{
+  flex: 1;
+  flex-shrink: 0;
+}
+
+
+
 button
 {
   background-color: transparent;
@@ -51,6 +107,10 @@ input{
 {
   background-color: #ffffff;
 }
+.bg_gray
+{
+  background-color: #656565;
+}
 .color_gray
 {
   color: #656565;
@@ -72,7 +132,7 @@ input{
 {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 .flex_row_end

@@ -5,7 +5,12 @@
       排行榜
     </view>
     <view class="number color_white">
+      <block wx:if="{{sort<0}}">
       您目前暂无排名
+      </block>
+      <block wx:if="{{sort>0}}">
+      NO.{{sort}}
+      </block>
     </view>
   </view>
   <view class="head_right flex_row_end">
@@ -14,24 +19,46 @@
 </view>
 
 <view class="tabs flex_row_center bg_white">
+  <block wx:if="{{index==0}}">
   <view class="tab_selected color_red">
     周排行
   </view>
-  <view class="tab color_gray">
+  <view class="tab color_gray" data-index="{{1}}" bindtap="change_index">
     月排行
   </view>
+  </block>
+  <block wx:if="{{index==1}}">
+  <view class="tab color_gray" data-index="{{0}}" bindtap="change_index">
+    周排行
+  </view>
+  <view class="tab_selected color_red">
+    月排行
+  </view>
+  </block>
 </view>
 
-
+<block wx:for="{{rows_rebate_sort}}">
 <view class="child flex_row_center">
+  <block wx:if="{{index==0}}">
   <image mode="aspectFit" style="width:30rpx;height:30rpx" src="{{domain}}/Public/images/wechat/gold.png"></image>
+  </block>
+  <block wx:if="{{index==1}}">
+  <image mode="aspectFit" style="width:30rpx;height:30rpx" src="{{domain}}/Public/images/wechat/silver.png"></image>
+  </block>
+  <block wx:if="{{index==2}}">
+  <image mode="aspectFit" style="width:30rpx;height:30rpx" src="{{domain}}/Public/images/wechat/copper.png"></image>
+  </block>
+  <block wx:if="{{index>2}}">
+  <view class="color_gray" style="font-size:22rpx;">{{index+1}}</view>
+  </block>
   <view class="info flex_row_center">
-    <image mode="aspectFit" style="width:30rpx;height:30rpx" src="/public/image/product.jpg"></image>
+    <image mode="aspectFit" style="width:30rpx;height:30rpx" src="{{item.row_member.img}}"></image>
     <view class="txt single_line">
-      human machine
+      {{item.row_member.nickname}}
     </view>
   </view>
   <view class="rebate">
-    ￥20.00
+    ￥{{item.sum_rebate}}
   </view>
 </view>
+</block>

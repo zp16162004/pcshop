@@ -1,0 +1,17 @@
+<!--components/cash_out/cash_out.wxml-->
+<view class="background flex_column_center" bindtap="cancel">
+  <view class="panel bg_white flex_column_center">
+    <view class="title" catchtap="noting">
+      提现到微信钱包
+    </view>
+    <input class="money" type="number" value="{{money}}" placeholder="请输入提现金额" catchtap="noting" bindblur="change_m" />
+    <view class="btns flex_row_center">
+      <view class="btn bg_gray color_white" catchtap="cancel">
+      取消
+      </view>
+      <view class="btn bg_red color_white" catchtap="submit">
+      确认
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,90 @@
+<!--pages/my_bargainlist/my_bargainlist.wxml-->
+<block wx:for="{{rows_bargain}}">
+<view  class="product">
+  <block wx:if="{{item.now_row_productspec.spec_img!=''}}">
+  <image src="{{item.now_row_productspec.spec_img}}" mode="aspectFit"></image>
+  </block>
+  <block wx:if="{{item.now_row_productspec.spec_img==''}}">
+  <image src="{{item.row_product.img}}" mode="aspectFit"></image>
+  </block>
+  <view class="product_info">
+    <view class="p_line1">
+      <view class="product_name">
+        {{item.row_product.name}}
+      </view>
+      <!-- <view class="product_count">
+        x{{item.number}}
+      </view> -->
+    </view>
+    <view class="p_line2 flex_row_center">
+      <view class="txt">
+      规格:
+      <!--单规格-->
+      <block wx:if="{{item.row_product.single_spec=='1'}}">
+        默认
+      </block>
+      <!--多规格-->
+      <block wx:if="{{item.row_product.single_spec=='0'}}">
+      <block wx:for="{{item.now_row_productspec.rows_spec}}" wx:for-item="row_spec" wx:for-index="index_spec">
+        <block wx:if="{{index_spec>0}}">
+        ，
+        </block>
+        {{row_spec.name}}
+      </block>
+      </block>
+      </view>
+      <view class="now_bargain_price flex_row_center">
+        <view class="txt">
+        已砍至
+        </view>
+        <view class="price color_red">
+        ￥{{item.now_bargain_price}}
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{item.now_row_bargainlist.state==0}}">
+      <view class="product_price color_red">
+        {{item.time2end}}
+      </view>
+    </block>
+    <block wx:if="{{item.now_row_bargainlist.state==1}}">
+      <view class="product_price color_red">
+        待付款
+      </view>
+    </block>
+    <block wx:if="{{item.now_row_bargainlist.state==2}}">
+      <view class="product_price color_gray">
+        活动已结束
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view class="btns flex_row_end">
+  <block wx:if="{{item.state==0}}">
+  <view class="btn_disabled" data-index="{{index}}" catchtap="cancel_bargainlist">
+    取消活动
+  </view>
+  <view class="btn" data-index="{{index}}" catchtap="goto_product_bargain">
+    继续砍价
+  </view>
+  </block>
+  <block wx:if="{{item.state==1}}">
+  <view class="btn" data-index="{{index}}" catchtap="goto_product_bargain">
+    立即付款
+  </view>
+  </block>
+  <block wx:if="{{item.state==2}}">
+  <view class="btn"  data-index="{{index}}" catchtap="goto_activity_bargain">
+    更多砍价
+  </view>
+  </block>
+</view>
+</block>
+
+
+    
+<block wx:if="{{show_login}}">
+<login bind:confirm="do_login"></login>
+</block>

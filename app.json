@@ -38,7 +38,9 @@
     "pages/spread_rebate/spread_rebate",
     "pages/spread_rebate_sort/spread_rebate_sort",
     "pages/my_money/my_money",
-    "pages/my_integral/my_integral"
+    "pages/my_integral/my_integral",
+    "pages/my_bargainlist/my_bargainlist",
+    "pages/my_phone/my_phone"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -79,7 +81,8 @@
   },
   "usingComponents": {
     "parser": "/components/parser.20200414.min/parser",
-    "pay_way": "/components/pay_way/pay_way"
+    "pay_way": "/components/pay_way/pay_way",
+    "cash_out": "/components/cash_out/cash_out"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

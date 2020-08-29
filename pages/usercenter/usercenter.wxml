@@ -6,12 +6,22 @@
       {{row_member.nickname}}
     </view>
     <block wx:if="{{row_member.mobile==''}}">
-      <view class="bind_phone">
+      <view class="bind_phone" bindtap="goto_my_phone">
       绑定手机号
       </view>
     </block>
+    <block wx:if="{{row_member.mobile!=''}}">
+      <view class="my_phone flex_row_start" bindtap="goto_my_phone">
+        <view class="txt color_gray">
+        {{row_member.mobile}}
+        </view>
+        <image mode="aspectFit" style="width:20rpx;height:20rpx" src="/public/image/edit.png"></image>
+      </view>
+    </block>
   </view>
+  <button open-type="openSetting" class="flex_column_center">
   <image class="setting" src="/public/image/setting.png" mode="aspectFit"></image>
+  </button>
 </view>
 <view class="my_money">
   <view class="money_item">
@@ -156,7 +166,7 @@
         </view>
       </view>
     </view>
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_pick_address">
       <view class="menu">
         <image src="/public/image/address_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -164,7 +174,7 @@
         </view>
       </view>
     </view>
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_collection">
       <view class="menu">
         <image src="/public/image/shoucang_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -172,7 +182,7 @@
         </view>
       </view>
     </view>
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_coupon">
       <view class="menu">
         <image src="/public/image/coupon_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -180,7 +190,7 @@
         </view>
       </view>
     </view>
-    <view class="p_menu" style="width:25%">
+    <view class="p_menu" style="width:25%" bindtap="goto_my_bargainlist">
       <view class="menu">
         <image src="/public/image/bargain_red.png" mode="aspectFit"></image>
         <view class="txt">
@@ -189,12 +199,12 @@
       </view>
     </view>
     <view class="p_menu" style="width:25%">
-      <view class="menu">
+      <button  open-type="contact" class="menu">
         <image src="/public/image/kefu_red.png" mode="aspectFit"></image>
         <view class="txt">
           联系客服
         </view>
-      </view>
+      </button>
     </view>
   </view>
 </view>

@@ -169,4 +169,34 @@ Page({
       url: '/pages/my_integral/my_integral',
     })
   },
+  goto_collection:function()
+  {
+    wx.navigateTo({
+      url: '/pages/collection/collection',
+    })
+  },
+  goto_coupon:function()
+  {
+    wx.navigateTo({
+      url: '/pages/coupon/coupon',
+    })
+  },
+  goto_pick_address:function()
+  {
+    wx.navigateTo({
+      url: '/pages/pick_address/pick_address',
+    })
+  },
+  goto_my_bargainlist:function()
+  {
+    wx.navigateTo({
+      url: '/pages/my_bargainlist/my_bargainlist',
+    })
+  },
+  goto_my_phone:function()
+  {
+    wx.navigateTo({
+      url: '/pages/my_phone/my_phone',
+    })
+  }
 })
