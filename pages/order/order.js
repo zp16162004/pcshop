@@ -394,5 +394,19 @@ Page({
         }
       }
     );
+  },
+  show_express_info:function()
+  {
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/express_info/express_info?order_id='+thiss.data.row_order.id,
+    })
+  },
+  show_order_qrcode:function()
+  {
+    var thiss=this;
+    wx.navigateTo({
+      url: '/pages/qrcode_order/qrcode_order?orderno='+thiss.data.row_order.orderno,
+    })
   }
 })

@@ -212,3 +212,6 @@
 <block wx:if="{{show_login}}">
 <login bind:confirm="do_login"></login>
 </block>
+
+<!--扫码-->
+<image mode="aspectFit" style="position:absolute;right:40rpx;bottom:40rpx;width:80rpx;height:80rpx" src="{{domain}}/Public/images/wechat/scan.png" bindtap="do_scan"></image>

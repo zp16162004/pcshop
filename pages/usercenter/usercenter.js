@@ -10,12 +10,18 @@ Page({
   data: {
     show_login:false,
     row_member:null,
+    domain:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var thiss=this;
+    thiss.data.domain=app.globalData.domain;
+    thiss.setData({
+      domain:thiss.data.domain,
+    });
   },
   //获取用户信息权限
   do_login:function(res)
@@ -198,5 +204,32 @@ Page({
     wx.navigateTo({
       url: '/pages/my_phone/my_phone',
     })
-  }
+  },
+  do_scan:function()
+  {
+    var thiss=this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success:function(res)
+      {
+        console.log(res);
+        var qrcode=res.result;
+        thiss.get_order_qrcode(qrcode);
+      }
+    })
+  },
+  get_order_qrcode:function(orderno)
+  {
+    var thiss=this;
+    pcapi.get_order_qrcode(
+      {
+        member_id:app.globalData.row_member.id,
+        orderno:orderno,
+      },
+      function(res)
+      {
+        util.show_model(res.data.msg);
+      }
+    );
+  },
 })

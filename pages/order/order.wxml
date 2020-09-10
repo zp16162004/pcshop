@@ -390,7 +390,7 @@
       <view class="txt color_red">
       ￥{{item.price}}
       </view>
-      <block wx:if="{{row_order.state==1}}">
+      <block wx:if="{{row_order.state==3}}">
       <view class="comment" data-index="{{index}}" bindtap="comment">
         评论
       </view>
@@ -492,6 +492,31 @@
     {{row_order.integral_discount}}
   </view>
 </view>
+<block wx:if="{{row_order.express_no!=''}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    物流编号:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    {{row_order.express_no}}
+    <view class="copy" bindtap="show_express_info">
+      查看
+    </view>
+  </view>
+</view>
+</block>
+<block wx:if="{{row_order.deliver_type==1&&row_order.state==1}}">
+<view class="info flex_row_center">
+  <view class="info_left">
+    核销码:
+  </view>
+  <view class="info_right flex_row_end color_gray">
+    <view class="copy" bindtap="show_order_qrcode">
+      查看
+    </view>
+  </view>
+</view>
+</block>
 <view class="info flex_row_center" style="border-top:1px solid #e9e9e9">
   <view class="info_right flex_row_end" style="font-size:26rpx">
     实付款:

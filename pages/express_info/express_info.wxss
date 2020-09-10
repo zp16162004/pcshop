@@ -1,0 +1,20 @@
+/* pages/express_info/express_info.wxss */
+.item
+{
+  padding: 20rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+.item>view
+{
+  width: 100%;
+}
+.time
+{
+  font-size: 22rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.content
+{
+  line-height: 40rpx;
+}

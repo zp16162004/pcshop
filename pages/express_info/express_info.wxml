@@ -1,0 +1,11 @@
+<!--pages/express_info/express_info.wxml-->
+<block wx:for="{{row.data}}">
+<view class="item flex_column_center">
+  <view class="time color_gray">
+    {{item.time}}
+  </view>
+  <view class="context">
+    {{item.context}}
+  </view>
+</view>
+</block>

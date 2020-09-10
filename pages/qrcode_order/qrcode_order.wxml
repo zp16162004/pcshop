@@ -1,0 +1,4 @@
+<!--pages/qrcode_order/qrcode_order.wxml-->
+<view class="flex_column_center" style="width:{{systeminfo.windowWidth}}px;height:{{systeminfo.windowHeight}}px;">
+<canvas class='canvas' canvas-id='canvas' style="width:600rpx;height:600rpx"></canvas>
+</view>

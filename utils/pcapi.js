@@ -1370,6 +1370,47 @@ function change_mobile(params,func)
     }
   })
 }
+function view_order_express(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/view_order_express",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      order_id:params.order_id,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
+function get_order_qrcode(params,func)
+{
+  var thiss=this;
+  wx.request({
+    url: app.globalData.host+"/Service/get_order_qrcode",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    data:{
+      member_id:params.member_id,
+      orderno:params.orderno,
+    },
+    method:'Post',
+    dataType:'json',
+    success:function(res)
+    {
+      console.log(res);
+      func(res);
+    }
+  })
+}
 module.exports = {
   get_config: get_config,
   do_login: do_login,
@@ -1436,4 +1477,6 @@ module.exports = {
   add_rebateout:add_rebateout,
   get_vcode:get_vcode,
   change_mobile:change_mobile,
+  view_order_express:view_order_express,
+  get_order_qrcode:get_order_qrcode,
 }

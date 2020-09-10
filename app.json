@@ -40,7 +40,9 @@
     "pages/my_money/my_money",
     "pages/my_integral/my_integral",
     "pages/my_bargainlist/my_bargainlist",
-    "pages/my_phone/my_phone"
+    "pages/my_phone/my_phone",
+    "pages/express_info/express_info",
+    "pages/qrcode_order/qrcode_order"
   ],
   "window": {
     "backgroundTextStyle": "light",
