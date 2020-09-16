@@ -19,6 +19,14 @@ Page({
    */
   onLoad: function (options) {
     var thiss=this;
+    //窗口信息
+    wx.getSystemInfo({
+      success: (result) => {
+        console.log(result);
+        this.data.systeminfo=result;
+      },
+    });
+    this.data.menu_rect=wx.getMenuButtonBoundingClientRect();
     var id=options.id;
     console.log(id);
     this.setData(
@@ -230,12 +238,30 @@ Page({
       {
         if(res.data.code==1)
         {
-          thiss.setData(
-            {
-              bargainlist_id:res.data.bargainlist_id,
-            }
-          );
-          thiss.get_bargain_detail();
+          if(res.data.ids_template!=null)
+          {
+            util.apply_template(thiss.data.systeminfo,res.data.ids_template,
+              function()
+              {
+                console.log("请求权限完成");
+                thiss.setData(
+                  {
+                    bargainlist_id:res.data.bargainlist_id,
+                  }
+                );
+                thiss.get_bargain_detail();
+              }
+            );
+          }
+          else
+          {
+            thiss.setData(
+              {
+                bargainlist_id:res.data.bargainlist_id,
+              }
+            );
+            thiss.get_bargain_detail();
+          }
         }
         else
         {
@@ -254,7 +280,20 @@ Page({
       {
         if(res.data.code==1)
         {
-          thiss.get_bargain_detail();
+          if(res.data.ids_template!=null)
+          {
+            util.apply_template(thiss.data.systeminfo,res.data.ids_template,
+              function()
+              {
+                console.log("请求权限完成");
+                thiss.get_bargain_detail();
+              }
+            );
+          }
+          else
+          {
+            thiss.get_bargain_detail();
+          }
         }
         else
         {

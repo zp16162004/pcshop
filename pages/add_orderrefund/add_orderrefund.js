@@ -25,6 +25,13 @@ Page({
    */
   onLoad: function (options) {
     var thiss=this;
+    wx.getSystemInfo({
+      success: (result) => {
+        // console.log(result);
+        this.data.systeminfo=result;
+      },
+    });
+    this.data.menu_rect=wx.getMenuButtonBoundingClientRect();
     thiss.setData(
       {
         domain:app.globalData.domain,
@@ -473,7 +480,20 @@ Page({
       {
         if(res.data.code==1)
         {
-          util.show_model_and_back(res.data.msg);
+          if(res.data.ids_template!=null)
+          {
+            util.apply_template(thiss.data.systeminfo,res.data.ids_template,
+              function()
+              {
+                console.log("请求权限完成");
+                util.show_model_and_back(res.data.msg);
+              }
+            );
+          }
+          else
+          {
+            util.show_model_and_back(res.data.msg);
+          }
         }
         else
         {

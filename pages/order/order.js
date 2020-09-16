@@ -379,15 +379,36 @@ Page({
       {
         if(res.data.code==1)
         {
-          wx.showToast({
-            title: res.data.msg,
-          })
-          thiss.setData(
-            {
-              p:1,
-            }
-          );
-          thiss.get_order_detail();
+          if(res.data.ids_template!=null)
+          {
+            util.apply_template(thiss.data.systeminfo,res.data.ids_template,
+              function()
+              {
+                console.log("请求权限完成");
+                wx.showToast({
+                  title: res.data.msg,
+                })
+                thiss.setData(
+                  {
+                    p:1,
+                  }
+                );
+                thiss.get_order_detail();
+              }
+            );
+          }
+          else
+          {
+            wx.showToast({
+              title: res.data.msg,
+            })
+            thiss.setData(
+              {
+                p:1,
+              }
+            );
+            thiss.get_order_detail();
+          }
         }
         else{
           util.show_model(res.data.msg);

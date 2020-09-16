@@ -838,14 +838,35 @@ Page({
               state:parseInt(res.data.state),
             }
           );
-          if(thiss.data.state==0)
+          if(res.data.ids_template!=null)
           {
-            thiss.get_prepay_id();
+            util.apply_template(thiss.data.systeminfo,res.data.ids_template,
+              function()
+              {
+                console.log("请求权限完成");
+                if(thiss.data.state==0)
+                {
+                  thiss.get_prepay_id();
+                }
+                else
+                {
+                  app.globalData.rows_orderlist=null,
+                  util.show_model_and_back(res.data.msg);
+                }
+              }
+            );
           }
           else
           {
-            app.globalData.rows_orderlist=null,
-            util.show_model_and_back(res.data.msg);
+            if(thiss.data.state==0)
+            {
+              thiss.get_prepay_id();
+            }
+            else
+            {
+              app.globalData.rows_orderlist=null,
+              util.show_model_and_back(res.data.msg);
+            }
           }
         }
         else
