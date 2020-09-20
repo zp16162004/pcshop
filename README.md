@@ -1,37 +1,28 @@
 # PCSHOP
 
 #### 介绍
-微信小程序商城，多门店+拼团+秒杀+砍价，
+微信小程序商城，多门店+拼团+秒杀+砍价+优惠券
 
 #### 软件架构
-软件架构说明
+后端:thinkphp3.2.3
+前端:未使用uniapp等第三方开发框架
 
 
 #### 安装教程
+小程序端：clone或者下载代码，用微信开发者工具进行编辑
+         请修改相应的appid
+后端:QQ群:573290500,群文件下载，后端免费但不开源
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 前端效果图
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222634_379d8116_475898.jpeg "1.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222646_a2e3843f_475898.jpeg "2.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222655_fb59a0a6_475898.jpeg "3.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222701_a50a8f01_475898.jpeg "4.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222707_c2a4a4d0_475898.jpeg "5.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222716_0768f655_475898.jpeg "6.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222723_f2a3e29c_475898.jpeg "7.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222729_7311a497_475898.jpeg "8.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222737_7f2cc966_475898.jpeg "9.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0920/222743_bf1f1d48_475898.jpeg "10.jpg")
+#### 演示
+正在搭建中.......
