@@ -53,8 +53,9 @@ page
 }
 .cart>image
 {
-  width: 160rpx;
-  height: 160rpx;
+  width: 140rpx;
+  height: 140rpx;
+  margin-left: 20rpx;
   border-radius: 20rpx;
   flex-grow: 0;
   flex-shrink: 0;
@@ -62,6 +63,7 @@ page
 .p_cart_info
 {
   flex-grow: 1;
+  margin-left: 20rpx;
   overflow: hidden;
 }
 .product_name
