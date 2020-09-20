@@ -208,4 +208,11 @@ Page({
       url: '/pages/collection/collection',
     })
   },
+  change_keyword:function(e)
+  {
+    console.log(e);
+    wx.navigateTo({
+      url: '/pages/product_list/product_list?name='+e.detail.value,
+    })
+  }
 })

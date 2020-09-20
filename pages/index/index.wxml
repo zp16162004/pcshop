@@ -4,7 +4,7 @@
     <image mode="aspectFit" src="/public/image/logo.png" style="padding-left:{{systeminfo.windowWidth-menu_rect.right}}px;height:100%;width:{{menu_rect.height}}px"></image>
   <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{menu_rect.left-(systeminfo.windowWidth-menu_rect.right)-2*menu_rect.height-20}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
     <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
-    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
+    <input class="weui-input" maxlength="10" placeholder="搜索商品" placeholder-class="ph_input" style="height:100%;" bindblur="change_keyword" />
   </view>
 </view>
 <scroll-view scroll-y="true" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.bottom-10}}px;">

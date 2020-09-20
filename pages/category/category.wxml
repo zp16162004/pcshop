@@ -1,7 +1,7 @@
 <!--pages/category/category.wxml-->
   <view class="title" style="height:{{menu_rect.height}}px;margin-left:10px;width:{{systeminfo.windowWidth-20}}px;border-radius:{{menu_rect.height/2}}px;padding:0px {{menu_rect.height/2}}px;">
     <image src="/public/image/sousuo.png" mode="aspectFit" style="width:40rpx;height:40rpx;padding:0rpx 10rpx"/>
-    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;" />
+    <input class="weui-input" maxlength="10" placeholder="最大输入长度为10" placeholder-class="ph_input" style="height:100%;"  bindblur="change_keyword"/>
   </view>
 <view class="holder" style="margin-top:10px;height:{{systeminfo.windowHeight-menu_rect.height-10}}px;padding-left:0rpx;padding-right:0rpx">
 <scroll-view scroll-y="true" class="left_category">

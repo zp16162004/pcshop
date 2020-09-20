@@ -24,12 +24,15 @@ Page({
    */
   onLoad: function (options) {
     var id=options.id;
-    console.log(id);
-    this.setData(
-      {
-        id:id,
-      }
-    );
+    if(id!=null)
+    {
+      console.log(id);
+      this.setData(
+        {
+          id:id,
+        }
+      );
+    }
   },
 
   /**
@@ -128,17 +131,30 @@ Page({
   get_category_by_id:function()
   {
     var thiss=this;
-    pcapi.get_category_by_id(
-      thiss.data.id,
-      function(res)
-      {
-        thiss.setData(
-          {
-            row_category:res.data.data,
-          }
-        );
-      }
-    );
+    if(thiss.data.id==0)
+    {
+      var row_category=new Object();
+      row_category.name="全部";
+      thiss.setData(
+        {
+          row_category:row_category,
+        }
+      );
+    }
+    else
+    {
+      pcapi.get_category_by_id(
+        thiss.data.id,
+        function(res)
+        {
+          thiss.setData(
+            {
+              row_category:res.data.data,
+            }
+          );
+        }
+      );
+    }
   },
   goto_product:function(e)
   {
