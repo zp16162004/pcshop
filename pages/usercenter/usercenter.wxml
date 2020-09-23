@@ -24,7 +24,7 @@
   </button>
 </view>
 <view class="my_money">
-  <view class="money_item">
+  <view class="money_item" bindtap="goto_my_money">
     <view class="txt">
       我的余额
     </view>
@@ -32,7 +32,7 @@
       {{row_member.money}}
     </view>
   </view>
-  <view class="money_item" style="border-left:1px solid #e9e9e9;border-right:1px solid #e9e9e9">
+  <view class="money_item" style="border-left:1px solid #e9e9e9;border-right:1px solid #e9e9e9" bindtap="goto_spread">
     <view class="txt">
       当前佣金
     </view>
@@ -40,7 +40,7 @@
       {{row_member.rebate}}
     </view>
   </view>
-  <view class="money_item">
+  <view class="money_item" bindtap="goto_coupon">
     <view class="txt">
       优惠券
     </view>
