@@ -124,7 +124,8 @@ page
 {
   width: 60rpx;
   height: 40rpx;
-  border: 1px solid #656565;
+  border-top: 1px solid #656565;
+  border-bottom: 1px solid #656565;
   text-align: center;
   line-height: 40rpx;
 }
