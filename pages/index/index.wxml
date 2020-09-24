@@ -139,7 +139,7 @@
     <scroll-view scroll-x="true">
     <view class="p_category">
       <block wx:for="{{rows_detail_category}}">
-      <view class="category">
+      <view class="category" data-id="{{item.id}}" bindtap="goto_product_list">
         <image src="{{item.img}}" mode="aspectFit"></image>
         <view class="category_txt">
           {{item.name}}

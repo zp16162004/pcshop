@@ -163,6 +163,15 @@ Page({
       url: '/pages/product/product?id='+id,
     })
   },
+  goto_product_list:function(event)
+  {
+    console.log(event);
+    var id=event.currentTarget.dataset.id;
+    console.log(id);
+    wx.navigateTo({
+      url: '/pages/product_list/product_list?id='+id,
+    })
+  },
   goto_activity_group:function()
   {
     wx.navigateTo({
@@ -183,8 +192,11 @@ Page({
   },
   goto_category:function()
   {
-    wx.navigateTo({
-      url: '/pages/pick_address/pick_address',
+    // wx.navigateTo({
+    //   url: '/pages/pick_address/pick_address',
+    // })
+    wx.switchTab({
+      url: '/pages/category/category',
     })
   },
   goto_coupon:function()
