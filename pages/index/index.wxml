@@ -42,51 +42,51 @@
   <!--菜单-->
   <view class="p_menus">
     <view class="p_menu">
-      <image src="/public/image/dianpu.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_category"/>
+      <image src="/public/image/dianpu.png" style="width:70rpx;height:70rpx;" mode="aspectFix" bindtap="goto_category"/>
       <view class="menu_txt">
         商品分类
       </view>
     </view>
     <view class="p_menu">
-      <image src="/public/image/youhuiquan.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_coupon"/>
+      <image src="/public/image/youhuiquan.png" style="width:70rpx;height:70rpx;" mode="aspectFix" bindtap="goto_coupon"/>
       <view class="menu_txt">
         优惠券
       </view>
     </view>
     <view class="p_menu">
-      <image src="/public/image/qiandao.png" style="width:80rpx;height:80rpx;" mode="aspectFix" bindtap="goto_sign"/>
+      <image src="/public/image/qiandao.png" style="width:70rpx;height:70rpx;" mode="aspectFix" bindtap="goto_sign"/>
       <view class="menu_txt">
         签到
       </view>
     </view>
     <view class="p_menu">
       <button open-type="contact" class="flex_column_center">
-      <image src="/public/image/kefu.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/kefu.png" style="width:70rpx;height:70rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         客服
       </view>
       </button>
     </view>
     <view class="p_menu" bindtap="goto_collection">
-      <image src="/public/image/shoucang.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/shoucang.png" style="width:70rpx;height:70rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         我的收藏
       </view>
     </view>
     <view class="p_menu" bindtap="goto_activity_group">
-      <image src="/public/image/tuangou.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/tuangou.png" style="width:70rpx;height:70rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         团购活动
       </view>
     </view>
     <view class="p_menu" bindtap="goto_activity_flash">
-      <image src="/public/image/miaosha.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/miaosha.png" style="width:70rpx;height:70rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         秒杀活动
       </view>
     </view>
     <view class="p_menu" bindtap="goto_activity_bargain">
-      <image src="/public/image/kanjia.png" style="width:80rpx;height:80rpx;" mode="aspectFix"/>
+      <image src="/public/image/kanjia.png" style="width:70rpx;height:70rpx;" mode="aspectFix"/>
       <view class="menu_txt">
         砍价活动
       </view>
@@ -194,7 +194,7 @@
                 </view>
             </view>
           </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+          <image src="/public/image/gouwuche_red.png" style="width:40rpx;height:40rpx"></image>
         </view>
       </view>
     </view>
@@ -306,7 +306,7 @@
                 </view>
             </view>
           </view>
-          <image src="/public/image/gouwuche2.png" style="width:40rpx;height:40rpx"></image>
+          <image src="/public/image/gouwuche_red.png" style="width:40rpx;height:40rpx"></image>
         </view>
       </view>
     </view>

@@ -96,7 +96,7 @@ swiper .wx-swiper-dot.wx-swiper-dot-active {
   height: 100%;
   line-height: 60rpx;
   padding-left: 20rpx;
-  color: #1196db;
+  color: #f10b0b;
   height: 40rpx;
   line-height: 40rpx;
   display: flex;
